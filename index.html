@@ -39,16 +39,29 @@
         .tab-content.active {
             display: block;
         }
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
 
-    <img='LogoAccueil.JPG'></img>
+    <h1>Page avec Onglets</h1>
+
+    <!-- Section pour l'image -->
+    <div class="image-container">
+        <img src="LogoAccueil.JPG" alt="Logo Accueil">
+    </div>
 
     <div class="tab-container">
-        <div class="tab active" onclick="openTab(event, 'tab1')">Onglet 1</div>
-        <div class="tab" onclick="openTab(event, 'tab2')">Onglet 2</div>
-        <div class="tab" onclick="openTab(event, 'tab3')">Onglet 3</div>
+        <div class="tab active" onclick="openTab(event, 'tab1')">Accueil</div>
+        <div class="tab" onclick="openTab(event, 'tab2')">Données disponibles</div>
+        <div class="tab" onclick="openTab(event, 'tab3')">Exemples</div>
     </div>
 
     <div id="tab1" class="tab-content active">
@@ -68,15 +81,10 @@
 
     <script>
         function openTab(event, tabId) {
-            // Masquer tous les contenus d'onglet
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
-
-            // Retirer la classe "active" de tous les onglets
             const tabs = document.querySelectorAll('.tab');
             tabs.forEach(tab => tab.classList.remove('active'));
-
-            // Afficher le contenu sélectionné et activer l'onglet correspondant
             document.getElementById(tabId).classList.add('active');
             event.currentTarget.classList.add('active');
         }
@@ -84,4 +92,3 @@
 
 </body>
 </html>
-
