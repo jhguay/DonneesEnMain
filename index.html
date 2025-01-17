@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page avec Onglets et Colonne</title>
     <style>
-        body {
+
+        html, body {
+            height: 100%; /* Assurer que la hauteur de la page prend toute la hauteur de l'écran */
+            margin: 0; /* Enlever les marges par défaut */
+            overflow-y: scroll; /* Afficher la barre de défilement verticale en permanence */
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
         }
+        
         .video-container {
             width: 60%; /* Largeur du conteneur */
             margin: 20px auto; /* Centrage de l'élément */
