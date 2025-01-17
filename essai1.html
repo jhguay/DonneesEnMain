@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page avec Vidéo YouTube</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .video-container {
+            width: 80%; /* Largeur du conteneur */
+            margin: 20px auto; /* Centrage de l'élément */
+            border: 2px solid #ddd; /* Bordure autour du conteneur */
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            background-color: #f4f4f4;
+        }
+        iframe {
+            width: 100%; /* La vidéo occupe toute la largeur du conteneur */
+            height: 450px; /* Hauteur de la vidéo */
+            border: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-container">
+        <!-- Intégration de la vidéo YouTube -->
+        <iframe src="https://www.youtube.com/embed/dfnZIqqGWk" 
+                title="Video YouTube" 
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+    </div>
+
+</body>
+</html>
