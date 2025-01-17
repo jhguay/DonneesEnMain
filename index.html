@@ -3,12 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page avec Onglets</title>
+    <title>Page avec Onglets et Colonne</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+        }
+        .layout {
+            display: flex;
+            min-height: 100vh; /* Hauteur minimale : pleine hauteur de la fenêtre */
+        }
+        .sidebar {
+            width: 20%; /* Largeur de la colonne de gauche */
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+        .main-content {
+            width: 80%; /* Largeur du contenu principal */
+            padding: 20px;
+            box-sizing: border-box;
         }
         .tab-container {
             display: flex;
@@ -39,44 +55,46 @@
         .tab-content.active {
             display: block;
         }
-        .image-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-        }
     </style>
 </head>
 <body>
 
-    <h1>Page avec Onglets</h1>
+    <div class="layout">
+        <!-- Colonne de gauche -->
+        <div class="sidebar">
+            <h3>Colonne de gauche</h3>
+            <p>Voici un conteneur à gauche des onglets.</p>
+            <ul>
+                <li>Élément 1</li>
+                <li>Élément 2</li>
+                <li>Élément 3</li>
+            </ul>
+        </div>
 
-    <!-- Section pour l'image -->
-    <div class="image-container">
-        <img src="LogoAccueil.JPG" alt="Logo Accueil" style="height: 200px;">
-    </div>
+        <!-- Contenu principal avec onglets -->
+        <div class="main-content">
+            <h1>Page avec Onglets</h1>
+            <div class="tab-container">
+                <div class="tab active" onclick="openTab(event, 'tab1')">Onglet 1</div>
+                <div class="tab" onclick="openTab(event, 'tab2')">Onglet 2</div>
+                <div class="tab" onclick="openTab(event, 'tab3')">Onglet 3</div>
+            </div>
 
-    <div class="tab-container">
-        <div class="tab active" onclick="openTab(event, 'tab1')">Accueil</div>
-        <div class="tab" onclick="openTab(event, 'tab2')">Données disponibles</div>
-        <div class="tab" onclick="openTab(event, 'tab3')">Exemples</div>
-    </div>
+            <div id="tab1" class="tab-content active">
+                <h2>Contenu de l'Onglet 1</h2>
+                <p>Voici le contenu de l'onglet 1.</p>
+            </div>
 
-    <div id="tab1" class="tab-content active">
-        <h2>Contenu de l'Onglet 1</h2>
-        <p>Voici le contenu de l'onglet 1.</p>
-    </div>
+            <div id="tab2" class="tab-content">
+                <h2>Contenu de l'Onglet 2</h2>
+                <p>Voici le contenu de l'onglet 2.</p>
+            </div>
 
-    <div id="tab2" class="tab-content">
-        <h2>Contenu de l'Onglet 2</h2>
-        <p>Voici le contenu de l'onglet 2.</p>
-    </div>
-
-    <div id="tab3" class="tab-content">
-        <h2>Contenu de l'Onglet 3</h2>
-        <p>Voici le contenu de l'onglet 3.</p>
+            <div id="tab3" class="tab-content">
+                <h2>Contenu de l'Onglet 3</h2>
+                <p>Voici le contenu de l'onglet 3.</p>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -92,3 +110,4 @@
 
 </body>
 </html>
+
