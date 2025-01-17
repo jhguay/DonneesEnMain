@@ -10,6 +10,21 @@
             margin: 0;
             padding: 0;
         }
+        .video-container {
+            width: 80%; /* Largeur du conteneur */
+            margin: 20px auto; /* Centrage de l'élément */
+            border: 2px solid #ddd; /* Bordure autour du conteneur */
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            background-color: #f4f4f4;
+        }
+        iframe {
+            width: 100%; /* La vidéo occupe toute la largeur du conteneur */
+            height: 450px; /* Hauteur de la vidéo */
+            border: none;
+            border-radius: 8px;
+        }
         .layout {
             display: flex;
             min-height: 100vh; /* Hauteur minimale : pleine hauteur de la fenêtre */
@@ -93,7 +108,14 @@
 
             <div id="tab3" class="tab-content">
                 <h2>Contenu de l'Onglet 3</h2>
-                <p>Voici le contenu de l'onglet 3.</p>
+                <div class="video-container">
+                    <!-- Intégration de la vidéo YouTube -->
+                    <iframe src="https://www.youtube.com/watch?v=_dfnZIqqGWk" 
+                            title="Video YouTube" 
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
             </div>
         </div>
     </div>
