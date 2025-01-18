@@ -3,40 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page avec Vidéo YouTube</title>
+    <title>Onglet Désactivé</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+        /* Style général des onglets */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #ccc;
         }
-        .video-container {
-            width: 80%; /* Largeur du conteneur */
-            margin: 20px auto; /* Centrage de l'élément */
-            border: 2px solid #ddd; /* Bordure autour du conteneur */
-            padding: 10px;
-            box-sizing: border-box;
-            border-radius: 8px;
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
             background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
         }
-        iframe {
-            width: 100%; /* La vidéo occupe toute la largeur du conteneur */
-            height: 450px; /* Hauteur de la vidéo */
-            border: none;
-            border-radius: 8px;
+
+        /* Onglet désactivé */
+        .tab.disabled {
+            color: #888; /* Texte gris */
+            background-color: #e0e0e0; /* Fond gris clair */
+            cursor: not-allowed; /* Curseur de non-interaction */
+            border-color: #ccc; /* Garde la bordure comme les autres onglets */
+        }
+
+        /* Style du contenu des onglets (caché pour l'exemple) */
+        .content {
+            padding: 20px;
+            display: none;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+        }
+
+        /* Afficher le contenu de l'onglet actif */
+        .active {
+            display: block;
         }
     </style>
 </head>
 <body>
 
-    <div class="video-container">
-        <!-- Intégration de la vidéo YouTube -->
-        <iframe src="https://www.youtube.com/embed/dfnZIqqGWk" 
-                title="Video YouTube" 
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-        </iframe>
+    <div class="tabs">
+        <div class="tab disabled">Onglet 1 (Désactivé)</div>
+        <div class="tab">Onglet 2 (Actif)</div>
+        <div class="tab">Onglet 3</div>
     </div>
 
+    <div class="content">
+        <p>Contenu de l'onglet 2</p>
+    </div>
+
+    <script>
+        // Interaction de base pour l'affichage des contenus
+        const tabs = document.querySelectorAll('.tab');
+        const content = document.querySelector('.content');
+        
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', function() {
+                if (!tab.classList.contains('disabled')) {
+                    // Masquer tous les contenus
+                    content.style.display = 'none';
+                    // Afficher le contenu de l'onglet sélectionné
+                    content.style.display = 'block';
+                    // Marquer l'onglet actif
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+
