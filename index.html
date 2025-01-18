@@ -67,6 +67,12 @@
             font-weight: bold;
             border-top: 4px solid #FF9800; 
         }
+        .tab.disabled {
+            color: #888; /* Texte gris */
+            background-color: #e0e0e0; /* Fond gris clair */
+            cursor: not-allowed; /* Curseur de non-interaction */
+            border-color: #ccc; /* Garde la bordure comme les autres onglets */
+        }
         .tab-content {
             display: none;
             padding: 20px;
@@ -190,7 +196,7 @@
                     </div>
             </div>
 
-            <div id="tab3" class="tab-content">
+            <div id="tab3" class="tab.disabled">
         
 
             </div>
