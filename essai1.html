@@ -1,83 +1,38 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Onglet Désactivé</title>
+    <title>Animation dans Canvas</title>
     <style>
-        /* Style général des onglets */
-        .tabs {
-            display: flex;
-            border-bottom: 2px solid #ccc;
-        }
-
-        .tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            font-weight: bold;
-            background-color: #f4f4f4;
-            border: 1px solid #ccc;
-            border-radius: 5px 5px 0 0;
-            margin-right: 5px;
-        }
-
-        /* Onglet désactivé */
-        .tab.disabled {
-            color: #888; /* Texte gris */
-            background-color: #e0e0e0; /* Fond gris clair */
-            cursor: not-allowed; /* Curseur de non-interaction */
-            border-color: #ccc; /* Garde la bordure comme les autres onglets */
-        }
-
-        /* Style du contenu des onglets (caché pour l'exemple) */
-        .content {
-            padding: 20px;
-            display: none;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-        }
-
-        /* Afficher le contenu de l'onglet actif */
-        .active {
-            display: block;
+        canvas {
+            border: 1px solid black;
         }
     </style>
 </head>
 <body>
-
-    <div class="tabs">
-        <div class="tab disabled">Onglet 1  <p>Bonjour</p></div>
-        
-        <div class="tab">Onglet 2 (Actif)  <p>Bonjour</p></div>
-        
-        <div class="tab">Onglet 3   <p>Bonjour</p></div>
-        
-         <div class="tab">Onglet 4 <p>Bonjour</p></div>
-        
-    </div>
-
-    <div class="content">
-        <p>Contenu de l'onglet 2</p>
-    </div>
-
+    <canvas id="monCanvas" width="400" height="300"></canvas>
     <script>
-        // Interaction de base pour l'affichage des contenus
-        const tabs = document.querySelectorAll('.tab');
-        const content = document.querySelector('.content');
-        
-        tabs.forEach((tab, index) => {
-            tab.addEventListener('click', function() {
-                if (!tab.classList.contains('disabled')) {
-                    // Masquer tous les contenus
-                    content.style.display = 'none';
-                    // Afficher le contenu de l'onglet sélectionné
-                    content.style.display = 'block';
-                    // Marquer l'onglet actif
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                }
-            });
-        });
+        const canvas = document.getElementById('monCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let x = 50, y = 50, dx = 2, dy = 2;
+
+        function dessinerCercle() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.arc(x, y, 20, 0, Math.PI * 2);
+            ctx.fillStyle = 'blue';
+            ctx.fill();
+            ctx.closePath();
+            x += dx;
+            y += dy;
+
+            if (x + 20 > canvas.width || x - 20 < 0) dx = -dx;
+            if (y + 20 > canvas.height || y - 20 < 0) dy = -dy;
+
+            requestAnimationFrame(dessinerCercle);
+        }
+
+        dessinerCercle();
     </script>
 </body>
 </html>
