@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+form {
+    width: 50%;
+    margin: 40px auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 20px;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+#prediction {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 40px;
+}
