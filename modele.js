@@ -21,6 +21,7 @@ function obtenirPrédiction(var1, var2, var3, var4, var5, var6, var7, var8) {
       return ligne[8]; // Retourne la prédiction trouvée
     }
   }
+  console.warn("bonjour");
   return null; // Retourne null si aucune correspondance n'est trouvée
 }
 
