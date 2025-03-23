@@ -12,34 +12,60 @@ const données = [
 // Définir la fonction pour obtenir la prédiction
 function obtenirPrédiction(var1, var2, var3, var4, var5, var6, var7, var8) {
   for (const ligne of données) {
-    if (ligne[0] === var1 && ligne[1] === var2 && ligne[2] === var3 && ligne[3] === var4 && ligne[4] === var5 && ligne[5] === var6 && ligne[6] === var7 && ligne[7] === var8) {
+    if (
+      ligne[0] === var1 && ligne[1] === var2 &&
+      ligne[2] === var3 && ligne[3] === var4 &&
+      ligne[4] === var5 && ligne[5] === var6 &&
+      ligne[6] === var7 && ligne[7] === var8
+    ) {
       return ligne[8];
     }
   }
   return null; // Aucune prédiction trouvée
 }
 
-// Définir la fonction pour mettre à jour la prédiction lorsqu'un bouton est cliqué
+// Définir la fonction pour mettre à jour la prédiction
 function mettreÀJourPrédiction() {
-  const var1 = document.querySelector('input[name="var1"]:checked').value;
-  const var2 = document.querySelector('input[name="var2"]:checked').value;
-  const var3 = document.querySelector('input[name="var3"]:checked').value;
-  const var4 = document.querySelector('input[name="var4"]:checked').value;
-  const var5 = document.querySelector('input[name="var5"]:checked').value;
-  const var6 = document.querySelector('input[name="var6"]:checked').value;
-  const var7 = document.querySelector('input[name="var7"]:checked').value;
-  const var8 = document.querySelector('input[name="var8"]:checked').value;
+  const var1 = document.querySelector('input[name="var1"]:checked');
+  const var2 = document.querySelector('input[name="var2"]:checked');
+  const var3 = document.querySelector('input[name="var3"]:checked');
+  const var4 = document.querySelector('input[name="var4"]:checked');
+  const var5 = document.querySelector('input[name="var5"]:checked');
+  const var6 = document.querySelector('input[name="var6"]:checked');
+  const var7 = document.querySelector('input[name="var7"]:checked');
+  const var8 = document.querySelector('input[name="var8"]:checked');
 
-  const prédiction = obtenirPrédiction(var1, var2, var3, var4, var5, var6, var7, var8);
+  // Vérifier si toutes les variables sont définies
+  if (var1 && var2 && var3 && var4 && var5 && var6 && var7 && var8) {
+    const prédiction = obtenirPrédiction(
+      parseInt(var1.value), parseInt(var2.value),
+      parseInt(var3.value), parseInt(var4.value),
+      parseInt(var5.value), parseInt(var6.value),
+      parseInt(var7.value), parseInt(var8.value)
+    );
 
-  if (prédiction !== null) {
-    document.getElementById('prédiction').innerHTML = `Prédiction : ${prédiction}`;
+    const predictionElement = document.getElementById('prédiction');
+    if (predictionElement) {
+      predictionElement.innerHTML = prédiction !== null
+        ? `Prédiction : ${prédiction}`
+        : 'Aucune prédiction trouvée';
+    } else {
+      console.error("L'élément avec l'ID 'prédiction' est introuvable.");
+    }
   } else {
-    document.getElementById('prédiction').innerHTML = 'Aucune prédiction trouvée';
+    console.warn("Veuillez sélectionner toutes les options.");
   }
 }
 
-// Ajouter un événement pour mettre à jour la prédiction lorsqu'un bouton est cliqué
-document.querySelectorAll('input[type="radio"]').forEach(bouton => {
-  bouton.addEventListener('change', mettreÀJourPrédiction);
+// Attendre le chargement du DOM avant d'ajouter les événements
+document.addEventListener('DOMContentLoaded', () => {
+  const boutons = document.querySelectorAll('input[type="radio"]');
+  if (boutons.length > 0) {
+    boutons.forEach(bouton => {
+      bouton.addEventListener('change', mettreÀJourPrédiction);
+    });
+  } else {
+    console.warn("Aucun bouton radio trouvé dans le DOM.");
+  }
 });
+
