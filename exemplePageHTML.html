@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ma petite page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
-        h1 {
-            color: #00698f;
-        }
-        p {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-    </style>
+    <title>Prédiction en temps réel</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Bienvenue sur ma petite page !</h1>
-    <p>Ceci est une petite page HTML créée pour tester GitHub Pages.</p>
-    <p>Vous pouvez modifier cette page pour ajouter votre propre contenu.</p>
+    <h1>Prédiction en temps réel</h1>
+    <form>
+        <label>Variable 1 : <input type="radio" name="var1" value="0" checked> 0 <input type="radio" name="var1" value="1"> 1</label>
+        <label>Variable 2 : <input type="radio" name="var2" value="0" checked> 0 <input type="radio" name="var2" value="1"> 1</label>
+        <label>Variable 3 : <input type="radio" name="var3" value="0" checked> 0 <input type="radio" name="var3" value="1"> 1</label>
+        <label>Variable 4 : <input type="radio" name="var4" value="0" checked> 0 <input type="radio" name="var4" value="1"> 1</label>
+        <label>Variable 5 : <input type="radio" name="var5" value="0" checked> 0 <input type="radio" name="var5" value="1"> 1</label>
+        <label>Variable 6 : <input type="radio" name="var6" value="0" checked> 0 <input type="radio" name="var6" value="1"> 1</label>
+        <label>Variable 7 : <input type="radio" name="var7" value="0" checked> 0 <input type="radio" name="var7" value="1"> 1</label>
+        <label>Variable 8 : <input type="radio" name="var8" value="0" checked> 0 <input type="radio" name="var8" value="1"> 1</label>
+    </form>
+    <p id="prediction"></p>
+
+    <script src="script.js"></script>
 </body>
 </html>
