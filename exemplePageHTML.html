@@ -15,9 +15,23 @@
     border: 1px solid #ddd;
   }
 </style>
+<style>
+   body { font-family: Arial, sans-serif; }
+  .tabs { display: flex; cursor: pointer; }
+  .tab { padding: 10px 20px; background: #ddd; margin-right: 5px; border-radius: 5px 5px 0 0; }
+  .tab.active { background: #fff; font-weight: bold; }
+  .content { display: none; padding: 20px; border: 1px solid #ddd; }
+  .content.active { display: block; }
+</style>
 </head>
 <body>
 <div style="width: 95%; height: 95%; border: 1px solid #ccc; border-radius: 20px; padding: 20px; margin: 20px auto; background-color: #b0c4de;">
+    <div class="tabs">
+        <div class="tab active" onclick="showTab(0)">Onglet 1</div>
+        <div class="tab" onclick="showTab(1)">Onglet 2</div>
+        <div class="tab" onclick="showTab(2)">Onglet 3</div>
+    </div>
+    <div class="content active">Contenu de l'onglet 1
 
     <h1>Tableau de bord: GROP, à partir des données de 2022</h1>
     <h2>Testez quelques-unes des 256 possibilités (2^8)</h2>
@@ -40,10 +54,37 @@
 <br><br><br><br>
     <table , width=100%><tr><td>À partir des données pondérées.  Le modèle prédit correctement 90% des choix des données de test. Le coefficient de détermination d'une analyse multivariée est de l'ordre de 51%. La liste des variables utilisées est celle-ci ['langR', 'QPC2', 'QPC4r4', 'QPC4r6','QPC5r1','QPC5r2','QPC5r3','QPC5r4'].
     L'ensemble de la construction du modèle IA peut être retrouvé à l'adresse suivante. https://colab.research.google.com/drive/147YDpZimPQG10xS4ItI26U0ZFwPNpC54#scrollTo=UrH01PwOOHjk
-    </td></tr></table>
+    </td></tr></table>    
+    
+    
+    
+    
+    
+    
+    
+    </div>
+    <div class="content">Contenu de l'onglet 2</div>
+    <div class="content">Contenu de l'onglet 3</div>
+
+
+    
+
 
 
     <script src="modele.js"></script>
+
+        <script>
+        function showTab(index) {
+            let tabs = document.querySelectorAll('.tab');
+            let contents = document.querySelectorAll('.content');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+            
+            tabs[index].classList.add('active');
+            contents[index].classList.add('active');
+        }
+    </script>
 
 </div>       
 </body>
