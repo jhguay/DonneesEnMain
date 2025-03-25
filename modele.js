@@ -270,7 +270,7 @@ function obtenirPrédiction(var1, var2, var3, var4, var5, var6, var7, var8) {
       ligne[6] === var7 && ligne[7] === var8
     ) {
       console.log("Correspondance trouvée :", ligne[8]);
-      return ligne[8]; // Retourne la prédiction trouvée
+      return "Souverainiste: "+ligne[8]+ "Centriste: "+ligne[9]+" Fédéraliste: "+ligne[10]; // Retourne la prédiction trouvée
     }
   }
   console.log("Aucune correspondance trouvée.");
