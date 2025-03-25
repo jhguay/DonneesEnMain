@@ -262,7 +262,7 @@ function obtenirPrédiction(var1, var2, var3, var4, var5, var6, var7, var8) {
   console.log("Variables reçues :", { var1, var2, var3, var4, var5, var6, var7, var8 });
   
   for (const ligne of données) {
-    console.log("Comparaison avec la ligne :", ligne);
+    //console.log("Comparaison avec la ligne :", ligne);
     if (
       ligne[0] === var1 && ligne[1] === var2 &&
       ligne[2] === var3 && ligne[3] === var4 &&
