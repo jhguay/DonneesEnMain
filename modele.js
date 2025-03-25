@@ -300,7 +300,7 @@ function mettreÀJourPrédiction() {
     const predictionElement = document.getElementById('prédiction');
     if (predictionElement) {
       predictionElement.innerHTML = prédiction !== null
-        ? `Prédiction : {prédiction}
+        ? `Prédiction : ${prédiction}`
         : 'Aucune prédiction trouvée';
     } else {
       console.error("L'élément avec l'ID 'prédiction' est introuvable.");
