@@ -15,7 +15,7 @@ function dessinerTarte(souverainistes, centristes, federalistes) {
 
     // Dessiner les portions
     // Souverainistes (bleu clair)
-    ctx.fillStyle = 'rgba(173, 216, 230, 1)'; // Bleu clair
+    ctx.fillStyle = 'rgba(0, 0, 255, 1)'; // Bleu clair
     ctx.beginPath();
     ctx.moveTo(centerX, centerY);
     ctx.arc(centerX, centerY, radius, startAngle, startAngle + angleSouverainistes);
@@ -35,7 +35,7 @@ function dessinerTarte(souverainistes, centristes, federalistes) {
     startAngle += angleCentristes;
 
     // Federalistes (rouge clair)
-    ctx.fillStyle = 'rgba(240, 128, 128, 1)'; // Rouge clair
+    ctx.fillStyle = 'rgba(255, 0, 0, 1)'; // Rouge clair
     ctx.beginPath();
     ctx.moveTo(centerX, centerY);
     ctx.arc(centerX, centerY, radius, startAngle, startAngle + angleFederalistes);
