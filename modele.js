@@ -256,6 +256,10 @@ const données=[
 [1, 1, 1, 1, 1, 1, 1, 0, 0.73, 0.27, 0.0, 44] ,
 [1, 1, 1, 1, 1, 1, 1, 1, 0.68, 0.32, 0.0, 49] 
 ];
+sou=.333;
+cen=.333;
+fed=.333;
+
 
 // Fonction pour obtenir une prédiction basée sur les variables
 function obtenirPrédiction(var1, var2, var3, var4, var5, var6, var7, var8) {
@@ -269,8 +273,9 @@ function obtenirPrédiction(var1, var2, var3, var4, var5, var6, var7, var8) {
       ligne[4] === var5 && ligne[5] === var6 &&
       ligne[6] === var7 && ligne[7] === var8
     ) {
+      // Souverainiste: "+ligne[8]+ "  Centriste: "+ligne[9]+"  Fédéraliste: "+ligne[10] + " Nombre de cas réels: "+ligne[11]
       console.log("Correspondance trouvée :", ligne[8]);
-      return "Souverainiste: "+ligne[8]+ "  Centriste: "+ligne[9]+"  Fédéraliste: "+ligne[10] + " Nombre de cas réels: "+ligne[11]; // Retourne la prédiction trouvée
+      return ligne[8], ligne[9], ligne[10], ligne[11]; // Retourne la prédiction trouvée
     }
   }
   console.log("Aucune correspondance trouvée.");
