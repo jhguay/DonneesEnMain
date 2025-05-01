@@ -275,7 +275,7 @@ function obtenirPrédiction(var1, var2, var3, var4, var5, var6, var7, var8) {
     ) {
       // Souverainiste: "+ligne[8]+ "  Centriste: "+ligne[9]+"  Fédéraliste: "+ligne[10] + " Nombre de cas réels: "+ligne[11]
       console.log("Correspondance trouvée :", ligne[8]);
-      return ligne[8], ligne[9], ligne[10], ligne[11]; // Retourne la prédiction trouvée
+      return 'souverainiste: '+ligne[8], ligne[9], ligne[10], ligne[11]; // Retourne la prédiction trouvée
     }
   }
   console.log("Aucune correspondance trouvée.");
