@@ -1,0 +1,156 @@
+final_name,label_french
+Q_attcheck1_response,"To ensure that the respondents are true respondents (not bots), please choose the word “Cat.”"
+Q_lang_english,Langue apprise enfant - Anglais
+Q_lang_french,Langue apprise enfant - Français
+Q_lang_aboriginal,Langue apprise enfant - Langue autochtone
+Q_lang_aboriginal_TEXT,Which language(s) did you learn as a child and still understand today? (Select all that apply) - Aboriginal language (please specify) - Text
+Q_lang_arabic,Langue apprise enfant - Arabe
+Q_lang_chinese,"Langue apprise enfant - Chinois, Cantonais, Mandarin"
+Q_lang_filipino,Langue apprise enfant - Philippin / Tagalog
+Q_lang_german,Langue apprise enfant - Allemand
+Q_liveqc,Habitez-vous dans la province de Québec?
+Q_lang_indian,"Langue apprise enfant - Indien, Hindi, Gujarati"
+Q_postalcode,Veuillez saisir votre code postal
+Q_lang_italian,Langue apprise enfant - Italien
+Q_lang_korean,Langue apprise enfant - Coréen
+Q_lang_pakistani,"Langue apprise enfant - Pakistanais, Pendjabi, Ourdou"
+Q_household,"Nous voulons en savoir plus sur votre ménage. Actuellement, vivez-vous…"
+Q_employed_other_TEXT,Quel est votre statut d'emploi actuellement? 
+Q_lang_persian,"Langue apprise enfant - Persan, Farsi"
+Q_lang_russian,Langue apprise enfant - Russe
+Q_endsmeet,Dans quelle mesure votre ménage arrive-t-il à joindre les deux bouts à la fin du mois?
+Q_lang_spanish,Langue apprise enfant - Espagnol
+Q_bornca,Êtes-vous né(e) au Canada?
+Q_lang_tamil,Langue apprise enfant - Tamil
+Q_borncountry,Dans quel pays êtes-vous né?
+Q_lang_vietnamese,Langue apprise enfant - Vietnamien
+Q_identity,"Lorsqu'on vous le demande, dites-vous spontanément que vous êtes..."
+Q_lang_other,Langue apprise enfant - Autre
+Q_lang_other_TEXT,Which language(s) did you learn as a child and still understand today? (Select all that apply) - Other (please specify)  - Text
+Q_lang_dk_pna,Langue apprise enfant
+Q_fed_reform_possibl,Il sera possible un jour de réformer le fédéralisme canadien de façon à satisfaire à la fois le Québec et le reste du Canada
+Q_qc_right_separate,Le Québec a le droit de se séparer du Canada
+Q_qc_resources_sover,"Le Québec a les ressources humaines, les ressources naturelles et le capital financier pour devenir un pays souverain"
+Q_sovereignty_feasib,Le projet de souveraineté politique est faisable
+Q_imm_toomuch_qc,"Dans l'ensemble, il y a trop d'immigration au Québec"
+Q_imm_levels_qc,Pensez-vous que le Québec devrait admettre
+Q_mostissue,Quel est l'enjeu le plus important pour vous personnellement en ce moment?
+Q_sovvote_qc,"Si un référendum sur l'indépendance avait lieu aujourd'hui, voteriez-vous OUI ou NON?"
+Q_econqc_prosp,"Dans les 12 derniers mois, l'économie québécoise s'est-elle"
+Q_econqc_persp,"Au cours des 12 prochains mois, pensez-vous que la situation économique au Québec va"
+Q_econqc_indy_persp,"Si le Québec devenait un pays indépendant, la situation économique au Québec"
+Q_frthreat_qc,"Selon vous, la langue française est-elle menacée au Québec?"
+Q_frqc_persp,"Dans les 30 prochaines années, pensez-vous que la situation de la langue française au Québec"
+Q_frqc_indy_persp,"Si le Québec se sépare du Canada, pensez-vous que la situation de la langue française au Québec"
+Q_culture_threat_qc,"Selon vous, la culture québécoise est-elle menacée?"
+Q_risk,"En général, à quel point est-il facile ou difficile pour vous d'accepter de prendre des risques?"
+Q_blame,"Ceux qui ne réussissent pas dans la vie devraient se blâmer eux-mêmes, pas le système"
+Q_jobs,Le gouvernement devrait laisser au secteur privé l'entière responsabilité de créer des emplois
+Q_gap,Que devrait-on faire pour réduire les écarts entre les riches et les pauvres au Canada?
+Q_donew,"Selon vous, devrait-on en faire plus, moins, ou ni plus ni moins pour les femmes?"
+Q_provvote_2022,Pour quel parti avez-vous voté lors des dernières élections PROVINCIALES d'octobre 2022?
+Q_fedvote_2025,Pour quel parti avez-vous voté lors des dernières élections FÉDÉRALES d'avril 2025?
+Q_provvote,"Si des élections PROVINCIALES avaient lieu aujourd'hui au Québec, pour quel parti voteriez-vous?"
+Q_fedvote,"Si des élections FÉDÉRALES avaient lieu aujourd'hui, pour quel parti voteriez-vous?"
+Q_qccan_att_culture_sovereign,La culture québécoise serait mieux protégée si le Québec était souverain
+Q_qccan_att_immi_powers,"Pour faire face à l'enjeu de l'immigration, le Québec devrait disposer de tous les pouvoirs"
+Q_identity_other_TEXT,"When asked, do you spontaneously say that you are: - Other (please specify): - Text"
+Q_id_can_happy,Je suis content(e) d'être Canadien(ne)
+Q_id_can_attached,Je suis très attaché(e) à mon identité canadienne
+Q_id_can_understand,Je comprends bien ce que signifie être Canadien(ne) pour moi
+Q_id_can_pride,J'éprouve beaucoup de fierté à l'endroit des Canadiens et de leurs réalisations
+Q_id_frcan_happy,Je suis content(e) d'être Canadien(ne) français(e)
+Q_id_frcan_attached,Je suis très attaché(e) à mon identité canadienne-française
+Q_id_frcan_understand,Je comprends bien ce que signifie être Canadien(ne) français(e) pour moi
+Q_id_frcan_pride,J'éprouve beaucoup de fierté à l'endroit des Canadiens français et de leurs réalisations
+Q_id_qc_happy,Je suis content(e) d'être Québécois(e)
+Q_id_qc_attached,Je suis très attaché(e) à mon identité québécoise
+Q_id_qc_understand,Je comprends bien ce que signifie être Québécois(e) pour moi
+Q_id_qc_pride,J'éprouve beaucoup de fierté à l'endroit des Québécois et de leurs réalisations
+Q_id_other_happy,Je suis content d'être membre de ce groupe.
+Q_id_other_attached,"Je suis très attaché à mon identité en tant que membre de ce groupe.
+"
+Q_id_other_understand,Je comprends bien ce que signifie être membre de ce groupe pour moi. 
+Q_id_other_pride,J’éprouve beaucoup de fierté à l’endroit des membres de ce groupe et de leurs réalisations.
+Q_group_rewards,Je préfère les récompenses qui reconnaissent l'effort du groupe plutôt que la contribution de l'individu
+Q_indiv_express,Je me sens à l'aise d'exprimer mes pensées même lorsque d'autres personnes dans le groupe ne sont pas d'accord
+Q_group_harmony,Il est plus important pour moi d'avoir des relations sociales harmonieuses que d'avoir un succès personnel
+Q_indiv_rightswrong,"Peu importe ce que mes proches peuvent penser, mon sens personnel du bien et du mal reste plus important"
+Q_group_teamwork,Je préfère faire partie d'une équipe qui prend des décisions ensemble plutôt que de travailler seul(e)
+Q_qc_roc_diff_lifestyle,Par rapport aux Canadiens des autres provinces - Leur façon de vivre
+Q_qc_roc_diff_thinking,Par rapport aux Canadiens des autres provinces - Leur façon de penser
+Q_qc_roc_diff_values,Par rapport aux Canadiens des autres provinces - Leurs valeurs sociales
+Q_qc_roc_diff_culture,Par rapport aux Canadiens des autres provinces - Leurs préférences et habitudes culturelles
+Q_qc_roc_diff_religion,Par rapport aux Canadiens des autres provinces - Leurs croyances morales et religieuses
+Q_qc_roc_diff_politics,Par rapport aux Canadiens des autres provinces - Leurs opinions politiques
+Q_trust_fedgov,Confiance - Le gouvernement fédéral
+Q_trust_qcgov,Confiance - Le gouvernement du Québec
+Q_trust_pubservants,Confiance - Les fonctionnaires
+Q_trust_mainmedia,Confiance - Les médias traditionnels
+Q_trust_altmedia,Confiance - Les médias alternatifs
+Q_trust_socmedia,Confiance - Les réseaux sociaux
+Q_trust_courts,Confiance - Les tribunaux
+Q_trust_business,Confiance - Les entreprises privées
+Q_trust_unions,Confiance - Les syndicats
+Q_gov_level_important,Lequel des deux gouvernements vous apparaît le plus important
+Q_gov_level_closest,Lequel des deux gouvernements vous apparaît celui dont vous vous sentez le plus proche
+Q_gov_level_national,Lequel des deux gouvernements vous apparaît votre gouvernement national
+Q_future_independent,Que le Québec devienne un pays indépendant
+Q_future_sovereign_assoc,Que le Québec devienne un État souverain associé économiquement avec le reste du Canada
+Q_future_special_status,Que le Québec fasse partie du Canada avec un statut particulier
+Q_future_province,Que le Québec fasse partie du Canada en demeurant une province comme les autres
+Q_issueown_qc_economy,Quel parti PROVINCIAL est le meilleur pour gérer l'économie
+Q_issueown_qc_healthcare,Quel parti PROVINCIAL est le meilleur pour gérer la santé
+Q_issueown_qc_education,Quel parti PROVINCIAL est le meilleur pour gérer l'éducation
+Q_issueown_qc_environment,Quel parti PROVINCIAL est le meilleur pour gérer l'environnement
+Q_issueown_qc_interests,Quel parti PROVINCIAL est le meilleur pour la défense des intérêts du Québec
+Q_issueown_qc_identity,Quel parti PROVINCIAL est le meilleur pour la défense de l'identité et de la culture québécoise
+Q_issueown_qc_immigration,Quel parti PROVINCIAL est le meilleur pour gérer l'immigration
+Q_secular_symbols,Interdire le port des signes religieux ostentatoires pour les élèves du primaire
+Q_secular_prayerban,Interdire les prières et les manifestations religieuses dans l'espace public
+Q_secular_schoolfunding,La fin du financement des écoles religieuses
+Q_secular_separation,Assurer la séparation entre la religion et les institutions de l'État
+Q_culture_library,Visité la bibliothèque municipale
+Q_culture_museum,Visité un musée
+Q_culture_shows,"Vu un spectacle (musique, théâtre, cirque, etc.)"
+Q_culture_qcmusic,Écouté de la musique québécoise
+Q_culture_qcshow,Regardé une émission québécoise
+Q_culture_qcmovie,Regardé un film québécois
+Q_culture_qcbook,Lu un livre québécois
+Q_culture_qcfood,Mangé un plat ou un repas québécois
+Q_ft_liberal,"Le Parti libéral du Québec, de Pablo Rodriguez"
+Q_ft_pq,"Le Parti Québécois, de Paul St-Pierre Plamondon"
+Q_ft_caq,"La Coalition avenir Québec, de François Legault"
+Q_ft_qs,"Québec solidaire, de Ruba Ghazal"
+Q_ft_pcq,"Le Parti conservateur du Québec, de Éric Duhaime"
+Q_therm_feminists,Les féministes
+Q_therm_gayslesbians,Les gais et lesbiennes
+Q_therm_trans,Les membres de la communauté trans
+Q_scc_strike_qc_laws,Croyez-vous que la Cour suprême du Canada devrait pouvoir invalider des lois québécoises?
+Q_trust_debate_group,"Dans le débat public sur la place du Québec au sein de la fédération canadienne, à quel groupe faites-vous le plus confiance?"
+Q_qccan_att_enviro_powers,"Pour faire face aux enjeux environnementaux, le Québec devrait disposer de tous les pouvoirs"
+Q_qccan_att_racism_qc,"Il existe une forme de racisme au Québec, présente dans certaines lois et institutions"
+Q_qccan_att_lang_secular,"En matière de langue et de laïcité, seul le Québec devrait pouvoir décider"
+Q_qccan_att_colonial_shame,"Collectivement, les Québécois devraient avoir honte de leur passé colonial et du traitement des minorités"
+Q_qccan_att_better_in_canada,"Dans le contexte international actuel, il est préférable que le Québec demeure au sein du Canada"
+Q_qccan_att_french_fear,"Dans trente ans, je crains que le français ne soit plus la langue parlée par la majorité"
+Q_qccan_att_pq_postpone,Le Parti Québécois devrait reporter à plus tard l'idée de tenir un référendum sur la souveraineté du Québec
+Q_qccan_att_gov_ineffective,"Les gouvernements, quels qu'ils soient, sont inefficaces pour résoudre les problèmes des gens"
+duration_in_seconds,Durée en secondes
+Q_age_real,Quel âge avez-vous?
+Q_citizenship,Êtes-vous...
+Q_education,Quel est votre plus haut niveau de scolarité complété?
+Q_education_cat,Niveau de scolarité (catégorisé)
+Q_employed,Quel est votre statut d'emploi actuellement?
+Q_gender,Quel est votre genre?
+Q_income,Quel est le revenu total de votre ménage avant impôts en 2024?
+RecordedDate,Recorded Date
+ResponseId,Response ID
+StartDate,Start Date
+UserAgent,UserAgent
+survey_language,Langue du sondage
+current_date,current_date
+duration_in_minutes,Durée en minutes
+ip_address,ip_address
+mother_tongue,Langue maternelle (dérivée)
+pid,pid
