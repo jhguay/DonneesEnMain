@@ -1,0 +1,11 @@
+nom,genre,age,ville,joue_musique,connais_python
+Adèle,Femme,45,Montréal,Oui,Non
+Alice,Femme,43,Magog,Oui,Non
+Adrienne,Femme,75,magog,Oui,Non
+Alma,Femme,71,Laval,Oui,Non
+Pierre,Homme,58,Carignan,Oui,Non
+Joseph,Homme,71,Laval,Non,Non
+Julie,Femme,45,Laval,Non,Non
+Jean-Herman,Homme,65,Sherbrooke,Non,Oui
+Vincent,Homme,35,montréal,Non,Oui
+Émilie,Femme,31,Montréal,Oui,
