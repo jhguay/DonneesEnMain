@@ -118,18 +118,18 @@
   <img src="12operations.jpg" alt="Image interactive" id="mainImage">
 
   <!-- Hotspots -->
-  <div class="hotspot" data-x="0.3" data-y="0.1" data-zone="A">+</div>
-  <div class="hotspot" data-x="0.7" data-y="0.2" data-zone="B">+</div>
-  <div class="hotspot" data-x="0.7" data-y="0.3" data-zone="C">+</div>
-  <div class="hotspot" data-x="0.7" data-y="0.4" data-zone="D">+</div>
-  <div class="hotspot" data-x="0.7" data-y="0.5" data-zone="E">+</div>
-  <div class="hotspot" data-x="0.7" data-y="0.6" data-zone="F">+</div>
-  <div class="hotspot" data-x="0.7" data-y="0.7" data-zone="G">+</div>
-  <div class="hotspot" data-x="0.7" data-y="0.81" data-zone="H">+</div>
-  <div class="hotspot" data-x="0.7" data-y="0.82" data-zone="I">+</div>
-  <div class="hotspot" data-x="0.7" data-y="0.83" data-zone="J">+</div>
-  <div class="hotspot" data-x="0.7" data-y="0.84" data-zone="I">+</div>
-  <div class="hotspot" data-x="0.7" data-y="0.85" data-zone="J">+</div>
+  <div class="hotspot" data-x="0.3" data-y="0.1" data-zone="Z1">+</div>
+  <div class="hotspot" data-x="0.7" data-y="0.2" data-zone="Z2">+</div>
+  <div class="hotspot" data-x="0.7" data-y="0.3" data-zone="Z3">+</div>
+  <div class="hotspot" data-x="0.7" data-y="0.4" data-zone="Z4">+</div>
+  <div class="hotspot" data-x="0.7" data-y="0.5" data-zone="Z5">+</div>
+  <div class="hotspot" data-x="0.7" data-y="0.6" data-zone="Z6">+</div>
+  <div class="hotspot" data-x="0.7" data-y="0.7" data-zone="Z7">+</div>
+  <div class="hotspot" data-x="0.7" data-y="0.81" data-zone="Z8">+</div>
+  <div class="hotspot" data-x="0.7" data-y="0.82" data-zone="Z9">+</div>
+  <div class="hotspot" data-x="0.7" data-y="0.83" data-zone="Z10">+</div>
+  <div class="hotspot" data-x="0.7" data-y="0.84" data-zone="Z11">+</div>
+  <div class="hotspot" data-x="0.7" data-y="0.85" data-zone="Z12">+</div>
 
   <!-- Popup -->
   <div class="popup" id="popup"></div>
@@ -166,10 +166,10 @@
       const zone = hotspot.dataset.zone;
       let contenu = "";
 
-      if (zone === "A") {
-        contenu = formatTexteAvecBr(texte1);
-      } else if (zone === "B") {
-        contenu = formatTexteAvecBr(texte2);
+      if (zone === "Z1") {
+        contenu = formatTexteAvecBr(Z1);
+      } else if (zone === "Z2") {
+        contenu = formatTexteAvecBr(Z2);
       }
 
       popup.innerHTML = contenu + `
@@ -208,6 +208,7 @@ popup.querySelector(".copy-btn").addEventListener("click", () => {
 
 </body>
 </html>
+
 
 
 
