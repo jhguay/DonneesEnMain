@@ -30,7 +30,15 @@ function formatTexteAvecBr(texte) {
     .split('\n')
     .map(ligne => ligne.trim())
     .filter(ligne => ligne.length > 0)
-    .map(ligne => ligne + '<br>')
+    .map(ligne => {
+      if (ligne.startsWith('#')) {
+        // Enlever le # et mettre en bleu
+        return `<span style="color:blue">${ligne.substring(1).trim()}</span><br>`;
+      } else {
+        return ligne + '<br>';
+      }
+    })
     .join('');
 }
+
 
