@@ -9,10 +9,19 @@ df
 `;
 
 const texte2 = `
-Zone B — Informations
-La zone B est une section importante.
-Elle peut contenir des images, des paragraphes,
-et même des liens vers d'autres ressources.
+import pandas as pd
+source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
+df = pd.read_csv(source, encoding='latin1')
+df['ville'] = df['ville'].str.title()
+
+regroupement={'Magog':'Reste du Québec',
+              'Carignan':'Reste du Québec',
+              'Sherbrooke':'Reste du Québec',
+              'Montréal':'Métropole',
+              'Laval':'Métropole',
+}
+df['région'] = df['ville'].map(regroupement).fillna("Autres villes")
+print(df)
 `;
 
 function formatTexteAvecBr(texte) {
@@ -24,3 +33,4 @@ function formatTexteAvecBr(texte) {
     .map(ligne => ligne + '<br>')
     .join('');
 }
+
