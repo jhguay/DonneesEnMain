@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Hotspots interactifs</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .img-container {
+      position: relative;
+      width: 90vw;
+      height: 90vh;
+      border: 1px solid #ccc;
+      background: white;
+    }
+
+    img#mainImage {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hotspot {
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      background: red;
+      border-radius: 50%;
+      border: 2px solid white;
+      cursor: pointer;
+      transform: translate(-50%, -50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      font-family: sans-serif;
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 900px;
+      max-width: 90vw;
+      background: white;
+      border: 1px solid #999;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 10;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: bold;
+      opacity: 0;
+    }
+
+    .popup.fade-in {
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+
+    .popup button {
+      display: inline-block;
+      margin-top: 10px;
+      margin-right: 10px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.3s ease;
+      color: white;
+    }
+
+    .close-btn {
+      background: #ff5252;
+    }
+
+    .close-btn:hover {
+      background: #e04848;
+    }
+
+    .copy-btn {
+      background: #4caf50;
+    }
+
+    .copy-btn:hover {
+      background: #43a047;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="img-container" id="container">
+  <img src="12operations.JPG" alt="Image interactive" id="mainImage">
+
+  <!-- Hotspots -->
+  <div class="hotspot" data-x="0.4" data-y="0.3" data-zone="A">+</div>
+  <div class="hotspot" data-x="0.7" data-y="0.6" data-zone="B">+</div>
+
+  <!-- Popup -->
+  <div class="popup" id="popup"></div>
+</div>
+
+<!-- Chargement du contenu externe -->
+<script src="C:/Users/jhbid/Documents/pourPython/DataUTA/contenu.js"></script>
+
+<script>
+  const image = document.getElementById('mainImage');
+  const container = document.getElementById('container');
+  const hotspots = document.querySelectorAll('.hotspot');
+  const popup = document.getElementById('popup');
+
+  function positionHotspots() {
+    const imgWidth = image.clientWidth;
+    const imgHeight = image.clientHeight;
+
+    hotspots.forEach(hotspot => {
+      const x = parseFloat(hotspot.dataset.x);
+      const y = parseFloat(hotspot.dataset.y);
+
+      hotspot.style.left = (imgWidth * x) + 'px';
+      hotspot.style.top = (imgHeight * y) + 'px';
+    });
+  }
+
+  window.addEventListener('resize', positionHotspots);
+  window.addEventListener('load', positionHotspots);
+  positionHotspots();
+
+  hotspots.forEach(hotspot => {
+    hotspot.addEventListener('click', () => {
+      const zone = hotspot.dataset.zone;
+      let contenu = "";
+
+      if (zone === "A") {
+        contenu = formatTexteAvecBr(texte1);
+      } else if (zone === "B") {
+        contenu = formatTexteAvecBr(texte2);
+      }
+
+      popup.innerHTML = contenu + `
+        <button class="copy-btn">Copier</button>
+        <button class="close-btn">Fermer</button>
+      `;
+      popup.style.display = "block";
+      popup.classList.remove("fade-in");
+      void popup.offsetWidth; // force reflow
+      popup.classList.add("fade-in");
+
+      popup.querySelector(".close-btn").addEventListener("click", () => {
+        popup.style.display = "none";
+        popup.classList.remove("fade-in");
+      });
+
+      popup.querySelector(".copy-btn").addEventListener("click", () => {
+        const textToCopy = popup.innerText.replace("CopierFermer", "").trim();
+        navigator.clipboard.writeText(textToCopy)
+          .then(() => {
+            popup.querySelector(".copy-btn").textContent = "✔ Copié !";
+            setTimeout(() => {
+              popup.querySelector(".copy-btn").textContent = "Copier";
+            }, 1500);
+          })
+          .catch(() => {
+            popup.querySelector(".copy-btn").textContent = "Erreur";
+          });
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
+
+
