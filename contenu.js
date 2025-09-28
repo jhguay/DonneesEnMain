@@ -1,6 +1,6 @@
 // contenus.js
 
-const texte1 = `
+const Z1 = `
 #Les données sont téléchargées, puis lues. On crée un dataframe appelé df
 import pandas as pd
 source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
@@ -8,7 +8,7 @@ df = pd.read_csv(source, encoding='latin1')
 df
 `;
 
-const texte2 = `
+const Z2 = `
 #Les données sont téléchargées, puis lues. On crée un dataframe appelé df
 import pandas as pd
 source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
@@ -43,6 +43,7 @@ function formatTexteAvecBr(texte) {
     })
     .join('');
 }
+
 
 
 
