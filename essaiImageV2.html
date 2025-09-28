@@ -176,25 +176,29 @@
         popup.classList.remove("fade-in");
       });
 
-      popup.querySelector(".copy-btn").addEventListener("click", () => {
-        const textToCopy = popup.innerText.replace("CopierFermer", "").trim();
-        navigator.clipboard.writeText(textToCopy)
-          .then(() => {
-            popup.querySelector(".copy-btn").textContent = "✔ Copié !";
-            setTimeout(() => {
-              popup.querySelector(".copy-btn").textContent = "Copier";
-            }, 1500);
-          })
-          .catch(() => {
-            popup.querySelector(".copy-btn").textContent = "Erreur";
-          });
-      });
+popup.querySelector(".copy-btn").addEventListener("click", () => {
+  let lines = popup.innerText.trim().split("\n");
+  lines.pop(); // supprime la dernière ligne (ex: "Copier" ou "Fermer")
+  const textToCopy = lines.join("\n");
+
+  navigator.clipboard.writeText(textToCopy)
+    .then(() => {
+      popup.querySelector(".copy-btn").textContent = "✔ Copié !";
+      setTimeout(() => {
+        popup.querySelector(".copy-btn").textContent = "Copier";
+      }, 1500);
+    })
+    .catch(() => {
+      popup.querySelector(".copy-btn").textContent = "Erreur";
+    });
+});
     });
   });
 </script>
 
 </body>
 </html>
+
 
 
 
