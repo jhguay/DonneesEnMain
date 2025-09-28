@@ -166,11 +166,9 @@
       const zone = hotspot.dataset.zone;
       let contenu = "";
 
-      if (zone === "Z1") {
-        contenu = formatTexteAvecBr(Z1);
-      } else if (zone === "Z2") {
-        contenu = formatTexteAvecBr(Z2);
-      }
+      if (zone === "Z1") {contenu = formatTexteAvecBr(Z1);} 
+      else if (zone === "Z2") {contenu = formatTexteAvecBr(Z2);}
+      else if (zone === "Z3") {contenu = formatTexteAvecBr(Z3);}
 
       popup.innerHTML = contenu + `
         <button class="copy-btn">Copier</button>
@@ -208,6 +206,7 @@ popup.querySelector(".copy-btn").addEventListener("click", () => {
 
 </body>
 </html>
+
 
 
 
