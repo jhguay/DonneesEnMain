@@ -168,6 +168,7 @@ regroupement={'Magog':'Reste du Québec',
               'Montréal':'Métropole',
               'Laval':'Métropole',
 }
+print(df)
 `;
 
 const Z12 = `
@@ -206,6 +207,7 @@ function formatTexteAvecBr(texte) {
     })
     .join('');
 }
+
 
 
 
