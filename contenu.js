@@ -6,19 +6,17 @@ const Source = `
 #Deux variables quantitatives: age, nb_ordi
 #Pour une observation -Émilie- une variable, connais_python, est sans réponse. On verra comment on la traite.
 #Les données sont stockées dans le nuage Gihub à l'adresse suivante: source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
-#Elles ont été construites au départ dans un simple fichier excel.
 #Pour éviter tout problème, le nom des variables est sans accent.
-#L'encodage est latin1 puisque les valeurs des variables ont parfois des lettres accentuées.
+#L'encodage est latin1 puisque les valeurs des variables ont parfois des lettres accentuées. 
+#Elles ont été construites au départ dans un simple fichier excel.
+
+!imageBase.png
 `;
 
 const Precisions = `
-#Sur l'image sont données les informations les plus synthétiques
+#Sur l'image sont données les informations les plus synthétiques.
 #En cliquant sur le + associé, vous devriez avoir accès à un code complet que vous pouvez copier et coller dans Google Colab ou dans une autre interface python.
 Sur Google Colab, on retrouve l'ensemble des commandes: https://colab.research.google.com/drive/1VKglT-J1ay6ckVkcCd2KToCwlx4mpeng#scrollTo=v7KkAYtQSlYq
-#Titre principal
-&Note explicative
-!imageBase.png
-Ceci est une ligne normale
 `;
 
 
@@ -237,6 +235,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
