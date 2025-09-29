@@ -17,7 +17,7 @@ const Precisions = `
 Sur Google Colab, on retrouve l'ensemble des commandes: https://colab.research.google.com/drive/1VKglT-J1ay6ckVkcCd2KToCwlx4mpeng#scrollTo=v7KkAYtQSlYq
 #Titre principal
 &Note explicative
-!https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png
+!imageBase.png
 Ceci est une ligne normale
 `;
 
@@ -237,6 +237,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
