@@ -47,7 +47,7 @@ print(df)
 `;
 
 
-const Precisions = `
+const Z11 = `
 #3. Les données sont téléchargées, puis lues. On crée un dataframe appelé df
 &import pandas as pd
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
@@ -85,6 +85,7 @@ function formatTexteAvecBr(texte) {
     })
     .join('');
 }
+
 
 
 
