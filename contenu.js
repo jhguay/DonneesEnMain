@@ -1,5 +1,19 @@
 // contenus.js
 
+const Source = `
+#Les données sont évidemment fictives: personnes, 6 variables. 
+#Elles sont stockées dans le nuage Gihub à l'adresse suivante: source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
+#Elles ont été construites au départ dans un simple fichier excel.
+#Pour éviter tout problème, le nom des variables est sans accent.
+#L'encodage est latin1 puisque les valeurs des variables ont parfois des lettres accentuées.
+`;
+
+const Précisions = `
+#Sur l'image sont données les informations les plus synthétiques
+#En cliquant sur le + associé, vous devriez avoir accès à un code complet que vous pouvez copier et coller dans Google Colab ou dans une autre interface python.
+`;
+
+
 const Z1 = `
 #Les données sont téléchargées, puis lues. On crée un dataframe appelé df
 import pandas as pd
@@ -9,6 +23,7 @@ df
 `;
 
 const Z2 = `
+#Nettoyer des données, impose souvent plusieurs vérifications. On en retient une seule: uniformiser les villes.
 &import pandas as pd
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
@@ -101,7 +116,6 @@ plt.ylabel("Nombre de personnes")
 plt.show()
 
 #Pour illustrer une variable quantitative
-# Histogramme, très utile pour départager une distribution numérique et la représenter graphiquement.
 plt.hist(df["age"], bins=3, edgecolor="black")  # bins = nombre de classes
 plt.title("Répartition des âges")
 plt.xlabel("Âge")
@@ -119,25 +133,25 @@ plt.xticks(rotation=0)
 plt.show()
 `;
 
-const Source = `
-#3. Les données sont téléchargées, puis lues. On crée un dataframe appelé df
-import pandas as pd
-source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
-df = pd.read_csv(source, encoding='latin1')
-#On corrige le nom des villes pour qu'elles commencent par une majuscule
-df['ville'] = df['ville'].str.title()
-#On fait un dictionnaire qui associe chaque ville à l'une des deux grandes régions.
-regroupement={'Magog':'Reste du Québec',
-              'Carignan':'Reste du Québec',
-              'Sherbrooke':'Reste du Québec',
-              'Montréal':'Métropole',
-              'Laval':'Métropole',
-}
-#Avec la méthode map de la variable on utilise le dictionnaire. "Autres villes"  pour les autres.
-df['région'] = df['ville'].map(regroupement).fillna("Autres villes")
-print(df)
+const Z9 = `
+&import pandas as pd
+&source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
+&df = pd.read_csv(source, encoding='latin1')
+&df['ville'] = df['ville'].str.title()
+df1=df[['nom','genre','ville']]
+print(df1)
 `;
 
+const Z10 = `
+&import pandas as pd
+&source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
+&df = pd.read_csv(source, encoding='latin1')
+&df['ville'] = df['ville'].str.title()
+df1 = df.query("ville == 'Laval'") 
+print(df1)
+df2 = df.dropna(subset=["connais_python"])
+print(df2)
+`;
 
 const Z11 = `
 #3. Les données sont téléchargées, puis lues. On crée un dataframe appelé df
@@ -153,10 +167,14 @@ regroupement={'Magog':'Reste du Québec',
               'Montréal':'Métropole',
               'Laval':'Métropole',
 }
-#Avec la méthode map de la variable on utilise le dictionnaire. "Autres villes"  pour les autres.
-df['région'] = df['ville'].map(regroupement).fillna("Autres villes")
-print(df)
+
+
+const Source = `
+
 `;
+
+
+
 
 function formatTexteAvecBr(texte) {
   return texte
@@ -177,6 +195,7 @@ function formatTexteAvecBr(texte) {
     })
     .join('');
 }
+
 
 
 
