@@ -167,6 +167,7 @@ regroupement={'Magog':'Reste du Québec',
               'Montréal':'Métropole',
               'Laval':'Métropole',
 }
+`;
 
 const Z12 = `
 #3. Pour sauvegarder votre travail ou la base modifiée
@@ -178,6 +179,7 @@ df.to_csv("donnees.csv", index=False, encoding='latin1')
 age_moyen.to_csv("age_moyen_tableau.csv", index=False, encoding='latin1')
 plt.savefig("mon_graphique.png") 
 }
+`;
 
 
 
@@ -203,6 +205,7 @@ function formatTexteAvecBr(texte) {
     })
     .join('');
 }
+
 
 
 
