@@ -114,7 +114,8 @@ t7.plot(kind="bar",color=couleurs)
 plt.title("Âge moyen selon le genre")
 plt.xlabel("Genres") 
 plt.ylabel("Âges") 
-plt.grid(axis='y', linestyle='--') plt.xticks(rotation=0) 
+plt.grid(axis='y', linestyle='--') 
+plt.xticks(rotation=0) 
 plt.show()
 `;
 
@@ -176,6 +177,7 @@ function formatTexteAvecBr(texte) {
     })
     .join('');
 }
+
 
 
 
