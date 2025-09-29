@@ -1,14 +1,14 @@
 // contenus.js
 
 const Source = `
-#Les données sont évidemment fictives: 10 personnes, 7 variables. Elles sont placées dans dataframe du module pandas appelé df.
-#Cinq variables qualitatives: nom,genre,ville, joue_musique, connais_python.
-#Deux variables quantitatives: age, nb_ordi
-#Pour une observation -Émilie- une variable, connais_python, est sans réponse. On verra comment on la traite.
-#Les données sont stockées dans le nuage Gihub à l'adresse suivante: source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
-#Pour éviter tout problème, le nom des variables est sans accent.
-#L'encodage est latin1 puisque les valeurs des variables ont parfois des lettres accentuées. 
-#Elles ont été construites au départ dans un simple fichier excel.
+&Les données sont évidemment fictives: 10 personnes, 7 variables. Elles sont placées dans dataframe du module pandas appelé df.
+&Cinq variables qualitatives: nom,genre,ville, joue_musique, connais_python.
+&Deux variables quantitatives: age, nb_ordi
+&Pour une observation -Émilie- une variable, connais_python, est sans réponse. On verra comment on la traite.
+&Les données sont stockées dans le nuage Gihub à l'adresse suivante: source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
+&Pour éviter tout problème, le nom des variables est sans accent.
+&L'encodage est latin1 puisque les valeurs des variables ont parfois des lettres accentuées. 
+&Elles ont été construites au départ dans un simple fichier excel.
 
 !imageBase.png
 `;
@@ -29,7 +29,7 @@ df
 `;
 
 const Z2 = `
-#Nettoyer des données, impose souvent plusieurs vérifications. On en retient une seule: uniformiser les villes.
+#Nettoyer des données impose souvent plusieurs vérifications. On en retient ici qu'une seule: uniformiser les villes.
 &import pandas as pd
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
@@ -235,6 +235,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
