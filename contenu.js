@@ -1,8 +1,10 @@
 // contenus.js
 
 const Source = `
-#Les données sont évidemment fictives: personnes, 6 variables. 
-#Elles sont stockées dans le nuage Gihub à l'adresse suivante: source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
+#Les données sont évidemment fictives: 10 personnes, 7 variables.
+#Cinq variables qualitatives: nom,genre,ville, joue_musique, connais_python.
+#Deux variables quantitatives: age, nb_ordi
+#Les données sont stockées dans le nuage Gihub à l'adresse suivante: source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 #Elles ont été construites au départ dans un simple fichier excel.
 #Pour éviter tout problème, le nom des variables est sans accent.
 #L'encodage est latin1 puisque les valeurs des variables ont parfois des lettres accentuées.
@@ -154,7 +156,6 @@ print(df2)
 `;
 
 const Z11 = `
-#3. Les données sont téléchargées, puis lues. On crée un dataframe appelé df
 &import pandas as pd
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
@@ -170,7 +171,7 @@ regroupement={'Magog':'Reste du Québec',
 `;
 
 const Z12 = `
-#3. Pour sauvegarder votre travail ou la base modifiée
+#Pour sauvegarder votre travail ou la base modifiée
 &import pandas as pd
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
@@ -178,7 +179,7 @@ const Z12 = `
 df.to_csv("donnees.csv", index=False, encoding='latin1')
 age_moyen.to_csv("age_moyen_tableau.csv", index=False, encoding='latin1')
 plt.savefig("mon_graphique.png") 
-}
+
 `;
 
 
@@ -205,6 +206,7 @@ function formatTexteAvecBr(texte) {
     })
     .join('');
 }
+
 
 
 
