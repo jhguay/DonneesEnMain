@@ -86,7 +86,7 @@ const Z6 = `
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
 &df['ville'] = df['ville'].str.title()
-#Pour croiser une variable qualitative et une variable quantitative.
+#Pour croiser une variable qualitative et une variable quantitative, on utilise la fonction groupby().
 t7 = df.groupby("genre")["age"].mean().reset_index()
 print(t7)
 `;
@@ -106,29 +106,29 @@ const Z8 = `
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
 &df['ville'] = df['ville'].str.title()
-#On importe un second module d'outils, le matplotlib
+#On importe un second module d'outils, le matplotlib.
 import matplotlib.pyplot as plt
-#On travaille avec la variable qualitative, genre, on utilisera deux couleurs (stéréotypées!)
+#On travaille avec la variable qualitative, genre, on utilisera deux couleurs (stéréotypées!).
 couleurs=['lightcoral','skyblue']
 
-#Pour illustrer une variable qualitative
+#Pour illustrer une variable qualitative.
 #On obtient à nouveau le tableau t3
 t3=round(df['genre'].value_counts(normalize=True)*100)
-#On utilise pour ce tableau la méthode plot pour dessiner un graphique et on ajoute des précisions
+#On utilise pour ce tableau la méthode plot pour dessiner un graphique et on ajoute des précisions.
 t3.plot(kind="pie", colors=couleurs)
 plt.title("Réparition des deux genres")
 plt.xlabel("Âge")
 plt.ylabel("Nombre de personnes")
 plt.show()
 
-#Pour illustrer une variable quantitative
+#Pour illustrer une variable quantitative.
 plt.hist(df["age"], bins=3, edgecolor="black")  # bins = nombre de classes
 plt.title("Répartition des âges")
 plt.xlabel("Âge")
 plt.ylabel("Nombre de personnes")
 plt.show()
 
-#Pour illustrer une variable quantitative et une variable qualitative
+#Pour illustrer une variable quantitative et une variable qualitative.
 t7 = df.groupby("genre")["age"].mean().reset_index()
 t7.plot(kind="bar",color=couleurs) 
 plt.title("Âge moyen selon le genre")
@@ -163,7 +163,7 @@ const Z11 = `
 &import pandas as pd
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
-#On corrige le nom des villes pour qu'elles commencent par une majuscule
+#On corrige le nom des villes pour qu'il commence par une majuscule.
 &df['ville'] = df['ville'].str.title()
 #On fait un dictionnaire qui associe chaque ville à l'une des deux grandes régions.
 regroupement={'Magog':'Reste du Québec',
@@ -177,15 +177,15 @@ print(df)
 `;
 
 const Z12 = `
-#Pour sauvegarder votre travail ou la base modifiée
+#Pour sauvegarder votre travail ou la base modifiée.
 &import pandas as pd
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
-#On corrige le nom des villes pour qu'elles commencent par une majuscule
+#On corrige le nom des villes pour qu'il commence par une majuscule.
 df.to_csv("donnees.csv", index=False, encoding='latin1')
 age_moyen.to_csv("age_moyen_tableau.csv", index=False, encoding='latin1')
 plt.savefig("mon_graphique.png") 
-#Les fichiers sont dans la zone de gauche de Google Colab; ils pourront être téléchargés.
+#Les fichiers sont dans la zone de gauche de Google Colab, ils pourront être téléchargés.
 
 `;
 
@@ -235,6 +235,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
