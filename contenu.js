@@ -1,10 +1,10 @@
 // contenus.js
 
 const Source = `
-#Les données sont évidemment fictives: 10 personnes, 7 variables.
+#Les données sont évidemment fictives: 10 personnes, 7 variables. Elles sont placées dans dataframe du module pandas appelé df.
 #Cinq variables qualitatives: nom,genre,ville, joue_musique, connais_python.
-#Pour une observation -Émilie- une variable, connais_python, est sans réponse. On verra comment on la traite.
 #Deux variables quantitatives: age, nb_ordi
+#Pour une observation -Émilie- une variable, connais_python, est sans réponse. On verra comment on la traite.
 #Les données sont stockées dans le nuage Gihub à l'adresse suivante: source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 #Elles ont été construites au départ dans un simple fichier excel.
 #Pour éviter tout problème, le nom des variables est sans accent.
@@ -211,6 +211,7 @@ function formatTexteAvecBr(texte) {
     })
     .join('');
 }
+
 
 
 
