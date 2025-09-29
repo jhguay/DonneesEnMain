@@ -97,6 +97,17 @@ const Z8 = `
 %df['ville'] = df['ville'].str.title()
 #On importe une autre module d'outils, le matplotlib
 import matplotlib.pyplot as plt
+#On travaille avec la variable qualitative, genre, on utilisera deux couleurs (stéréotypées!)
+couleurs=['lightcoral','skyblue']
+#Pour illustrer une variable qualitative
+#On obtient le tableau t3
+t3=round(df['genre'].value_counts(normalize=True)*100)
+#On utilise pour ce tableau la méthode plot pour dessiner un graphique et on ajoute des précisions
+t3.plot(kind="pie", colors=couleurs)
+plt.title("Réparition des deux genres")
+plt.xlabel("Âge")
+plt.ylabel("Nombre de personnes")
+plt.show()
 #Pour illustrer une variable quantitative
 # Histogramme, très utile pour départager une distribution numérique et la représenter graphiquement.
 plt.hist(df["age"], bins=3, edgecolor="black")  # bins = nombre de classes
@@ -104,17 +115,7 @@ plt.title("Répartition des âges")
 plt.xlabel("Âge")
 plt.ylabel("Nombre de personnes")
 plt.show()
-#Pour illustrer une variable qualitative
 
-
-#Puisqu'on a deux genres, on a deux colonnes -couleurs un peu stéréotypée!
-couleurs=['lightcoral','skyblue']
-age_moyen.plot(kind="bar",color=couleurs) 
-plt.title("Âge moyen selon le genre")
-plt.xlabel("Genres") 
-plt.ylabel("Âges") 
-plt.grid(axis='y', linestyle='--') plt.xticks(rotation=0) 
-plt.show()
 `;
 
 const Source = `
@@ -175,6 +176,7 @@ function formatTexteAvecBr(texte) {
     })
     .join('');
 }
+
 
 
 
