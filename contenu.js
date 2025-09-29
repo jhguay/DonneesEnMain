@@ -182,6 +182,7 @@ const Z12 = `
 df.to_csv("donnees.csv", index=False, encoding='latin1')
 age_moyen.to_csv("age_moyen_tableau.csv", index=False, encoding='latin1')
 plt.savefig("mon_graphique.png") 
+#Les fichiers sont dans la zone de gauche de Google Colab; ils pourront être téléchargés.
 
 `;
 
@@ -209,6 +210,7 @@ function formatTexteAvecBr(texte) {
     })
     .join('');
 }
+
 
 
 
