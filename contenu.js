@@ -49,11 +49,11 @@ print(df)
 
 const Precisions = `
 #3. Les données sont téléchargées, puis lues. On crée un dataframe appelé df
-import pandas as pd
-source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
-df = pd.read_csv(source, encoding='latin1')
+&import pandas as pd
+&source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
+&df = pd.read_csv(source, encoding='latin1')
 #On corrige le nom des villes pour qu'elles commencent par une majuscule
-df['ville'] = df['ville'].str.title()
+&df['ville'] = df['ville'].str.title()
 #On fait un dictionnaire qui associe chaque ville à l'une des deux grandes régions.
 regroupement={'Magog':'Reste du Québec',
               'Carignan':'Reste du Québec',
@@ -76,12 +76,16 @@ function formatTexteAvecBr(texte) {
       if (ligne.startsWith('#')) {
         // Garder le # et mettre en bleu
         return `<span style="color:blue">${ligne}</span><br>`;
+      } else if (ligne.startsWith('&')) {
+        // Supprimer le & et mettre le reste en gris
+        return `<span style="color:gray">${ligne.slice(1).trim()}</span><br>`;
       } else {
         return ligne + '<br>';
       }
     })
     .join('');
 }
+
 
 
 
