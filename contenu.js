@@ -169,6 +169,7 @@ regroupement={'Magog':'Reste du Québec',
               'Montréal':'Métropole',
               'Laval':'Métropole',
 }
+df['région'] = df['ville'].map(regroupement).fillna("Autres villes")
 print(df)
 `;
 
@@ -208,6 +209,7 @@ function formatTexteAvecBr(texte) {
     })
     .join('');
 }
+
 
 
 
