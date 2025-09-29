@@ -33,7 +33,7 @@ const Z2 = `
 &import pandas as pd
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
-#On corrige le nom des villes pour qu'il commence par une majuscule en utilisant la méthode .title()
+#En utilisant la méthode .title() , on corrige le nom des villes pour qu'il commence par une majuscule 
 df['ville'] = df['ville'].str.title()
 #Toutes les villes devraient avoir une majuscule.
 df
@@ -44,7 +44,7 @@ const Z3 = `
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
 &df['ville'] = df['ville'].str.title()
-#Pour avoir les fréquences d'une variable qualitative, on utilise la méthode .value_counts() 
+#On utilise la méthode .value_counts() , pour avoir les fréquences d'une variable qualitative, 
 t1=df['genre'].value_counts()
 print(t1)
 #Pour avoir les fréquences en proportions, donc normalisées, on ajoute un paramètre.
@@ -70,7 +70,7 @@ const Z5 = `
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
 &df['ville'] = df['ville'].str.title()
-#Pour croiser deux variables qualitatives, ville et joue_musique, on utilise la fonction crosstab(). 
+#On utilise la fonction crosstable()  , pour croiser deux variables qualitatives, ville et joue_musique. 
 t4=pd.crosstab(df["ville"], df["joue_musique"],margins=True,margins_name='Total')
 print(t4)
 #Pour en obtenir les proportions.
@@ -86,7 +86,7 @@ const Z6 = `
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
 &df['ville'] = df['ville'].str.title()
-#Pour croiser une variable qualitative et une variable quantitative, on utilise la fonction groupby().
+#On utilise la fonction groupby() , pour croiser une variable qualitative et une variable quantitative.
 t7 = df.groupby("genre")["age"].mean().reset_index()
 print(t7)
 `;
@@ -235,6 +235,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
