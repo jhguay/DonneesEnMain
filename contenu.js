@@ -2,9 +2,9 @@
 
 const Source = `
 &Les données sont évidemment fictives: 10 personnes, 7 variables. Elles sont placées dans un dataframe, appelé ici df, du module pandas.
-&Cinq variables qualitatives: nom,genre,ville, joue_musique, connais_python.
+&Cinq variables qualitatives: nom, genre, ville, joue_musique, connais_python.
 &Deux variables quantitatives: age, nb_ordi
-&Pour une observation -Émilie- une variable, connais_python, est sans réponse. On verra comment on la traite.
+&Pour une observation -Émilie- une variable, connais_python, est sans réponse. On verra comment on la traite, section 12.
 &Les données sont stockées dans le nuage Gihub à l'adresse suivante: source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &Pour éviter tout problème, le nom des variables est sans accent.
 &L'encodage est latin1 puisque les valeurs des variables ont parfois des lettres accentuées. 
@@ -235,6 +235,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
