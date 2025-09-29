@@ -207,7 +207,7 @@ function formatTexteAvecBr(texte) {
       } else if (ligne.startsWith('!')) {
         // Supprimer le ! et insérer une image
         const url = ligne.slice(1).trim();
-        return `<img src="${url}" style="max-width:200px; display:block; margin:5px 0;"><br>`;
+        return `<img src="${url}" style="width:100%; height:auto; display:block; margin:5px 0;"><br>`;
       } else {
         return ligne + '<br>';
       }
@@ -237,6 +237,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
