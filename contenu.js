@@ -85,7 +85,7 @@ const Z8 = `
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
 &df['ville'] = df['ville'].str.title()
-#On importe une autre module d'outils, le matplotlib
+#On importe un second module d'outils, le matplotlib
 import matplotlib.pyplot as plt
 #On travaille avec la variable qualitative, genre, on utilisera deux couleurs (stéréotypées!)
 couleurs=['lightcoral','skyblue']
@@ -176,6 +176,7 @@ function formatTexteAvecBr(texte) {
     })
     .join('');
 }
+
 
 
 
