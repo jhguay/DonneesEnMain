@@ -21,7 +21,7 @@ const Precisions = `
 
 
 const Z1 = `
-#Les données sont téléchargées, puis lues. On crée un dataframe appelé df
+#Les données sont téléchargées, puis lues. On crée un dataframe appelé df.
 import pandas as pd
 source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 df = pd.read_csv(source, encoding='latin1')
@@ -29,13 +29,13 @@ df
 `;
 
 const Z2 = `
-#Nettoyer des données impose souvent plusieurs vérifications. On en retient ici qu'une seule: uniformiser les villes.
+#Nettoyer des données impose souvent plusieurs vérifications. On n'en retient ici qu'une seule: uniformiser les villes.
 &import pandas as pd
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
-#On corrige le nom des villes pour qu'elles commencent par une majuscule en utilisant la méthode .title()
+#On corrige le nom des villes pour qu'il commence par une majuscule en utilisant la méthode .title()
 df['ville'] = df['ville'].str.title()
-#Toutes les villes devraient avoir une majuscule
+#Toutes les villes devraient avoir une majuscule.
 df
 `;
 
@@ -59,7 +59,7 @@ const Z4 = `
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
 &df['ville'] = df['ville'].str.title()
-#On utilise les méthodes mean() et median() pour avoir les informations. C'est seulement valide pour les variables quantitatives
+#On utilise les méthodes mean() et median() pour avoir les informations. C'est seulement valide pour les variables quantitatives.
 moyenne=df['age'].mean()
 print(moyenne)
 mediane=df['age'].median()
@@ -70,13 +70,13 @@ const Z5 = `
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
 &df['ville'] = df['ville'].str.title()
-#Pour croiser deux variables qualitatives: les  nombres de répondants
+#Pour croiser deux variables qualitatives, ville et joue_musique, on utilise la fonction crosstab(). 
 t4=pd.crosstab(df["ville"], df["joue_musique"],margins=True,margins_name='Total')
 print(t4)
-#Pour croiser deux variables qualitatives: les pourcentages
-t5=round(pd.crosstab(df["ville"], df["joue_musique"],normalize='columns')*100)
+#Pour en obtenir les proportions.
+t5=round(pd.crosstab(df["ville"], df["joue_musique"],normalize='columns'))
 print(t5)
-#Pour croiser deux variables qualitatives: les pourcentages
+#Pour obtenir les pourcentages.
 t6=round(pd.crosstab(df["ville"], df["joue_musique"],normalize='index')*100)
 print(t6)
 `;
@@ -235,6 +235,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
