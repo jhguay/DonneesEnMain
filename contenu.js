@@ -168,10 +168,18 @@ regroupement={'Magog':'Reste du Québec',
               'Laval':'Métropole',
 }
 
+const Z12 = `
+#3. Pour sauvegarder votre travail ou la base modifiée
+&import pandas as pd
+&source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
+&df = pd.read_csv(source, encoding='latin1')
+#On corrige le nom des villes pour qu'elles commencent par une majuscule
+df.to_csv("donnees.csv", index=False, encoding='latin1')
+age_moyen.to_csv("age_moyen_tableau.csv", index=False, encoding='latin1')
+plt.savefig("mon_graphique.png") 
+}
 
-const Source = `
 
-`;
 
 
 
@@ -195,6 +203,7 @@ function formatTexteAvecBr(texte) {
     })
     .join('');
 }
+
 
 
 
