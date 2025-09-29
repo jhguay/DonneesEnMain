@@ -15,6 +15,10 @@ const Précisions = `
 #Sur l'image sont données les informations les plus synthétiques
 #En cliquant sur le + associé, vous devriez avoir accès à un code complet que vous pouvez copier et coller dans Google Colab ou dans une autre interface python.
 Sur Google Colab, on retrouve l'ensemble des commandes: https://colab.research.google.com/drive/1VKglT-J1ay6ckVkcCd2KToCwlx4mpeng#scrollTo=v7KkAYtQSlYq
+#Titre principal
+&Note explicative
+!https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png
+Ceci est une ligne normale
 `;
 
 
@@ -187,12 +191,34 @@ plt.savefig("mon_graphique.png")
 
 `;
 
-
-
-
-
-
 function formatTexteAvecBr(texte) {
+  return texte
+    .trim()
+    .split('\n')
+    .map(ligne => ligne.trim())
+    .filter(ligne => ligne.length > 0)
+    .map(ligne => {
+      if (ligne.startsWith('#')) {
+        // Garder le # et mettre en bleu
+        return `<span style="color:blue">${ligne}</span><br>`;
+      } else if (ligne.startsWith('&')) {
+        // Supprimer le & et mettre le reste en gris
+        return `<span style="color:gray">${ligne.slice(1).trim()}</span><br>`;
+      } else if (ligne.startsWith('!')) {
+        // Supprimer le ! et insérer une image
+        const url = ligne.slice(1).trim();
+        return `<img src="${url}" style="max-width:200px; display:block; margin:5px 0;"><br>`;
+      } else {
+        return ligne + '<br>';
+      }
+    })
+    .join('');
+}
+
+
+
+
+function formatTexteAvecBrAncien(texte) {
   return texte
     .trim()
     .split('\n')
@@ -211,6 +237,7 @@ function formatTexteAvecBr(texte) {
     })
     .join('');
 }
+
 
 
 
