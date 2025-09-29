@@ -14,6 +14,7 @@ const Source = `
 const Précisions = `
 #Sur l'image sont données les informations les plus synthétiques
 #En cliquant sur le + associé, vous devriez avoir accès à un code complet que vous pouvez copier et coller dans Google Colab ou dans une autre interface python.
+Sur Google Colab, on retrouve l'ensemble des commandes: https://colab.research.google.com/drive/1VKglT-J1ay6ckVkcCd2KToCwlx4mpeng#scrollTo=v7KkAYtQSlYq
 `;
 
 
@@ -210,6 +211,7 @@ function formatTexteAvecBr(texte) {
     })
     .join('');
 }
+
 
 
 
