@@ -13,7 +13,7 @@ const Source = `
 !imageBase.png
 `;
 
-const Precisions = `
+const Variable = `
 #Pour comprendre les fondements de Python, quelques informations très simples
 #Il faut distinguer les lignes de code des lignes de commentaire -comme celle-ci; les lignes de commentaire commence par un #
 #On peut travailler avec une variable et lui assigné un ou des mots; ils sont entre guillemets "". C'est une variable qualitative!
@@ -46,16 +46,18 @@ petitDictionnaire = [
 
 ]
 print(petitDictionnaire[2].get('genre'))
-print("------------------")
-#On peut enfin travailler avec un dataframe, analogue au dictionnaire mais plus structuré, avec un index. Module: pandas
+`;
+
+const Dataframe = `
+#On peut surtout travailler avec un dataframe, analogue au dictionnaire mais plus structuré, avec un index. Module: pandas
 #C'est cette structure que nous utiliserons pour travailler nos données
 import pandas as pd
 df = pd.DataFrame(petitDictionnaire)
 print(df)
 print(df['nom'])
 print(df['age'].mean())
+print(round(df['age'].mean()))
 `;
-
 
 const Z1 = `
 #Les données sont téléchargées, puis lues. On crée un dataframe appelé df.
@@ -272,6 +274,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
