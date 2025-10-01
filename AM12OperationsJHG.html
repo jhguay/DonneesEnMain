@@ -120,7 +120,7 @@
 
   <!-- Hotspots -->
   <div class="hotspot" data-x="0.22" data-y="0.043" data-zone="Z1">+</div>
-  <div class="hotspot" data-x="0.58" data-y="0.06" data-zone="Z2">+</div>
+  <div class="hotspot" data-x="0.58" data-y="0.09" data-zone="Z2">+</div>
   <div class="hotspot" data-x="0.29" data-y="0.21" data-zone="Z3">+</div>
   <div class="hotspot" data-x="0.73" data-y="0.21" data-zone="Z4">+</div>
   <div class="hotspot" data-x="0.32" data-y="0.36" data-zone="Z5">+</div>
@@ -132,7 +132,9 @@
   <div class="hotspot" data-x="0.92" data-y="0.72" data-zone="Z11">+</div>
   <div class="hotspot" data-x="0.31" data-y="0.86" data-zone="Z12">+</div>
   <div class="hotspot" data-x="0.83" data-y="0.061" data-zone="Source">+</div>
-  <div class="hotspot" data-x="0.987" data-y="0.061" data-zone="Precisions">+</div>
+  <div class="hotspot" data-x="0.987" data-y="0.058" data-zone="Variable">+</div>
+  <div class="hotspot" data-x="0.987" data-y="0.063" data-zone="DataFrame">+</div>
+  <div class="hotspot" data-x="0.6" data-y="0.03" data-zone="Demarche">+</div>
 
   <!-- Popup -->
   <div class="popup" id="popup"></div>
@@ -182,7 +184,10 @@
       else if (zone === "Z11") {contenu = formatTexteAvecBr(Z11);}
       else if (zone === "Z12") {contenu = formatTexteAvecBr(Z12);}
       else if (zone === "Source") {contenu = formatTexteAvecBr(Source);}
-      else if (zone === "Precisions") {contenu = formatTexteAvecBr(Precisions);}
+      else if (zone === "Variable") {contenu = formatTexteAvecBr(Variable);}
+      else if (zone === "Dataframe") {contenu = formatTexteAvecBr(Dataframe);}
+      else if (zone === "Demarche") {contenu = formatTexteAvecBr(Demarche);}
+
 
       popup.innerHTML = contenu + `
         <button class="copy-btn">Copier</button>
@@ -220,6 +225,7 @@ popup.querySelector(".copy-btn").addEventListener("click", () => {
 
 </body>
 </html>
+
 
 
 
