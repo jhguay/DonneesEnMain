@@ -59,6 +59,10 @@ print(df['age'].mean())
 print(round(df['age'].mean()))
 `;
 
+const Demarche = `
+#Notre démarche
+`;
+
 const Z1 = `
 #Les données sont téléchargées, puis lues. On crée un dataframe appelé df.
 import pandas as pd
@@ -274,6 +278,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
