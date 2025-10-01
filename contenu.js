@@ -72,7 +72,7 @@ const Z1 = `
 import pandas as pd
 source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 df = pd.read_csv(source, encoding='latin1')
-df
+print(df)
 `;
 
 const Z2 = `
@@ -83,7 +83,7 @@ const Z2 = `
 #En utilisant la méthode .title() , on corrige le nom des villes pour qu'il commence par une majuscule 
 df['ville'] = df['ville'].str.title()
 #Toutes les villes devraient avoir une majuscule.
-df
+print(df)
 `;
 
 const Z3 = `
@@ -282,6 +282,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
