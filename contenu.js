@@ -14,9 +14,46 @@ const Source = `
 `;
 
 const Precisions = `
-#Sur l'image sont données les informations les plus synthétiques.
-#En cliquant sur le + associé, vous devriez avoir accès à un code complet que vous pouvez copier et coller dans Google Colab ou dans une autre interface python.
+#Pour comprendre les fondements de Python, quelques informations très simples
+#Il faut distinguer les lignes de code des lignes de commentaire -comme celle-ci; les lignes de commentaire commence par un #
+#On peut travailler avec une variable et lui assigné un ou des mots; ils sont entre guillemets "". C'est une variable qualitative!
+nom='Adèle'
+print(nom)
+print("------------------")
+#On peut travailler avec une variable et lui assigné un nombre;  c'est une variable quantitative!
+age=55
+print(age)
+print("------------------")
+#On peut travailler avec une liste; remarquer les crochets
+personnes=['Adèle', 'Alice', 'Adrienne', 'Alma']
+print(personnes)
+ages=[55, 53, 75, 71]
+print(ages)
+#On peut aller chercher une information précise de la liste,
+print(ages[0]) #pour 55
+print(ages[3]) #pour 71
+print(personnes[1]) #pour Jean-Herman
+personnes.append("Pierre")
+print(personnes)
+print("------------------")
+#On peut travailler avec un dictionnaire: remarquer les accolades
+petitDictionnaire = [
+    {"nom": "Adèle", "genre":"Femme", "age": 45},
+    {"nom": "Alice", "genre":"Femme", "age": 43},
+    {"nom": "Adrienne", "genre":"Femme", "age": 75},
+    {"nom": "Alma", "genre":"Femme", "age": 71},
+    {"nom": "Pierre", "genre":"Homme", "age": 58},
 
+]
+print(petitDictionnaire[2].get('genre'))
+print("------------------")
+#On peut enfin travailler avec un dataframe, analogue au dictionnaire mais plus structuré, avec un index. Module: pandas
+#C'est cette structure que nous utiliserons pour travailler nos données
+import pandas as pd
+df = pd.DataFrame(petitDictionnaire)
+print(df)
+print(df['nom'])
+print(df['age'].mean())
 `;
 
 
@@ -235,6 +272,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
