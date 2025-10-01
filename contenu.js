@@ -64,6 +64,7 @@ df = pd.read_csv(source, encoding='latin1')
 
 const Demarche = `
 #Notre démarche
+!NotreDemarche.jpg
 `;
 
 const Z1 = `
@@ -281,6 +282,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
