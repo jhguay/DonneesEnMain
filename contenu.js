@@ -57,6 +57,9 @@ print(df)
 print(df['nom'])
 print(df['age'].mean())
 print(round(df['age'].mean()))
+source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
+df = pd.read_csv(source, encoding='latin1')
+
 `;
 
 const Demarche = `
@@ -278,6 +281,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
