@@ -62,10 +62,7 @@ df = pd.read_csv(source, encoding='latin1')
 
 `;
 
-const Demarche = `
-#Notre démarche
-!NotreDemarche.jpg
-`;
+
 
 const Z1 = `
 #Les données sont téléchargées, puis lues. On crée un dataframe appelé df.
@@ -91,7 +88,55 @@ const Z3 = `
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
 &df['ville'] = df['ville'].str.title()
-#On utilise la méthode .value_counts() , pour avoir les fréquences d'une variable qualitative, 
+#Pour retenir certaines variables on utilise une liste
+df=df[["nom","genre","ville"]]
+print(df)
+`;
+
+const Z4 = `
+&import pandas as pd
+&source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
+&df = pd.read_csv(source, encoding='latin1')
+&df['ville'] = df['ville'].str.title()
+#Pour retenir que les gens de Laval
+df = df.query("ville == 'Laval'") 
+print(df)
+`;
+
+const Z5 = `
+&import pandas as pd
+&source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
+&df = pd.read_csv(source, encoding='latin1')
+&df['ville'] = df['ville'].str.title()
+#Pour mettre de côté les gens avec une non réponse pour une variable précise: connais_python
+df = df.dropna(subset=["connais_python"])
+print(df)
+`;
+
+const Z6 = `
+&import pandas as pd
+&source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
+&df = pd.read_csv(source, encoding='latin1')
+#On corrige le nom des villes pour qu'il commence par une majuscule.
+&df['ville'] = df['ville'].str.title()
+#Pour regrouper des valeurs, on fait un dictionnaire qui associe chaque ville à l'une des deux grandes régions.
+regroupement={'Magog':'Reste du Québec',
+              'Carignan':'Reste du Québec',
+              'Sherbrooke':'Reste du Québec',
+              'Montréal':'Métropole',
+              'Laval':'Métropole',
+}
+df['région'] = df['ville'].map(regroupement).fillna("Autres villes")
+print(df)
+`;
+
+
+const Z7 = `
+&import pandas as pd
+&source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
+&df = pd.read_csv(source, encoding='latin1')
+&df['ville'] = df['ville'].str.title()
+#On utilise la méthode .value_counts(), pour avoir les fréquences d'une variable qualitative, 
 t1=df['genre'].value_counts()
 print(t1)
 #Pour avoir les fréquences en proportions, donc normalisées, on ajoute un paramètre.
@@ -101,7 +146,8 @@ print(t2)
 t3=round(df['genre'].value_counts(normalize=True)*100)
 print(t3)
 `;
-const Z4 = `
+
+const Z8 = `
 &import pandas as pd
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
@@ -112,7 +158,8 @@ print(moyenne)
 mediane=df['age'].median()
 print(mediane)
 `;
-const Z5 = `
+
+const Z9 = `
 &import pandas as pd
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
@@ -128,7 +175,7 @@ t6=round(pd.crosstab(df["ville"], df["joue_musique"],normalize='index')*100)
 print(t6)
 `;
 
-const Z6 = `
+const Z10 = `
 &import pandas as pd
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
@@ -138,7 +185,7 @@ t7 = df.groupby("genre")["age"].mean().reset_index()
 print(t7)
 `;
 
-const Z7 = `
+const Z11 = `
 &import pandas as pd
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
@@ -148,32 +195,22 @@ correlation = df["age"].corr(df["nb_ordi"])
 print(correlation)
 `;
 
-const Z8 = `
+
+const Z12 = `
 &import pandas as pd
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
 &df['ville'] = df['ville'].str.title()
-#On importe un second module d'outils, le matplotlib.
+
 import matplotlib.pyplot as plt
-#On travaille avec la variable qualitative, genre, on utilisera deux couleurs (stéréotypées!).
-couleurs=['lightcoral','skyblue']
-
-#Pour illustrer une variable qualitative.
-#On obtient à nouveau le tableau t3
-t3=round(df['genre'].value_counts(normalize=True)*100)
-#On utilise pour ce tableau la méthode plot pour dessiner un graphique et on ajoute des précisions.
-t3.plot(kind="pie", colors=couleurs)
-plt.title("Réparition des deux genres")
-plt.xlabel("Âge")
-plt.ylabel("Nombre de personnes")
+couleurs=["red","blue"]
+t3.plot(kind="bar",color=couleurs)
+plt.title("Genre", fontsize=16)
+plt.xlabel("Genre")
+plt.xticks(rotation=0)
+plt.ylabel("%")
 plt.show()
-
-#Pour illustrer une variable quantitative.
-plt.hist(df["age"], bins=3, edgecolor="black")  # bins = nombre de classes
-plt.title("Répartition des âges")
-plt.xlabel("Âge")
-plt.ylabel("Nombre de personnes")
-plt.show()
+plt.savefig("mon_graphique.png")
 
 #Pour illustrer une variable quantitative et une variable qualitative.
 t7 = df.groupby("genre")["age"].mean().reset_index()
@@ -186,44 +223,25 @@ plt.xticks(rotation=0)
 plt.show()
 `;
 
-const Z9 = `
+const Z13 = `
 &import pandas as pd
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
 &df['ville'] = df['ville'].str.title()
-df1=df[['nom','genre','ville']]
-print(df1)
+import matplotlib.pyplot as plt
+#Pour illustrer une variable quantitative et une variable qualitative.
+t7 = df.groupby("genre")["age"].mean().reset_index()
+couleurs=["red","blue"]
+t7.plot(kind="bar",color=couleurs) 
+plt.title("Âge moyen selon le genre")
+plt.xlabel("Genres") 
+plt.ylabel("Âges") 
+plt.grid(axis='y', linestyle='--') 
+plt.xticks(rotation=0) 
+plt.show()
 `;
 
-const Z10 = `
-&import pandas as pd
-&source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
-&df = pd.read_csv(source, encoding='latin1')
-&df['ville'] = df['ville'].str.title()
-df1 = df.query("ville == 'Laval'") 
-print(df1)
-df2 = df.dropna(subset=["connais_python"])
-print(df2)
-`;
-
-const Z11 = `
-&import pandas as pd
-&source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
-&df = pd.read_csv(source, encoding='latin1')
-#On corrige le nom des villes pour qu'il commence par une majuscule.
-&df['ville'] = df['ville'].str.title()
-#On fait un dictionnaire qui associe chaque ville à l'une des deux grandes régions.
-regroupement={'Magog':'Reste du Québec',
-              'Carignan':'Reste du Québec',
-              'Sherbrooke':'Reste du Québec',
-              'Montréal':'Métropole',
-              'Laval':'Métropole',
-}
-df['région'] = df['ville'].map(regroupement).fillna("Autres villes")
-print(df)
-`;
-
-const Z12 = `
+const Z14 = `
 #Pour sauvegarder votre travail ou la base modifiée.
 &import pandas as pd
 &source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
@@ -231,10 +249,75 @@ const Z12 = `
 #On corrige le nom des villes pour qu'il commence par une majuscule.
 df.to_csv("donnees.csv", index=False, encoding='latin1')
 age_moyen.to_csv("age_moyen_tableau.csv", index=False, encoding='latin1')
-plt.savefig("mon_graphique.png") 
 #Les fichiers sont dans la zone de gauche de Google Colab, ils pourront être téléchargés.
 
 `;
+const Z15 = `
+&Les données sont évidemment fictives: 10 personnes, 7 variables. Elles sont placées dans un dataframe, appelé ici df, du module pandas.
+&Cinq variables qualitatives: nom, genre, ville, joue_musique, connais_python.
+&Deux variables quantitatives: age, nb_ordi
+&Pour une observation -Émilie- une variable, connais_python, est sans réponse. On verra comment on la traite, section 12.
+&Les données sont stockées dans le nuage Gihub à l'adresse suivante: source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
+&Pour éviter tout problème, le nom des variables est sans accent.
+&L'encodage est latin1 puisque les valeurs des variables ont parfois des lettres accentuées. 
+&Elles ont été construites au départ dans un simple fichier excel.
+
+!imageBase.png
+`;
+
+const Z16 = `
+#Pour comprendre les fondements de Python, quelques informations très simples
+#Il faut distinguer les lignes de code des lignes de commentaire -comme celle-ci; les lignes de commentaire commence par un #
+#On peut travailler avec une variable et lui assigné un ou des mots; ils sont entre guillemets "". C'est une variable qualitative!
+nom='Adèle'
+print(nom)
+print("------------------")
+#On peut travailler avec une variable et lui assigné un nombre;  c'est une variable quantitative!
+age=55
+print(age)
+print("------------------")
+#On peut travailler avec une liste; remarquer les crochets
+personnes=['Adèle', 'Alice', 'Adrienne', 'Alma']
+print(personnes)
+ages=[55, 53, 75, 71]
+print(ages)
+#On peut aller chercher une information précise de la liste,
+print(ages[0]) #pour 55
+print(ages[3]) #pour 71
+print(personnes[1]) #pour Jean-Herman
+personnes.append("Pierre")
+print(personnes)
+print("------------------")
+#On peut travailler avec un dictionnaire: remarquer les accolades
+petitDictionnaire = [
+    {"nom": "Adèle", "genre":"Femme", "age": 45},
+    {"nom": "Alice", "genre":"Femme", "age": 43},
+    {"nom": "Adrienne", "genre":"Femme", "age": 75},
+    {"nom": "Alma", "genre":"Femme", "age": 71},
+    {"nom": "Pierre", "genre":"Homme", "age": 58},
+
+]
+print(petitDictionnaire[2].get('genre'))
+`;
+
+const Z17 = `
+#On peut surtout travailler avec un dataframe, analogue au dictionnaire mais plus structuré, avec un index. Module: pandas
+#C'est cette structure que nous utiliserons pour travailler nos données
+import pandas as pd
+df = pd.DataFrame(petitDictionnaire)
+print(df)
+print(df['nom'])
+print(df['age'].mean())
+print(round(df['age'].mean()))
+source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
+df = pd.read_csv(source, encoding='latin1')
+`;
+
+const Z18 = `
+#Notre démarche
+!NotreDemarche.jpg
+`;
+
 
 function formatTexteAvecBr(texte) {
   return texte
@@ -282,6 +365,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
