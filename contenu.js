@@ -1,66 +1,5 @@
 // contenus.js
 
-const Source = `
-&Les données sont évidemment fictives: 10 personnes, 7 variables. Elles sont placées dans un dataframe, appelé ici df, du module pandas.
-&Cinq variables qualitatives: nom, genre, ville, joue_musique, connais_python.
-&Deux variables quantitatives: age, nb_ordi
-&Pour une observation -Émilie- une variable, connais_python, est sans réponse. On verra comment on la traite, section 12.
-&Les données sont stockées dans le nuage Gihub à l'adresse suivante: source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
-&Pour éviter tout problème, le nom des variables est sans accent.
-&L'encodage est latin1 puisque les valeurs des variables ont parfois des lettres accentuées. 
-&Elles ont été construites au départ dans un simple fichier excel.
-
-!imageBase.png
-`;
-
-const Variable = `
-#Pour comprendre les fondements de Python, quelques informations très simples
-#Il faut distinguer les lignes de code des lignes de commentaire -comme celle-ci; les lignes de commentaire commence par un #
-#On peut travailler avec une variable et lui assigné un ou des mots; ils sont entre guillemets "". C'est une variable qualitative!
-nom='Adèle'
-print(nom)
-print("------------------")
-#On peut travailler avec une variable et lui assigné un nombre;  c'est une variable quantitative!
-age=55
-print(age)
-print("------------------")
-#On peut travailler avec une liste; remarquer les crochets
-personnes=['Adèle', 'Alice', 'Adrienne', 'Alma']
-print(personnes)
-ages=[55, 53, 75, 71]
-print(ages)
-#On peut aller chercher une information précise de la liste,
-print(ages[0]) #pour 55
-print(ages[3]) #pour 71
-print(personnes[1]) #pour Jean-Herman
-personnes.append("Pierre")
-print(personnes)
-print("------------------")
-#On peut travailler avec un dictionnaire: remarquer les accolades
-petitDictionnaire = [
-    {"nom": "Adèle", "genre":"Femme", "age": 45},
-    {"nom": "Alice", "genre":"Femme", "age": 43},
-    {"nom": "Adrienne", "genre":"Femme", "age": 75},
-    {"nom": "Alma", "genre":"Femme", "age": 71},
-    {"nom": "Pierre", "genre":"Homme", "age": 58},
-
-]
-print(petitDictionnaire[2].get('genre'))
-`;
-
-const Dataframe = `
-#On peut surtout travailler avec un dataframe, analogue au dictionnaire mais plus structuré, avec un index. Module: pandas
-#C'est cette structure que nous utiliserons pour travailler nos données
-import pandas as pd
-df = pd.DataFrame(petitDictionnaire)
-print(df)
-print(df['nom'])
-print(df['age'].mean())
-print(round(df['age'].mean()))
-source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
-df = pd.read_csv(source, encoding='latin1')
-
-`;
 
 
 
@@ -365,6 +304,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
