@@ -269,6 +269,33 @@ function formatTexteAvecBr(texte) {
     .trim()
     .split('\n')
     .map(ligne => ligne.trim())
+    .map(ligne => {
+      if (ligne.length === 0) {
+        // Ligne vide → juste un saut de ligne
+        return '<br>';
+      } else if (ligne.startsWith('#')) {
+        // Garder le # et mettre en bleu
+        return `<span style="color:blue">${ligne}</span><br>`;
+      } else if (ligne.startsWith('&')) {
+        // Supprimer le & et mettre le reste en gris
+        return `<span style="color:gray">${ligne.slice(1).trim()}</span><br>`;
+      } else if (ligne.startsWith('!')) {
+        // Supprimer le ! et insérer une image
+        const url = ligne.slice(1).trim();
+        return `<img src="${url}" style="width:100%; height:auto; display:block; margin:5px 0;"><br>`;
+      } else {
+        return ligne + '<br>';
+      }
+    })
+    .join('');
+}
+
+
+function formatTexteAvecBrSemiAncien(texte) {
+  return texte
+    .trim()
+    .split('\n')
+    .map(ligne => ligne.trim())
     .filter(ligne => ligne.length > 0)
     .map(ligne => {
       if (ligne.startsWith('#')) {
@@ -311,6 +338,25 @@ function formatTexteAvecBrAncien(texte) {
     .join('');
 }
 
+function formatTexteAvecBrAncienAussi(texte) {
+  return texte
+    .trim()
+    .split('\n')
+    .map(ligne => {
+      let ligneTrim = ligne.trim();
+      if (ligneTrim.length === 0) {
+        // Ligne vide → juste un saut de ligne
+        return '<br>';
+      } else if (ligneTrim.startsWith('#')) {
+        return `<span style="color:blue">${ligneTrim}</span><br>`;
+      } else if (ligneTrim.startsWith('&')) {
+        return `<span style="color:gray">${ligneTrim.slice(1).trim()}</span><br>`;
+      } else {
+        return ligneTrim + '<br>';
+      }
+    })
+    .join('');
+}
 
 
 
