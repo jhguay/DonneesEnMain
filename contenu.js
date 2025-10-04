@@ -254,8 +254,6 @@ print(df.shape)
 print(df.columns)
 #Pour une observation: ici la première
 print(df.iloc[0])
-#Pour une observation: ici la première
-print(df.iloc[0])
 #Pour une cellule précise d'une observation: ici le nom de la première
 print(df.at[0, 'nom'])
 `;
@@ -312,6 +310,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
