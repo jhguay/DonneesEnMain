@@ -246,13 +246,18 @@ const Z17 = `
 #On peut surtout travailler avec un dataframe, analogue au dictionnaire mais plus structuré, avec un index. Module: pandas
 #C'est cette structure que nous utiliserons pour travailler nos données
 import pandas as pd
-df = pd.DataFrame(petitDictionnaire)
-print(df)
-print(df['nom'])
-print(df['age'].mean())
-print(round(df['age'].mean()))
 source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 df = pd.read_csv(source, encoding='latin1')
+#Pour les dimensions ou shape du dataframe:
+print(df.shape)
+#Pour le nom des colonnes ou variables du dataframe:
+print(df.columns)
+#Pour une observation: ici la première
+print(df.iloc[0])
+#Pour une observation: ici la première
+print(df.iloc[0])
+#Pour une cellule précise d'une observation: ici le nom de la première
+print(df.at[0, 'nom'])
 `;
 
 const Z18 = `
@@ -307,6 +312,7 @@ function formatTexteAvecBrAncien(texte) {
     })
     .join('');
 }
+
 
 
 
