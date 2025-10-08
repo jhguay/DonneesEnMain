@@ -160,27 +160,32 @@ plt.xlabel("Genre")
 plt.xticks(rotation=0)
 plt.ylabel("%")
 plt.show()
-plt.savefig("mon_graphique.png")
+plt.savefig("mon_graphiqueUneVariable.png")
 
 `;
 
 const Z13 = `
 &import pandas as pd
-&source="https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
+&import matplotlib.pyplot as plt
+
+&source = "https://raw.githubusercontent.com/jhguay/DonneesEnMain/main/donneesFamille.csv"
 &df = pd.read_csv(source, encoding='latin1')
 &df['ville'] = df['ville'].str.title()
-import matplotlib.pyplot as plt
 
-#Pour illustrer une variable quantitative et une variable qualitative.
+# Pour illustrer une variable quantitative et une variable qualitative.
 t7 = df.groupby("genre")["age"].mean().reset_index()
-couleurs=["red","blue"]
-t7.plot(kind="bar",color=couleurs) 
+couleurs = ["red", "blue"]
+
+# préciser x et y dans plot
+t7.plot(kind="bar", x="genre", y="age", color=couleurs, legend=False)
+
 plt.title("Âge moyen selon le genre")
-plt.xlabel("Genres") 
-plt.ylabel("Âges") 
-plt.grid(axis='y', linestyle='--') 
-plt.xticks(rotation=0) 
+plt.xlabel("Genres")
+plt.ylabel("Âges")
+plt.grid(axis='y', linestyle='--')
+plt.xticks(rotation=0)
 plt.show()
+plt.savefig("mon_graphiqueDeuxVariables.png")
 `;
 
 const Z14 = `
@@ -357,6 +362,7 @@ function formatTexteAvecBrAncienAussi(texte) {
     })
     .join('');
 }
+
 
 
 
