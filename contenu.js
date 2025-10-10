@@ -243,7 +243,7 @@ petitDictionnaire = {
     "Alma": {"genre": "Femme", "age": 71},
     "Pierre": {"genre": "Homme", "age": 58},
 }
-print(petitDictionnaire[2].get('genre'))
+print(petitDictionnaire["Adèle"]["age"])
 `;
 
 const Z17 = `
@@ -361,6 +361,7 @@ function formatTexteAvecBrAncienAussi(texte) {
     })
     .join('');
 }
+
 
 
 
