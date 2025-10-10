@@ -236,14 +236,13 @@ personnes.append("Pierre")
 print(personnes)
 print("------------------")
 #On peut travailler avec un dictionnaire: remarquer les accolades
-petitDictionnaire = [
-    {"nom": "Adèle", "genre":"Femme", "age": 45},
-    {"nom": "Alice", "genre":"Femme", "age": 43},
-    {"nom": "Adrienne", "genre":"Femme", "age": 75},
-    {"nom": "Alma", "genre":"Femme", "age": 71},
-    {"nom": "Pierre", "genre":"Homme", "age": 58},
-
-]
+petitDictionnaire = {
+    "Adèle": {"genre": "Femme", "age": 45},
+    "Alice": {"genre": "Femme", "age": 43},
+    "Adrienne": {"genre": "Femme", "age": 75},
+    "Alma": {"genre": "Femme", "age": 71},
+    "Pierre": {"genre": "Homme", "age": 58},
+}
 print(petitDictionnaire[2].get('genre'))
 `;
 
@@ -362,6 +361,7 @@ function formatTexteAvecBrAncienAussi(texte) {
     })
     .join('');
 }
+
 
 
 
