@@ -263,6 +263,16 @@ print(df.at[0, 'nom'])
 #Options pour avoir accès à un affichage complet
 pd.set_option('display.max_rows', None)  # affiche toutes les lignes
 pd.set_option('display.max_columns', None)  # toutes les colonnes
+#Pour changer l'ordre des étiquettes d'un tableau de résultats
+frequences_ordonnees = [
+    "Fortement d'accord",
+    "Plutôt d'accord",
+    "Plutôt en désaccord",
+    "Fortement en désaccord",
+    "Je ne sais pas / Préfère ne pas répondre",
+]
+
+t1 = round(t1.reindex(frequences_ordonnees))
 `;
 
 const Z18 = `
@@ -364,6 +374,7 @@ function formatTexteAvecBrAncienAussi(texte) {
     })
     .join('');
 }
+
 
 
 
