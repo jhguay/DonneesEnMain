@@ -260,6 +260,9 @@ print(df.columns)
 print(df.iloc[0])
 #Pour une cellule précise d'une observation: ici le nom de la première
 print(df.at[0, 'nom'])
+#Options pour avoir accès à un affichage complet
+pd.set_option('display.max_rows', None)  # affiche toutes les lignes
+pd.set_option('display.max_columns', None)  # toutes les colonnes
 `;
 
 const Z18 = `
@@ -361,6 +364,7 @@ function formatTexteAvecBrAncienAussi(texte) {
     })
     .join('');
 }
+
 
 
 
