@@ -54,23 +54,54 @@
     margin-bottom: 8px;
     color: #333;
   }
-.grosTitre {
-  max-width: 100%;
-  margin: 30px auto;
-  background-color: white;
+.page-header {
+  text-align: center;
+  margin: 50px auto 40px auto;
+  padding: 30px 20px;
+  max-width: 900px;
+  background: linear-gradient(180deg, #f9fafb, #f1f5f9);
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.page-header h1 {
+  font-size: 3em;
+  font-weight: 700;
   color: #1e293b;
-  text-align: left;
-  padding: 30px;
-  font-size: 2em;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  font-weight: bold;
+  margin-bottom: 10px;
 }
-  .petitTitre {
-  max-width: 800px;
-  margin: 30px auto;
-  font-weight: bold;
+
+.page-header h2 {
+  font-size: 1.5em;
+  font-weight: 500;
+  color: #334155;
+  margin-top: 0;
+  margin-bottom: 20px;
 }
+
+.page-header .author {
+  font-size: 1.1em;
+  color: #475569;
+  margin-bottom: 15px;
+}
+
+.page-header .author a {
+  color: #0ea5e9;
+  text-decoration: none;
+}
+
+.page-header .author a:hover {
+  text-decoration: underline;
+}
+
+.page-header hr {
+  border: none;
+  height: 2px;
+  background-color: #cbd5e1;
+  width: 80%;
+  margin: 20px auto 0 auto;
+}
+
 
 
   
@@ -141,11 +172,11 @@
 </style>
 </head>
 <body>
- <div class="grosTitre">
-  Explorer les données
-    <div class="petitTitre">
-  avec Jean-Herman Guay
-</div>
+<div class="page-header">
+  <h1>Explorer les données</h1>
+  <h2>avec Python et Google Colab</h2>
+  <p class="author">Jean-Herman Guay — <a href="mailto:jean.herman.guay@email.com">jean.herman.guay@email.com</a></p>
+  <hr>
 </div>
 
   <div class="grid-container">
