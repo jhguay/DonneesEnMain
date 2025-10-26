@@ -110,6 +110,7 @@
   <pre><code>
 import pandas as pd
 df = pd.read_csv('fichier.csv')
+df = pd.read_csv('fichier.csv', sep=';') # si le séparateur est un point-virgule
   </code></pre>
   <p>Options utiles : <code>sep</code> si le séparateur est un ; sep=';'</p>
 
@@ -147,7 +148,8 @@ df.fillna(0, inplace=True)
 <h2>Autre option pour filtrer: <code>query()</code></h2>
 <p>La méthode <code>query()</code> permet de filtrer les lignes d’un DataFrame en utilisant une expression textuelle.</p>
 
-<pre><code># Exemple : sélectionner les lignes où Age &gt; 30 et Sexe = 'F'
+<pre><code>
+# Exemple : sélectionner les lignes où Age &gt; 30 et Sexe = 'F'
 df = df.query("Age > 30 and Sexe == 'F'")
 
 # Exemple avec plusieurs conditions et colonnes
@@ -206,6 +208,10 @@ plt.show()
     <li>Visualiser les tendances et anomalies avec <code>plot()</code>.</li>
   </ul>
 
+     
+
+
+     
 </div>
 
 </body>
