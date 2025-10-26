@@ -125,12 +125,13 @@ df = pd.read_csv('fichier.csv', sep=';') # si le séparateur est un point-virgul
     
   </ul>
 
-  <h2>3. Obtenir des résultats univariés et bivariés</h2>
+  <h2>3. Obtenir des résultats univariés</h2>
   <ul>
     <li><code>df['colonne'].value_counts()</code> : compte les occurrences de chaque valeur d'une variable qualitative</li>
     <li><code>df['colonne'].value_counts(normalize=True)</code> : avec les pourcentages</li>
-   
-  
+   </ul>
+    <h2>3. Obtenir des résultats bivariés</h2>
+  <ul>
 
 <li><code>print(pd.crosstab(df['col1'], df['col2']))</code> :  pour les nombres absolus
 <li><code>print(round(pd.crosstab(df['col1'], df['col2'], normalize='columns')*100))</code> :  pour les pourcentage en colonne
@@ -139,12 +140,9 @@ df = pd.read_csv('fichier.csv', sep=';') # si le séparateur est un point-virgul
     
   </ul>
 
-  <h2>4. Gestion des valeurs manquantes</h2>
+  <h2>4. Éliminer les observations avec des valeurs manquantes</h2>
   <pre><code>
-df.isnull()
-df.notnull()
-df.dropna(axis=0, inplace=True)
-df.fillna(0, inplace=True)
+df = df.dropna()
   </code></pre>
 
   <h2>5. Filtrer les données</h2>
@@ -164,7 +162,13 @@ df = df.query("Age > 30 and Sexe == 'F'")
 # Exemple avec plusieurs conditions et colonnes
 df = df.query("Region == 'Montréal' or Revenu &gt; 50000")
 </code></pre>
-
+regroupement = {
+    'Montréal': 'Montréal',
+    'Bas-Saint-Laurent': "Reste du Québec",
+    'Estrie': "Reste du Québec"
+}
+ 
+df["Grande_region"] = df["Region"].map(regroupement)
 
   
 
