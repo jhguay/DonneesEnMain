@@ -106,8 +106,8 @@
   <h2>1. Lecture des données</h2>
   <p><code>pd.read_csv()</code> permet de charger un fichier CSV dans un DataFrame Pandas.</p>
   <pre><code>
-    import pandas as pd
-    df = pd.read_csv('fichier.csv')
+  import pandas as pd
+  df = pd.read_csv('fichier.csv')
   </code></pre>
   <p>Options utiles : <code>sep</code>, <code>header</code>, <code>index_col</code>, <code>dtype</code></p>
 
@@ -129,10 +129,10 @@
 
   <h2>4. Gestion des valeurs manquantes</h2>
   <pre><code>
-    df.isnull()
-    df.notnull()
-    df.dropna(axis=0, inplace=True)
-    df.fillna(0, inplace=True)
+  df.isnull()
+  df.notnull()
+  df.dropna(axis=0, inplace=True)
+  df.fillna(0, inplace=True)
   </code></pre>
 
   <h2>5. Filtrage et sélection</h2>
@@ -161,8 +161,8 @@ df.query("Age &gt; @seuil")  # @ permet d'insérer une variable Python
 
   <h2>6. Groupement et agrégation</h2>
   <pre><code>
-    df.groupby('Pays')['Revenu'].mean()
-    df.pivot_table(values='Score', index='Classe', columns='Sexe', aggfunc='mean')
+  df.groupby('Pays')['Revenu'].mean()
+  df.pivot_table(values='Score', index='Classe', columns='Sexe', aggfunc='mean')
   </code></pre>
 
   <h2>7. Fusion et jointures</h2>
