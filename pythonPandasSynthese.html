@@ -234,6 +234,101 @@ plt.show()
     <li>Visualiser les résultats pour bien les communiquer<code>plot()</code>.</li>
   </ul>
 
+<h2>Exemple complet</h2>
+
+<pre><code>
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# --- Simuler la lecture depuis un CSV ---
+csv_data = """Nom,Age,Sexe,Region,Revenu,Classe,Catégorie
+Alice,25,F,Montréal,50000,A,Tech
+André,32,M,Montréal,60000,B,Finance
+Adrienne,37,F,Estrie,55000,A,Tech
+Pierre,29,M,Montréal,48000,B,Santé
+Émilie,41,F,Bas-Saint-Laurent,62000,A,Finance
+Jean-Herman,36,M,Bas-Saint-Laurent,53000,B,Santé
+Émilie,28,F,Bas-Saint-Laurent,50000,A,Tech
+Bruno,58,M,Montréal,65000,B,Finance
+Isabelle,49,F,Estrie,51000,A,Santé
+Richard,69,M,Montréal,,B,Tech
+"""
+
+# Lire le CSV depuis la chaîne de caractères
+from io import StringIO
+df = pd.read_csv(StringIO(csv_data))
+print(df)
+
+#Éliminer l'observation avec la valeur manquante
+df = df.dropna()
+print(df)
+
+# Vérifier les données
+print(df.head())
+print(df.info())
+print(df.describe())
+
+# Obtenir des distributions univariées
+print(df['Sexe'].value_counts())
+print(df['Sexe'].value_counts(normalize=True))
+
+#Obtenir des distributions bivariées
+print(pd.crosstab(df['Sexe'], df['Region']))
+print(round(pd.crosstab(df['Sexe'], df['Region'], normalize='columns')*100)) # pour les pourcentage en colonne
+print(round(pd.crosstab(df['Sexe'], df['Region'], normalize='index')*100)) #pour les pourcentages en rangée
+
+#Filtrer les données
+print("\n=== Filtrage Age > 35 ===")
+print(df[df['Age'] > 35])
+
+#Filtrer les données autrement
+print("\n=== Filtrage avec query ===")
+print(df.query("Age > 35 and Sexe == 'M'"))
+
+#Regrouper les valeurs d'une variable qualitative
+regroupement = {
+    'Montréal': 'Montréal',
+    'Bas-Saint-Laurent': "Reste du Québec",
+    'Estrie': "Reste du Québec"
+}
+ 
+df["Grande_region"] = df["Region"].map(regroupement)
+
+#Regrouper les valeurs d'une variable quantitative
+# Définir les tranches (18 à 34 ans, 35 à 54 ans et plus de 55 ans) et les labels
+bins = [18, 34, 54, 200]  # bornes : 0-34, 35-54, 55+
+labels = ["18-34", "35-54", "55+"]
+df['Groupe_Age'] = pd.cut(df['Age'], bins=bins, labels=labels, right=True)
+
+#Calculer des moyennes
+print("\n=== Moyenne Revenu par Région ===")
+print(df.groupby('Grande_region')['Revenu'].mean())
+
+print("\n=== Pivot Table Classe x Sexe, moyenne Revenu ===")
+print(df.pivot_table(values = 'Revenu', index = 'Classe', columns = 'Sexe', aggfunc = 'mean'))
+
+#Visualiser les données avec des graphiques
+t1 = df['Age']
+plt.hist(t1, bins=3, color='skyblue', edgecolor='black')  # edgecolor ajoute le contour
+plt.title("Histogramme des âges")
+plt.xlabel("Âge")
+plt.ylabel("Nombre de personnes")
+plt.show()
+
+print('---------------------------')
+t2 = df['Groupe_Age'].value_counts()
+print(t2)
+t2.plot(kind = 'bar', color = 'coral', edgecolor='black')
+plt.title("Histogramme des âges par groupe")
+plt.xlabel("Âge")
+plt.ylabel("Nombre de personnes")
+plt.show()
+
+# Barres pour la distribution par région
+df['Region'].value_counts().plot(kind = 'bar', color = 'coral', edgecolor='black',title = "Nombre de personnes par région")
+plt.show()
+</code></pre>
      
 
 
