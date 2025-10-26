@@ -150,10 +150,6 @@ df = df.query("Age > 30 and Sexe == 'F'")
 
 # Exemple avec plusieurs conditions et colonnes
 df= df.query("Region == 'Montréal' or Revenu &gt; 50000")
-
-# Utilisation de variables Python
-seuil = 40
-df.query("Age &gt; @seuil")  # @ permet d'insérer une variable Python
 </code></pre>
 
 
