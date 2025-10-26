@@ -162,17 +162,19 @@ df = df.query("Age > 30 and Sexe == 'F'")
 # Exemple avec plusieurs conditions et colonnes
 df = df.query("Region == 'Montréal' or Revenu &gt; 50000")
 </code></pre>
+
+<h2>7. Regrouper des valeurs d'une variable</h2>
+<pre><code>     
 regroupement = {
     'Montréal': 'Montréal',
     'Bas-Saint-Laurent': "Reste du Québec",
     'Estrie': "Reste du Québec"
 }
- 
 df["Grande_region"] = df["Region"].map(regroupement)
-
+</code></pre>
   
 
-  <h2>6. Grouper les observations et obtenir des moyennes</h2>
+  <h2>6. Grouper les observations et obtenir des moyennes sur ces groupes</h2>
   <pre><code>
 df.groupby('Region')['Revenu'].mean()
 df.pivot_table(values ='Score', index='Classe', columns ='Sexe', aggfunc = 'mean')
