@@ -109,22 +109,22 @@
 import pandas as pd
 df = pd.read_csv('fichier.csv')
   </code></pre>
-  <p>Options utiles : <code>sep</code> si le séparateur est un ; sep=';', <code>header</code>, <code>index_col</code>, <code>dtype</code></p>
+  <p>Options utiles : <code>sep</code> si le séparateur est un ; sep=';'</p>
 
   <h2>2. Vérifier les données</h2>
   <ul>
-    <li><code>df.head(n)</code> : affiche les <em>n</em> premières lignes</li>
-    <li><code>df.tail(n)</code> : affiche les <em>n</em> dernières lignes</li>
+    <li><code>df.shape</code> : nombre de lignes et de colonnes</li>
+    <li><code>df.head(n)</code> : affiche les <em>5</em> premières lignes</li>
+    <li><code>df.tail(n)</code> : affiche les <em>5</em> dernières lignes</li>
     <li><code>df.info()</code> : résumé des colonnes et types</li>
     <li><code>df.describe()</code> : statistiques descriptives des colonnes numériques</li>
-    <li><code>df.shape</code> : nombre de lignes et de colonnes</li>
+    
   </ul>
 
   <h2>3. Obtenir des résultats univariés et bivariés</h2>
   <ul>
-    <li><code>df['colonne'].value_counts()</code> : compte les occurrences de chaque valeur</li>
-    <li><code>pd.crosstab(df['col1'], df['col2'])</code> : tableau croisé simple</li>
-    <li><code>df['colonne'].unique()</code> : liste des valeurs uniques</li>
+    <li><code>df['colonne'].value_counts()</code> : compte les occurrences de chaque valeur d'une variable qualitative</li>
+    <li><code>pd.crosstab(df['col1'], df['col2'])</code> : tableau croisé simple de deux variables qualitatives</li>
   </ul>
 
   <h2>4. Gestion des valeurs manquantes</h2>
