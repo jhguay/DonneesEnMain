@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Synthèse des fonctions Pandas - Jean-Herman Guay</title>
+<style>
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background-color: #f7f7f8;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #111;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px;
+    background-color: #fff;
+  }
+
+  h1, h2, h3 {
+    color: #1e293b;
+  }
+
+  h1 {
+    font-size: 2.4em;
+    margin-bottom: 0.3em;
+  }
+
+  h2 {
+    font-size: 1.6em;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    border-bottom: 2px solid #cbd5e1;
+    padding-bottom: 6px;
+  }
+
+  h3 {
+    font-size: 1.3em;
+    margin-top: 1em;
+    margin-bottom: 0.3em;
+  }
+
+  p, li {
+    font-size: 1rem;
+    margin-bottom: 0.8em;
+  }
+
+  code {
+    background-color: #e2e8f0;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: monospace;
+  }
+
+  pre {
+    background-color: #e2e8f0;
+    padding: 10px;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+
+  .author {
+    margin-top: 10px;
+    font-size: 0.95em;
+    color: #475569;
+  }
+
+  .author a {
+    color: #0ea5e9;
+    text-decoration: none;
+  }
+
+  .author a:hover {
+    text-decoration: underline;
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background-color: #cbd5e1;
+    margin: 20px 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Synthèse des principales fonctions Pandas</h1>
+  <h2>avec Python et Google Colab</h2>
+  <p class="author">
+    Jean-Herman Guay — 
+    <a href="mailto:jean.herman.guay@email.com">jean.herman.guay@email.com</a>
+  </p>
+  <hr>
+
+  <p>Cette page présente les principales fonctions de la bibliothèque <strong>Pandas</strong> pour explorer, analyser et visualiser des données.</p>
+
+  <h2>1. Lecture des données</h2>
+  <p><code>pd.read_csv()</code> permet de charger un fichier CSV dans un DataFrame Pandas.</p>
+  <pre><code>import pandas as pd
+df = pd.read_csv('fichier.csv')</code></pre>
+  <p>Options utiles : <code>sep</code>, <code>header</code>, <code>index_col</code>, <code>dtype</code></p>
+
+  <h2>2. Exploration rapide</h2>
+  <ul>
+    <li><code>df.head(n)</code> : affiche les <em>n</em> premières lignes</li>
+    <li><code>df.tail(n)</code> : affiche les <em>n</em> dernières lignes</li>
+    <li><code>df.info()</code> : résumé des colonnes et types</li>
+    <li><code>df.describe()</code> : statistiques descriptives des colonnes numériques</li>
+    <li><code>df.shape</code> : nombre de lignes et de colonnes</li>
+  </ul>
+
+  <h2>3. Valeurs uniques et distributions</h2>
+  <ul>
+    <li><code>df['colonne'].value_counts()</code> : compte les occurrences de chaque valeur</li>
+    <li><code>pd.crosstab(df['col1'], df['col2'])</code> : tableau croisé simple</li>
+    <li><code>df['colonne'].unique()</code> : liste des valeurs uniques</li>
+  </ul>
+
+  <h2>4. Gestion des valeurs manquantes</h2>
+  <pre><code>df.isnull()
+df.notnull()
+df.dropna(axis=0, inplace=True)
+df.fillna(0, inplace=True)</code></pre>
+
+  <h2>5. Filtrage et sélection</h2>
+  <ul>
+    <li>Par colonne : <code>df['colonne']</code></li>
+    <li>Plusieurs colonnes : <code>df[['col1','col2']]</code></li>
+    <li>Filtrage conditionnel : <code>df[df['Age'] > 30]</code></li>
+  </ul>
+
+  <h2>6. Groupement et agrégation</h2>
+  <pre><code>df.groupby('Pays')['Revenu'].mean()
+df.pivot_table(values='Score', index='Classe', columns='Sexe', aggfunc='mean')</code></pre>
+
+  <h2>7. Fusion et jointures</h2>
+  <ul>
+    <li><code>pd.merge(df1, df2, on='colonne')</code> : fusion sur une clé</li>
+    <li><code>pd.concat([df1, df2])</code> : concaténation de DataFrames</li>
+  </ul>
+
+  <h2>8. Visualisation rapide</h2>
+  <pre><code>import matplotlib.pyplot as plt
+
+df['Age'].plot(kind='hist', bins=10, color='skyblue')
+plt.show()
+
+df['Pays'].value_counts().plot(kind='bar')
+plt.show()
+
+df.groupby('Année')['Ventes'].sum().plot(kind='line')
+plt.show()
+
+df['Catégorie'].value_counts().plot(kind='pie', autopct='%1.1f%%')
+plt.show()</code></pre>
+
+  <h2>9. Exportation des données</h2>
+  <ul>
+    <li><code>df.to_csv('fichier.csv', index=False)</code> : export CSV</li>
+    <li><code>df.to_excel('fichier.xlsx')</code> : export Excel</li>
+  </ul>
+
+  <h2>10. Conseils pratiques</h2>
+  <ul>
+    <li>Commencer par <code>df.head()</code> et <code>df.info()</code> pour comprendre les données.</li>
+    <li>Utiliser <code>value_counts()</code> et <code>crosstab()</code> pour analyser rapidement les distributions.</li>
+    <li>Les <code>groupby()</code> et <code>pivot_table()</code> sont essentiels pour résumer les données.</li>
+    <li>Visualiser les tendances et anomalies avec <code>plot()</code>.</li>
+  </ul>
+
+</div>
+
+</body>
+</html>
