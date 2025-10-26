@@ -75,6 +75,7 @@
   }
 
   .author a {
+    font-size: .8em;
     color: #0ea5e9;
     text-decoration: none;
   }
@@ -142,7 +143,7 @@ df.fillna(0, inplace=True)
   <ul>
     <li>Retenir une seule colonne : <code>df = df['colonne']</code></li>
     <li>Retenir plusieurs colonnes : <code>df = df[['col1','col2']]</code></li>
-    <li>Retenir par filtrage conditionnel : <code>df=df[df['Age'] > 30]</code></li>
+    <li>Retenir par filtrage conditionnel : <code>df = df[df['Age'] > 30]</code></li>
   </ul>
 
 <h2>Autre option pour filtrer: <code>query()</code></h2>
@@ -153,7 +154,7 @@ df.fillna(0, inplace=True)
 df = df.query("Age > 30 and Sexe == 'F'")
 
 # Exemple avec plusieurs conditions et colonnes
-df= df.query("Region == 'Montréal' or Revenu &gt; 50000")
+df = df.query("Region == 'Montréal' or Revenu &gt; 50000")
 </code></pre>
 
 
@@ -162,14 +163,14 @@ df= df.query("Region == 'Montréal' or Revenu &gt; 50000")
   <h2>6. Grouper les observations et obtenir des moyennes</h2>
   <pre><code>
 df.groupby('Region')['Revenu'].mean()
-df.pivot_table(values='Score', index='Classe', columns='Sexe', aggfunc='mean')
+df.pivot_table(values ='Score', index='Classe', columns ='Sexe', aggfunc = 'mean')
   </code></pre>
 
   <h2>7. Fusionner deux bases</h2>
   <ul>
     <li><code>
 pd.merge(df1, df2, on='colonne')</code> : fusion sur une clé</li>
-<li><code>pd.concat([df1, df2])</code> : concaténation de DataFrames</li>
+
   </ul>
 
   <h2>8. Visualiser graphiquement</h2>
@@ -177,8 +178,8 @@ pd.merge(df1, df2, on='colonne')</code> : fusion sur une clé</li>
     
 import matplotlib.pyplot as plt
 
-t1=df['Age']
-t1.plot(kind='hist', bins=10, color='skyblue')
+t1 = df['Age']
+t1.plot(kind='hist', bins = 10, color='skyblue')
 plt.show()
 
 t2=df['Pays'].value_counts()
