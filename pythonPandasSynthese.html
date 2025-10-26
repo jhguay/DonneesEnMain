@@ -142,6 +142,23 @@
     <li>Filtrage conditionnel : <code>df[df['Age'] > 30]</code></li>
   </ul>
 
+<h2>Autre option pour filtre: <code>query()</code></h2>
+<p>La méthode <code>query()</code> permet de filtrer les lignes d’un DataFrame en utilisant une expression textuelle.</p>
+
+<pre><code># Exemple : sélectionner les lignes où Age &gt; 30 et Sexe = 'F'
+df.query("Age > 30 and Sexe == 'F'")
+
+# Exemple avec plusieurs conditions et colonnes
+df.query("Pays == 'Canada' or Revenu &gt; 50000")
+
+# Utilisation de variables Python
+seuil = 40
+df.query("Age &gt; @seuil")  # @ permet d'insérer une variable Python
+</code></pre>
+
+
+  
+
   <h2>6. Groupement et agrégation</h2>
   <pre><code>
     df.groupby('Pays')['Revenu'].mean()
