@@ -129,10 +129,10 @@
 
   <h2>4. Gestion des valeurs manquantes</h2>
   <pre><code>
-  df.isnull()
-  df.notnull()
-  df.dropna(axis=0, inplace=True)
-  df.fillna(0, inplace=True)
+df.isnull()
+df.notnull()
+df.dropna(axis=0, inplace=True)
+df.fillna(0, inplace=True)
   </code></pre>
 
   <h2>5. Filtrage et sélection</h2>
@@ -161,14 +161,15 @@ df.query("Age &gt; @seuil")  # @ permet d'insérer une variable Python
 
   <h2>6. Groupement et agrégation</h2>
   <pre><code>
-  df.groupby('Pays')['Revenu'].mean()
-  df.pivot_table(values='Score', index='Classe', columns='Sexe', aggfunc='mean')
+df.groupby('Pays')['Revenu'].mean()
+df.pivot_table(values='Score', index='Classe', columns='Sexe', aggfunc='mean')
   </code></pre>
 
   <h2>7. Fusion et jointures</h2>
   <ul>
-    <li><code>pd.merge(df1, df2, on='colonne')</code> : fusion sur une clé</li>
-    <li><code>pd.concat([df1, df2])</code> : concaténation de DataFrames</li>
+    <li><code>
+pd.merge(df1, df2, on='colonne')</code> : fusion sur une clé</li>
+<li><code>pd.concat([df1, df2])</code> : concaténation de DataFrames</li>
   </ul>
 
   <h2>8. Visualisation rapide</h2>
