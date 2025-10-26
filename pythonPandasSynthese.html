@@ -103,7 +103,7 @@
 
   <p>Cette page présente les principales fonctions de la bibliothèque <strong>Pandas</strong> pour explorer, analyser et visualiser des données.</p>
 
-  <h2>1. Lecture des données</h2>
+  <h2>1. Lire les données stockées dans un fichier csv</h2>
   <p><code>pd.read_csv()</code> permet de charger un fichier CSV dans un DataFrame Pandas.</p>
   <pre><code>
   import pandas as pd
@@ -111,7 +111,7 @@
   </code></pre>
   <p>Options utiles : <code>sep</code>, <code>header</code>, <code>index_col</code>, <code>dtype</code></p>
 
-  <h2>2. Exploration rapide</h2>
+  <h2>2. Vérifier les données</h2>
   <ul>
     <li><code>df.head(n)</code> : affiche les <em>n</em> premières lignes</li>
     <li><code>df.tail(n)</code> : affiche les <em>n</em> dernières lignes</li>
@@ -120,7 +120,7 @@
     <li><code>df.shape</code> : nombre de lignes et de colonnes</li>
   </ul>
 
-  <h2>3. Valeurs uniques et distributions</h2>
+  <h2>3. Obtenir des résultats univariés et bivariés</h2>
   <ul>
     <li><code>df['colonne'].value_counts()</code> : compte les occurrences de chaque valeur</li>
     <li><code>pd.crosstab(df['col1'], df['col2'])</code> : tableau croisé simple</li>
@@ -135,21 +135,21 @@ df.dropna(axis=0, inplace=True)
 df.fillna(0, inplace=True)
   </code></pre>
 
-  <h2>5. Filtrage et sélection</h2>
+  <h2>5. Filtrer les données</h2>
   <ul>
-    <li>Par colonne : <code>df['colonne']</code></li>
-    <li>Plusieurs colonnes : <code>df[['col1','col2']]</code></li>
-    <li>Filtrage conditionnel : <code>df[df['Age'] > 30]</code></li>
+    <li>Retenir une seule colonne : <code>df = df['colonne']</code></li>
+    <li>Retenir plusieurs colonnes : <code>df = df[['col1','col2']]</code></li>
+    <li>Retenir par filtrage conditionnel : <code>df=df[df['Age'] > 30]</code></li>
   </ul>
 
-<h2>Autre option pour filtre: <code>query()</code></h2>
+<h2>Autre option pour filtrer: <code>query()</code></h2>
 <p>La méthode <code>query()</code> permet de filtrer les lignes d’un DataFrame en utilisant une expression textuelle.</p>
 
 <pre><code># Exemple : sélectionner les lignes où Age &gt; 30 et Sexe = 'F'
-df.query("Age > 30 and Sexe == 'F'")
+df = df.query("Age > 30 and Sexe == 'F'")
 
 # Exemple avec plusieurs conditions et colonnes
-df.query("Pays == 'Canada' or Revenu &gt; 50000")
+df= df.query("Region == 'Montréal' or Revenu &gt; 50000")
 
 # Utilisation de variables Python
 seuil = 40
@@ -159,34 +159,38 @@ df.query("Age &gt; @seuil")  # @ permet d'insérer une variable Python
 
   
 
-  <h2>6. Groupement et agrégation</h2>
+  <h2>6. Grouper les observations et obtenir des moyennes</h2>
   <pre><code>
-df.groupby('Pays')['Revenu'].mean()
+df.groupby('Region')['Revenu'].mean()
 df.pivot_table(values='Score', index='Classe', columns='Sexe', aggfunc='mean')
   </code></pre>
 
-  <h2>7. Fusion et jointures</h2>
+  <h2>7. Fusionner deux bases</h2>
   <ul>
     <li><code>
 pd.merge(df1, df2, on='colonne')</code> : fusion sur une clé</li>
 <li><code>pd.concat([df1, df2])</code> : concaténation de DataFrames</li>
   </ul>
 
-  <h2>8. Visualisation rapide</h2>
+  <h2>8. Visualiser graphiquement</h2>
   <pre><code>
     
 import matplotlib.pyplot as plt
 
-df['Age'].plot(kind='hist', bins=10, color='skyblue')
+t1=df['Age']
+t1.plot(kind='hist', bins=10, color='skyblue')
 plt.show()
 
-df['Pays'].value_counts().plot(kind='bar')
+t2=df['Pays'].value_counts()
+t2.plot(kind='bar')
 plt.show()
 
-df.groupby('Année')['Ventes'].sum().plot(kind='line')
+t3=df.groupby('Année')['Ventes'].sum()
+t3.plot(kind='line')
 plt.show()
 
-df['Catégorie'].value_counts().plot(kind='pie', autopct='%1.1f%%')
+t4=df['Catégorie'].value_counts()
+t4.plot(kind='pie', autopct='%1.1f%%')
 plt.show()
   </code></pre>
 
