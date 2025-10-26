@@ -105,8 +105,9 @@
 
   <h2>1. Lecture des données</h2>
   <p><code>pd.read_csv()</code> permet de charger un fichier CSV dans un DataFrame Pandas.</p>
-  <pre><code>import pandas as pd
-df = pd.read_csv('fichier.csv')</code></pre>
+  <pre><code>
+    import pandas as pd
+    df = pd.read_csv('fichier.csv')</code></pre>
   <p>Options utiles : <code>sep</code>, <code>header</code>, <code>index_col</code>, <code>dtype</code></p>
 
   <h2>2. Exploration rapide</h2>
@@ -126,10 +127,11 @@ df = pd.read_csv('fichier.csv')</code></pre>
   </ul>
 
   <h2>4. Gestion des valeurs manquantes</h2>
-  <pre><code>df.isnull()
-df.notnull()
-df.dropna(axis=0, inplace=True)
-df.fillna(0, inplace=True)</code></pre>
+  <pre><code>
+    df.isnull()
+    df.notnull()
+    df.dropna(axis=0, inplace=True)
+    df.fillna(0, inplace=True)</code></pre>
 
   <h2>5. Filtrage et sélection</h2>
   <ul>
@@ -139,8 +141,9 @@ df.fillna(0, inplace=True)</code></pre>
   </ul>
 
   <h2>6. Groupement et agrégation</h2>
-  <pre><code>df.groupby('Pays')['Revenu'].mean()
-df.pivot_table(values='Score', index='Classe', columns='Sexe', aggfunc='mean')</code></pre>
+  <pre><code>
+    df.groupby('Pays')['Revenu'].mean()
+    df.pivot_table(values='Score', index='Classe', columns='Sexe', aggfunc='mean')</code></pre>
 
   <h2>7. Fusion et jointures</h2>
   <ul>
@@ -149,7 +152,9 @@ df.pivot_table(values='Score', index='Classe', columns='Sexe', aggfunc='mean')</
   </ul>
 
   <h2>8. Visualisation rapide</h2>
-  <pre><code>import matplotlib.pyplot as plt
+  <pre><code>
+    
+import matplotlib.pyplot as plt
 
 df['Age'].plot(kind='hist', bins=10, color='skyblue')
 plt.show()
