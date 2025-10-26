@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compteur de visites</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 40px; background: #f7f7f8; color: #111; }
+  h1 { color: #1e293b; }
+  p { font-size: 1.1rem; }
+</style>
+</head>
+<body>
+
+<h1>Bienvenue sur ma page !</h1>
+<p>Chaque visite est enregistrée dans Google Sheet avec la date et l’heure.</p>
+
+<script>
+  // === URL de ton Apps Script ===
+  const scriptURL = 'https://docs.google.com/spreadsheets/d/164GLu_i0hhuE00g2K__Ap0vwvnv0vaBX9_ZiWzzeDuw/edit?usp=sharing';
+
+  // === Données à envoyer ===
+  const data = { page: window.location.pathname };
+
+  // === Envoi de la visite ===
+  fetch(scriptURL, {
+    method: 'POST',
+    mode: 'no-cors', // évite les erreurs CORS sur GitHub Pages
+    body: JSON.stringify(data),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then(() => console.log('Visite envoyée !'))
+  .catch(error => console.error('Erreur :', error));
+</script>
+
+</body>
+</html>
