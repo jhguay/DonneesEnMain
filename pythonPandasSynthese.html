@@ -130,11 +130,12 @@ df = pd.read_csv('fichier.csv', sep=';') # si le séparateur est un point-virgul
     <li><code>df['colonne'].value_counts()</code> : compte les occurrences de chaque valeur d'une variable qualitative</li>
     <li><code>df['colonne'].value_counts(normalize=True)</code> : avec les pourcentages</li>
    
+  
+
+<li><code>print(pd.crosstab(df['col1'], df['col2']))</code> :  pour les nombres absolus
+<li><code>print(round(pd.crosstab(df['col1'], df['col2'], normalize='columns')*100))</code> :  pour les pourcentage en colonne
+<li><code>print(round(pd.crosstab(df['col1'], df['col2'], normalize='index')*100))</code> : pour les pourcentages en rangée
     
-
-
-    <li><code>pd.crosstab(df['col1'], df['col2'])</code> : tableau croisé simple de deux variables qualitatives</li>
-     <li><code>round(pd.crosstab(df["col1"], df["col2"],normalize='index')*100)</code> : avec les pourcentages</li>
     
   </ul>
 
