@@ -171,6 +171,15 @@ regroupement = {
     'Estrie': "Reste du Québec"
 }
 df["Grande_region"] = df["Region"].map(regroupement)
+
+# Définir les tranches (18 à 34 ans, 35 à 54 ans et plus de 55 ans) et les labels
+bins = [18, 34, 54, 200]  # bornes : 0-34, 35-54, 55+
+labels = ["18-34", "35-54", "55+"]
+
+# Créer une nouvelle colonne 'Groupe_Age'
+df['Groupe_Age'] = pd.cut(df['Age'], bins=bins, labels=labels, right=True)
+
+  
 </code></pre>
   
 
