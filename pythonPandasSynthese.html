@@ -145,7 +145,7 @@ df = pd.read_csv('fichier.csv', sep=';') # si le séparateur est un point-virgul
 df = df.dropna()
   </code></pre>
 
-  <h2>5. Filtrer les données</h2>
+  <h2>6. Filtrer les données</h2>
   <ul>
     <li>Retenir une seule colonne : <code>df = df['colonne']</code></li>
     <li>Retenir plusieurs colonnes : <code>df = df[['col1','col2']]</code></li>
@@ -163,7 +163,7 @@ df = df.query("Age > 30 and Sexe == 'F'")
 df = df.query("Region == 'Montréal' or Revenu &gt; 50000")
 </code></pre>
 
-<h2>6. Regrouper des valeurs d'une variable</h2>
+<h2>7. Regrouper des valeurs d'une variable</h2>
 <pre><code>     
 regroupement = {
     'Montréal': 'Montréal',
@@ -183,20 +183,20 @@ df['Groupe_Age'] = pd.cut(df['Age'], bins=bins, labels=labels, right=True)
 </code></pre>
   
 
-  <h2>7. Grouper les observations et obtenir des moyennes sur ces groupes</h2>
+  <h2>8. Grouper les observations et obtenir des moyennes sur ces groupes</h2>
   <pre><code>
 df.groupby('Region')['Revenu'].mean()
 df.pivot_table(values ='Score', index='Classe', columns ='Sexe', aggfunc = 'mean')
   </code></pre>
 
-  <h2>8. Fusionner deux bases</h2>
+  <h2>9. Fusionner deux bases</h2>
   <ul>
     <li><code>
 pd.merge(df1, df2, on='colonne')</code> : fusion sur une clé</li>
 
   </ul>
 
-  <h2>9. Visualiser graphiquement</h2>
+  <h2>10. Visualiser graphiquement</h2>
   <pre><code>
     
 import matplotlib.pyplot as plt
@@ -218,13 +218,13 @@ t4.plot(kind='pie', autopct='%1.1f%%')
 plt.show()
   </code></pre>
 
-  <h2>10. Exportation des données</h2>
+  <h2>11. Exportation des données</h2>
   <ul>
     <li><code>df.to_csv('fichier.csv', index=False)</code> : export CSV</li>
     <li><code>df.to_excel('fichier.xlsx')</code> : export Excel</li>
   </ul>
 
-  <h2>11. Conseils pratiques</h2>
+  <h2>12. Conseils pratiques</h2>
   <ul>
     <li>N'oublier jamais d'importer vos outils: pandas et parfois numpy et matplotlib</li>
     <li>Commencer par lire les données <code>pd.read_csv(fichier)</code>code></li>
@@ -234,7 +234,7 @@ plt.show()
     <li>Visualiser les résultats pour bien les communiquer<code>plot()</code>.</li>
   </ul>
 
-<h2>12. Exemple complet</h2>
+<h2>Exemple complet</h2>
 
 <pre><code>
 import pandas as pd
