@@ -128,7 +128,14 @@ df = pd.read_csv('fichier.csv', sep=';') # si le séparateur est un point-virgul
   <h2>3. Obtenir des résultats univariés et bivariés</h2>
   <ul>
     <li><code>df['colonne'].value_counts()</code> : compte les occurrences de chaque valeur d'une variable qualitative</li>
+    <li><code>df['colonne'].value_counts(normalize=True)</code> : avec les pourcentages</li>
+   
+    
+
+
     <li><code>pd.crosstab(df['col1'], df['col2'])</code> : tableau croisé simple de deux variables qualitatives</li>
+     <li>round(pd.crosstab(df["col1"], df["col2"],normalize='index')*100)</code> : avec les pourcentages</li>
+    
   </ul>
 
   <h2>4. Gestion des valeurs manquantes</h2>
