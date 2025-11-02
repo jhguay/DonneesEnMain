@@ -198,32 +198,47 @@ En bleu, l'axe Z, l'opposition est entre les générations, plus jeunes et plus 
       updateLegend(values);
     }
 
-    function updateLegend(values) {
-      const legend = document.getElementById('legend');
-      legend.innerHTML = '';
+function updateLegend(values) {
+  const legend = document.getElementById('legend');
+  legend.innerHTML = '';
 
-      values.forEach((value, index) => {
-        const hue = index / values.length;
-        const color = new THREE.Color().setHSL(hue, 1, 0.5).getHex();
-        const div = document.createElement('div');
-        div.style.display = 'flex';
-        div.style.alignItems = 'center';
-        div.style.marginBottom = '5px';
-
-        const colorDiv = document.createElement('div');
-        colorDiv.style.width = '20px';
-        colorDiv.style.height = '20px';
-        colorDiv.style.background = `#${color.toString(16).padStart(6, '0')}`;
-        colorDiv.style.marginRight = '10px';
-
-        const textSpan = document.createElement('span');
-        textSpan.textContent = value;
-
-        div.appendChild(colorDiv);
-        div.appendChild(textSpan);
-        legend.appendChild(div);
-      });
+  // Compter les points pour chaque catégorie
+  const counts = {};
+  data.forEach(point => {
+    const value = point[currentVariable];
+    if (counts[value]) {
+      counts[value]++;
+    } else {
+      counts[value] = 1;
     }
+  });
+
+  values.forEach((value, index) => {
+    const hue = index / values.length;
+    const color = new THREE.Color().setHSL(hue, 1, 0.5).getHex();
+    const div = document.createElement('div');
+    div.style.display = 'flex';
+    div.style.alignItems = 'center';
+    div.style.marginBottom = '5px';
+
+    const colorDiv = document.createElement('div');
+    colorDiv.style.width = '20px';
+    colorDiv.style.height = '20px';
+    colorDiv.style.background = `#${color.toString(16).padStart(6, '0')}`;
+    colorDiv.style.marginRight = '10px';
+
+    const textSpan = document.createElement('span');
+    if (value === '') {
+      textSpan.textContent = `Ne sais pas (${counts[value]})`;
+    } else {
+      textSpan.textContent = `${value} (${counts[value]})`;
+    }
+
+    div.appendChild(colorDiv);
+    div.appendChild(textSpan);
+    legend.appendChild(div);
+  });
+}
 
     function animate() {
       requestAnimationFrame(animate);
@@ -236,6 +251,7 @@ En bleu, l'axe Z, l'opposition est entre les générations, plus jeunes et plus 
 </body>
 
 </html>
+
 
 
 
