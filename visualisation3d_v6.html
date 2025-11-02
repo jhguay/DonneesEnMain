@@ -35,9 +35,9 @@
       bottom: 0;
       left: 250px;
       background-color: #f0f0f0;
-      padding: 10px;
+      padding: 10px 20px;
       border: 1px solid #ccc;
-      width: calc(100% - 250px);
+      width: calc(100% - 250px - 40px);
     }
   </style>
 </head>
@@ -164,7 +164,11 @@
 
       geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
 
-      const material = new THREE.PointsMaterial({ size: 0.02, color: 0x0000ff });
+      const material = new THREE.PointsMaterial({ 
+        size: 0.05, 
+        color: 0x0000ff, 
+        sizeAttenuation: true 
+      });
       const pointCloud = new THREE.Points(geometry, material);
       scene.add(pointCloud);
     }
@@ -192,7 +196,11 @@
       geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
       geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
 
-      const material = new THREE.PointsMaterial({ size: 0.02, vertexColors: true });
+      const material = new THREE.PointsMaterial({ 
+        size: 0.05, 
+        vertexColors: true, 
+        sizeAttenuation: true 
+      });
       const pointCloud = new THREE.Points(geometry, material);
       scene.add(pointCloud);
 
