@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modèle - Évolution des populations</title>
+    <title>Modèle - Évolution des populations (modèle corrigé)</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
@@ -31,42 +31,44 @@
         .header {
             background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             color: white;
-            padding: 30px;
+            padding: 20px 30px;
             text-align: center;
         }
 
         .header h1 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
+            font-size: 1.8em;
+            margin-bottom: 5px;
         }
 
         .header p {
             opacity: 0.9;
-            font-size: 1.1em;
+            font-size: 0.9em;
         }
 
-        .content {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .controls {
-            flex: 1;
-            min-width: 300px;
-            padding: 30px;
-            background: #f8f9fa;
-            border-right: 1px solid #dee2e6;
-        }
-
+        /* Graphique plus grand - prend plus de place */
         .chart-container {
-            flex: 2;
-            min-width: 500px;
-            padding: 30px;
+            padding: 20px 30px 10px 30px;
             background: white;
+            min-height: 550px;
+        }
+
+        canvas {
+            max-height: 550px;
+            width: 100%;
+        }
+
+        /* Paramètres en bas */
+        .controls {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
 
         .control-group {
-            margin-bottom: 25px;
+            margin-bottom: 0;
         }
 
         .control-group label {
@@ -74,37 +76,73 @@
             font-weight: bold;
             margin-bottom: 8px;
             color: #2c3e50;
+            font-size: 0.85em;
         }
 
         .control-group input {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             border: 2px solid #dee2e6;
-            border-radius: 10px;
-            font-size: 14px;
+            border-radius: 8px;
+            font-size: 13px;
         }
 
         .control-group .value-display {
             display: inline-block;
-            margin-top: 5px;
-            font-size: 12px;
+            margin-top: 4px;
+            font-size: 11px;
             color: #6c757d;
         }
 
         input[type="range"] {
             padding: 0;
-            height: 6px;
+            height: 5px;
             -webkit-appearance: none;
-            background: #dee2e6;
+            background: linear-gradient(to right, #e74c3c, #f39c12, #2ecc71, #3498db);
             border-radius: 3px;
         }
 
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
-            background: #3498db;
+            background: #2c3e50;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .ratio-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-size: 9px;
+            color: #6c757d;
+        }
+
+        .ratio-indicator span:first-child { color: #e74c3c; }
+        .ratio-indicator span:last-child { color: #3498db; }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px 10px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-size: 0.85em;
+            cursor: pointer;
+        }
+
+        .checkbox-group input {
+            width: auto;
+            transform: scale(1.1);
             cursor: pointer;
         }
 
@@ -112,33 +150,37 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 10px;
+            padding: 10px 20px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
-            margin-top: 20px;
             width: 100%;
         }
 
         .stats {
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 10px;
+            padding: 12px;
             background: white;
-            border-radius: 10px;
+            border-radius: 8px;
             border: 1px solid #dee2e6;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
         }
 
         .stats h3 {
             color: #2c3e50;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+            grid-column: span 2;
         }
 
         .stat-item {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
+            padding: 4px 0;
+            font-size: 0.8em;
         }
 
         .stat-label {
@@ -150,12 +192,28 @@
             color: #2c3e50;
             font-weight: bold;
         }
-        a {
-	color: white;
-        }
 
         .positive { color: #27ae60; }
         .negative { color: #e74c3c; }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 8px;
+            margin-top: 10px;
+            font-size: 10px;
+            border-radius: 5px;
+        }
+
+        .stats-right {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            border-top: 1px solid #dee2e6;
+            padding-top: 8px;
+            margin-top: 4px;
+        }
     </style>
 </head>
 <body>
@@ -165,64 +223,95 @@
             <p><a href="https://jhguay.github.io/DonneesEnMain/Explications.html">Explication du calcul</a></p>
         </div>
 
-        <div class="content">
-            <div class="controls">
-                <div class="control-group">
-                    <label>👶 Enfants par femme (0 à 12)</label>
-                    <input type="range" id="enfants" min="0" max="12" step="0.1" value="2.7">
-                    <span class="value-display" id="enfantsValue">2.7 enfants</span>
-                </div>
+        <!-- Graphique en premier, bien visible -->
+        <div class="chart-container">
+            <canvas id="populationChart" height="500"></canvas>
+        </div>
 
-                <div class="control-group">
-                    <label>⚰️ Ratio surmortalité H/F (1 à 2.5) (Risque)</label>
-                    <input type="range" id="ratioMortalite" min="1" max="2.5" step="0.05" value="1.2">
-                    <span class="value-display" id="ratioValue">1.2x</span>
-                </div>
+        <!-- Paramètres en bas -->
+        <div class="controls">
+            <div class="control-group">
+                <label>👶 Enfants par femme (0 à 12)</label>
+                <input type="range" id="enfants" min="0" max="12" step="0.1" value="6.2">
+                <span class="value-display" id="enfantsValue">6.2 enfants</span>
+            </div>
 
-                <div class="control-group">
-                    <label>🍼 Mortalité infantile (0% à 80%)</label>
-                    <input type="range" id="mortaliteEnfant" min="0" max="0.8" step="0.01" value="0.01">
-                    <span class="value-display" id="mortaliteValue">1%</span>
+            <div class="control-group">
+                <label>⚰️ Ratio surmortalité H/F (0.5 à 2.5)</label>
+                <input type="range" id="ratioMortalite" min="0.5" max="2.5" step="0.01" value="1.0">
+                <span class="value-display" id="ratioValue">1.0 (égalité)</span>
+                <div class="ratio-indicator">
+                    <span>⬅️ Surmortalité FEMMES</span>
+                    <span>➡️ Surmortalité HOMMES</span>
                 </div>
+            </div>
 
-                <div class="control-group">
-                    <label>📊 Espérance de vie moyenne (20 à 90 ans)</label>
-                    <input type="range" id="esperanceVie" min="20" max="90" step="1" value="75">
-                    <span class="value-display" id="esperanceValue">75 ans</span>
+            <div class="control-group">
+                <label>🍼 Mortalité infantile (0% à 80%)</label>
+                <input type="range" id="mortaliteEnfant" min="0" max="0.8" step="0.01" value="0.50">
+                <span class="value-display" id="mortaliteValue">50%</span>
+            </div>
+
+            <div class="control-group">
+                <label>📊 Espérance de vie moyenne (20 à 90 ans)</label>
+                <input type="range" id="esperanceVie" min="20" max="90" step="1" value="56">
+                <span class="value-display" id="esperanceValue">56 ans</span>
+            </div>
+
+            <div class="control-group">
+                <label>⏱️ Durée de simulation (100 à 1000 ans)</label>
+                <input type="range" id="dureeSim" min="100" max="1000" step="50" value="100">
+                <span class="value-display" id="dureeValue">100 ans</span>
+            </div>
+
+            <div class="control-group">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="echelleLog">
+                    <label for="echelleLog">📈 Échelle logarithmique (mobile)</label>
                 </div>
-
-                <div class="control-group">
-                    <label>⏱️ Durée de simulation (100 à 1000 ans)</label>
-                    <input type="range" id="dureeSim" min="100" max="1000" step="50" value="500">
-                    <span class="value-display" id="dureeValue">500 ans</span>
-                </div>
-
                 <button class="btn-reset" onclick="resetParams()">🔄 Réinitialiser</button>
+            </div>
 
-                <div class="stats">
-                    <h3>📈 Résultats</h3>
+            <div class="stats">
+                <h3>📈 Résultats</h3>
+                <div class="stat-item">
+                    <span class="stat-label">Population initiale :</span>
+                    <span class="stat-value">1000</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Population finale :</span>
+                    <span class="stat-value" id="popFinale">-</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Variation :</span>
+                    <span class="stat-value" id="variation">-</span>
+                </div>
+                <div class="stat-right">
                     <div class="stat-item">
-                        <span class="stat-label">Population initiale :</span>
-                        <span class="stat-value">1000</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Population finale :</span>
-                        <span class="stat-value" id="popFinale">-</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Variation :</span>
-                        <span class="stat-value" id="variation">-</span>
+                        <span class="stat-label">Proportion femmes finale :</span>
+                        <span class="stat-value" id="propFemmes">-</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-label">Facteur multiplicateur :</span>
                         <span class="stat-value" id="multiplicateur">-</span>
                     </div>
                 </div>
+                <div class="stats-right">
+                    <div class="stat-item">
+                        <span class="stat-label">Espérance vie femmes :</span>
+                        <span class="stat-value" id="evFemmes">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Espérance vie hommes :</span>
+                        <span class="stat-value" id="evHommes">-</span>
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <div class="chart-container">
-                <canvas id="populationChart"></canvas>
-            </div>
+        <div class="note" style="margin: 0 30px 20px 30px; background: #e8f4f8; border-left-color: #3498db;">
+            💡 <strong>Compréhension du modèle :</strong> La proportion de femmes évolue à chaque génération. 
+            Si Rm &lt; 1 (surmortalité féminine) → proportion de femmes diminue → moins de naissances → population en baisse.
         </div>
     </div>
 
@@ -238,26 +327,41 @@
             const tauxF = tauxMoyen * 2 / (1 + ratioMortalite);
             const tauxH = ratioMortalite * tauxF;
             
-            // Survie sur 25 ans
+            // Survie sur une génération (25 ans)
             const survieF = Math.exp(-tauxF * dureeGeneration);
             const survieH = Math.exp(-tauxH * dureeGeneration);
             
+            // Espérances de vie pour affichage
+            const evF = 1 / tauxF;
+            const evH = 1 / tauxH;
+            
             let population = [popInit];
+            let proportionFemmes = 0.5;  // Proportion initiale (50/50 à la naissance)
             
             for (let g = 0; g < nGenerations; g++) {
-                const femmes = population[g] * 0.5;
+                // Nombre de femmes et d'hommes dans la génération actuelle
+                const femmes = population[g] * proportionFemmes;
+                const hommes = population[g] * (1 - proportionFemmes);
                 
-                // Naissances (pas de limitation par les hommes car 1 homme peut féconder plusieurs femmes)
+                // Naissances (dépendent uniquement du nombre de femmes)
                 const naissances = femmes * enfants;
                 const enfantsVivants = naissances * (1 - mortaliteEnfant);
                 
+                // Sex-ratio à la naissance : 50/50
                 const nouvellesFemmes = enfantsVivants / 2;
                 const nouveauxHommes = enfantsVivants / 2;
                 
+                // Survivants après mortalité adulte
                 const femmesSurvivantes = nouvellesFemmes * survieF;
                 const hommesSurvivants = nouveauxHommes * survieH;
                 
+                // Nouvelle population totale
                 population.push(femmesSurvivantes + hommesSurvivants);
+                
+                // Mise à jour de la proportion de femmes
+                if (population[g+1] > 0) {
+                    proportionFemmes = femmesSurvivantes / population[g+1];
+                }
             }
             
             const annees = [];
@@ -267,7 +371,7 @@
             
             const multiplicateur = population[1] / population[0];
             
-            return { annees, population, multiplicateur };
+            return { annees, population, multiplicateur, evF, evH, proportionFemmesFinale: proportionFemmes };
         }
 
         function mettreAJour() {
@@ -276,10 +380,22 @@
             const mortaliteEnfant = parseFloat(document.getElementById('mortaliteEnfant').value);
             const esperanceVie = parseFloat(document.getElementById('esperanceVie').value);
             const dureeSim = parseFloat(document.getElementById('dureeSim').value);
+            const echelleLog = document.getElementById('echelleLog').checked;
             const popInit = 1000;
             
+            // Mise à jour des affichages
             document.getElementById('enfantsValue').innerHTML = enfants.toFixed(1) + ' enfants';
-            document.getElementById('ratioValue').innerHTML = ratioMortalite.toFixed(2) + 'x';
+            
+            let ratioText = ratioMortalite.toFixed(2);
+            if (ratioMortalite < 0.99) {
+                ratioText = ratioMortalite.toFixed(2) + ' (surmortalité FEMMES ⚠️)';
+            } else if (ratioMortalite > 1.01) {
+                ratioText = ratioMortalite.toFixed(2) + ' (surmortalité HOMMES)';
+            } else {
+                ratioText = ratioMortalite.toFixed(2) + ' (égalité)';
+            }
+            document.getElementById('ratioValue').innerHTML = ratioText;
+            
             document.getElementById('mortaliteValue').innerHTML = (mortaliteEnfant * 100).toFixed(0) + '%';
             document.getElementById('esperanceValue').innerHTML = esperanceVie.toFixed(0) + ' ans';
             document.getElementById('dureeValue').innerHTML = dureeSim.toFixed(0) + ' ans';
@@ -291,11 +407,59 @@
             
             document.getElementById('popFinale').innerHTML = popFinale.toLocaleString();
             document.getElementById('variation').innerHTML = (variation > 0 ? '+' : '') + variation + '%';
+            document.getElementById('propFemmes').innerHTML = (resultat.proportionFemmesFinale * 100).toFixed(1) + '%';
             document.getElementById('multiplicateur').innerHTML = resultat.multiplicateur.toFixed(4);
+            document.getElementById('evFemmes').innerHTML = resultat.evF.toFixed(1) + ' ans';
+            document.getElementById('evHommes').innerHTML = resultat.evH.toFixed(1) + ' ans';
+            
+            // Appliquer les couleurs
+            const popElement = document.getElementById('popFinale');
+            const varElement = document.getElementById('variation');
+            popElement.className = 'stat-value ' + (popFinale > popInit ? 'positive' : popFinale < popInit ? 'negative' : '');
+            varElement.className = 'stat-value ' + (variation > 0 ? 'positive' : variation < 0 ? 'negative' : '');
             
             if (chart) chart.destroy();
             
             const ctx = document.getElementById('populationChart').getContext('2d');
+            
+            // Configuration de l'axe Y avec nombres entiers réels (sans "k")
+            let yAxisConfig;
+            
+            if (echelleLog) {
+                yAxisConfig = {
+                    type: 'logarithmic',
+                    title: { 
+                        display: true, 
+                        text: 'Population (échelle logarithmique - mobile)', 
+                        font: { size: 12, weight: 'bold' } 
+                    },
+                    ticks: {
+                        callback: function(value, index, ticks) {
+                            // Afficher les nombres entiers réels
+                            if (value >= 1) {
+                                return Math.round(value).toLocaleString();
+                            }
+                            return value;
+                        }
+                    }
+                };
+            } else {
+                yAxisConfig = {
+                    type: 'linear',
+                    title: { 
+                        display: true, 
+                        text: 'Population (échelle linéaire)', 
+                        font: { size: 12, weight: 'bold' } 
+                    },
+                    ticks: {
+                        callback: function(value, index, ticks) {
+                            // Afficher les nombres entiers réels (pas de "k")
+                            return Math.round(value).toLocaleString();
+                        }
+                    }
+                };
+            }
+            
             chart = new Chart(ctx, {
                 type: 'line',
                 data: {
@@ -306,25 +470,57 @@
                         borderColor: '#3498db',
                         backgroundColor: 'rgba(52,152,219,0.1)',
                         borderWidth: 3,
-                        fill: true
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 3,
+                        pointHoverRadius: 6
                     }]
                 },
                 options: {
                     responsive: true,
+                    maintainAspectRatio: true,
                     scales: {
-                        y: { beginAtZero: true, title: { display: true, text: 'Population' } },
-                        x: { title: { display: true, text: 'Années' } }
+                        y: yAxisConfig,
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Années',
+                                font: { size: 12, weight: 'bold' }
+                            },
+                            grid: {
+                                color: 'rgba(0,0,0,0.1)'
+                            },
+                            ticks: {
+                                stepSize: 50,
+                                callback: function(value, index, ticks) {
+                                    return value;
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Population: ' + Math.round(context.raw).toLocaleString() + ' habitants';
+                                }
+                            }
+                        },
+                        legend: {
+                            position: 'top'
+                        }
                     }
                 }
             });
         }
         
         function resetParams() {
-            document.getElementById('enfants').value = '2.7';
-            document.getElementById('ratioMortalite').value = '1.2';
-            document.getElementById('mortaliteEnfant').value = '0.01';
-            document.getElementById('esperanceVie').value = '75';
-            document.getElementById('dureeSim').value = '500';
+            document.getElementById('enfants').value = '6.2';
+            document.getElementById('ratioMortalite').value = '1.0';
+            document.getElementById('mortaliteEnfant').value = '0.50';
+            document.getElementById('esperanceVie').value = '56';
+            document.getElementById('dureeSim').value = '100';
+            document.getElementById('echelleLog').checked = false;
             mettreAJour();
         }
         
@@ -333,6 +529,7 @@
         document.getElementById('mortaliteEnfant').addEventListener('input', mettreAJour);
         document.getElementById('esperanceVie').addEventListener('input', mettreAJour);
         document.getElementById('dureeSim').addEventListener('input', mettreAJour);
+        document.getElementById('echelleLog').addEventListener('change', mettreAJour);
         
         mettreAJour();
     </script>
