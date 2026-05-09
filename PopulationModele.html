@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Préhistoire - Évolution des populations</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .controls {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-right: 1px solid #dee2e6;
+        }
+
+        .chart-container {
+            flex: 2;
+            min-width: 500px;
+            padding: 30px;
+            background: white;
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+        }
+
+        .control-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .control-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .control-group input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .control-group .value-display {
+            display: inline-block;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        input[type="range"] {
+            padding: 0;
+            height: 6px;
+            -webkit-appearance: none;
+            background: #dee2e6;
+            border-radius: 3px;
+        }
+
+        input[type="range"]:focus {
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3498db;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-reset {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+
+        .btn-reset:hover {
+            transform: translateY(-2px);
+        }
+
+        .stats {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #dee2e6;
+        }
+
+        .stats h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .stat-label {
+            font-weight: bold;
+            color: #6c757d;
+        }
+
+        .stat-value {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .positive {
+            color: #27ae60;
+        }
+
+        .negative {
+            color: #e74c3c;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .controls {
+                border-right: none;
+                border-bottom: 1px solid #dee2e6;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌍 Version 0. Essai de modélisation de JHG à partir de l'ouvrage de Vera Nikolski et Nicolas Pichoff</h1>
+            <p>Modifier les paramètres pour voir l'impact sur l'évolution de la population</p>
+        </div>
+
+        <div class="content">
+            <div class="controls">
+                <div class="control-group">
+                    <label>👶 Enfants par femme (0 à 12)</label>
+                    <input type="range" id="enfants" min="0" max="12" step="0.1" value="6">
+                    <span class="value-display" id="enfantsValue">4.0 enfants</span>
+                </div>
+
+                <div class="control-group">
+                    <label>⚰️ Ratio surmortalité H/F (1 à 2.5)</label>
+                    <input type="range" id="ratioMortalite" min="1" max="2.5" step="0.05" value="1.7">
+                    <span class="value-display" id="ratioValue">1.5x (hommes meurent 1.5x plus)</span>
+                </div>
+
+                <div class="control-group">
+                    <label>🍼 Mortalité infantile (0% à 80%)</label>
+                    <input type="range" id="mortaliteEnfant" min="0" max="0.8" step="0.01" value="0.5">
+                    <span class="value-display" id="mortaliteValue">40%</span>
+                </div>
+
+                <div class="control-group">
+                    <label>📊 Espérance de vie moyenne (20 à 50 ans)</label>
+                    <input type="range" id="esperanceVie" min="20" max="50" step="1" value="35">
+                    <span class="value-display" id="esperanceValue">35 ans</span>
+                </div>
+
+                <div class="control-group">
+                    <label>⏱️ Durée de simulation (100 à 1000 ans)</label>
+                    <input type="range" id="dureeSim" min="100" max="1000" step="50" value="500">
+                    <span class="value-display" id="dureeValue">500 ans</span>
+                </div>
+
+                <button class="btn-reset" onclick="resetParams()">🔄 Réinitialiser</button>
+
+                <div class="stats">
+                    <h3>📈 Résultats</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">Population initiale :</span>
+                        <span class="stat-value">500</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Population finale :</span>
+                        <span class="stat-value" id="popFinale">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Variation :</span>
+                        <span class="stat-value" id="variation">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Taux croissance annuel :</span>
+                        <span class="stat-value" id="tauxCroissance">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="populationChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let chart;
+
+        function esperanceVieParSexe(esperanceMoyenne, ratioMortaliteHF) {
+            // Approximation pour calculer l'espérance de vie par sexe
+            const tauxMoyen = 1 / esperanceMoyenne;
+            const tauxF = tauxMoyen * 2 / (1 + ratioMortaliteHF);
+            const tauxH = ratioMortaliteHF * tauxF;
+            
+            return {
+                femme: 1 / tauxF,
+                homme: 1 / tauxH
+            };
+        }
+
+        function evolutionPopulation(enfantsParFemme, ratioMortaliteHF, mortaliteEnfantine, esperanceVieMoyenne, dureeSimulation) {
+            const dureeGeneration = 25; // ans
+            const nGenerations = Math.floor(dureeSimulation / dureeGeneration);
+            const populationInit = 1000;
+            
+            // Calcul des espérances de vie
+            const esperance = esperanceVieParSexe(esperanceVieMoyenne, ratioMortaliteHF);
+            
+            // Taux de mortalité annuels
+            const tauxMortaliteF = 1 / esperance.femme;
+            const tauxMortaliteH = 1 / esperance.homme;
+            
+            // Survie sur une génération
+            const survieF = Math.exp(-tauxMortaliteF * dureeGeneration);
+            const survieH = Math.exp(-tauxMortaliteH * dureeGeneration);
+            
+            // Initialisation
+            let population = new Array(nGenerations + 1);
+            population[0] = populationInit;
+            let proportionFemmes = 0.5;
+            
+            for (let g = 0; g < nGenerations; g++) {
+                const femmes = population[g] * proportionFemmes;
+                const hommes = population[g] * (1 - proportionFemmes);
+                
+                // Facteur limitant par les hommes (1 homme peut féconder plusieurs femmes)
+                let facteurHommes = 1;
+                if (hommes > 0 && femmes > 0) {
+                    const ratioSexe = hommes / femmes;
+                    facteurHommes = Math.min(1.0, ratioSexe * 2);
+                }
+                
+                // Naissances
+                const naissances = femmes * enfantsParFemme * facteurHommes;
+                
+                // Mortalité infantile
+                const enfantsVivants = naissances * (1 - mortaliteEnfantine);
+                
+                // Sex-ratio à la naissance (50/50)
+                const nouvellesFemmes = enfantsVivants / 2;
+                const nouveauxHommes = enfantsVivants / 2;
+                
+                // Mortalité adulte
+                const survivantesFemmes = nouvellesFemmes * survieF;
+                const survivantsHommes = nouveauxHommes * survieH;
+                
+                // Nouvelle génération
+                population[g+1] = survivantesFemmes + survivantsHommes;
+                
+                // Mise à jour proportion femmes
+                if (population[g+1] > 0) {
+                    proportionFemmes = survivantesFemmes / population[g+1];
+                }
+            }
+            
+            // Générer les années
+            const annees = [];
+            for (let i = 0; i <= nGenerations; i++) {
+                annees.push(i * dureeGeneration);
+            }
+            
+            return { annees, population };
+        }
+
+        function mettreAJourGraphique() {
+            // Lire les valeurs des sliders
+            const enfants = parseFloat(document.getElementById('enfants').value);
+            const ratioMortalite = parseFloat(document.getElementById('ratioMortalite').value);
+            const mortaliteEnfant = parseFloat(document.getElementById('mortaliteEnfant').value);
+            const esperanceVie = parseFloat(document.getElementById('esperanceVie').value);
+            const dureeSim = parseFloat(document.getElementById('dureeSim').value);
+            
+            // Mettre à jour les affichages
+            document.getElementById('enfantsValue').innerHTML = enfants.toFixed(1) + ' enfants';
+            document.getElementById('ratioValue').innerHTML = ratioMortalite.toFixed(2) + 'x (hommes meurent ' + ratioMortalite.toFixed(2) + 'x plus)';
+            document.getElementById('mortaliteValue').innerHTML = (mortaliteEnfant * 100).toFixed(0) + '%';
+            document.getElementById('esperanceValue').innerHTML = esperanceVie.toFixed(0) + ' ans';
+            document.getElementById('dureeValue').innerHTML = dureeSim.toFixed(0) + ' ans';
+            
+            // Calculer l'évolution
+            const resultat = evolutionPopulation(
+                enfants, ratioMortalite, mortaliteEnfant, 
+                esperanceVie, dureeSim
+            );
+            
+            // Calculer les statistiques
+            const popInitiale = 500;
+            const popFinale = Math.round(resultat.population[resultat.population.length - 1]);
+            const variation = ((popFinale - popInitiale) / popInitiale * 100).toFixed(1);
+            const tauxCroissance = (Math.pow(popFinale / popInitiale, 1 / (dureeSim / 100)) - 1) * 100;
+            
+            // Mettre à jour l'affichage des stats
+            const popFinaleElement = document.getElementById('popFinale');
+            const variationElement = document.getElementById('variation');
+            const tauxElement = document.getElementById('tauxCroissance');
+            
+            popFinaleElement.innerHTML = popFinale.toLocaleString();
+            popFinaleElement.className = 'stat-value ' + (popFinale > popInitiale ? 'positive' : popFinale < popInitiale ? 'negative' : '');
+            
+            variationElement.innerHTML = (variation > 0 ? '+' : '') + variation + '%';
+            variationElement.className = 'stat-value ' + (variation > 0 ? 'positive' : variation < 0 ? 'negative' : '');
+            
+            tauxElement.innerHTML = tauxCroissance.toFixed(2) + '%/an';
+            tauxElement.className = 'stat-value ' + (tauxCroissance > 0 ? 'positive' : tauxCroissance < 0 ? 'negative' : '');
+            
+            // Mettre à jour le graphique
+            if (chart) {
+                chart.destroy();
+            }
+            
+            const ctx = document.getElementById('populationChart').getContext('2d');
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: resultat.annees,
+                    datasets: [{
+                        label: 'Population totale',
+                        data: resultat.population,
+                        borderColor: 'rgb(52, 152, 219)',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Population: ' + Math.round(context.raw).toLocaleString();
+                                }
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Années',
+                                font: { size: 12, weight: 'bold' }
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Population totale',
+                                font: { size: 12, weight: 'bold' }
+                            },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+        
+        function resetParams() {
+            document.getElementById('enfants').value = '4';
+            document.getElementById('ratioMortalite').value = '1.5';
+            document.getElementById('mortaliteEnfant').value = '0.4';
+            document.getElementById('esperanceVie').value = '35';
+            document.getElementById('dureeSim').value = '500';
+            mettreAJourGraphique();
+        }
+        
+        // Ajouter les événements
+        document.getElementById('enfants').addEventListener('input', mettreAJourGraphique);
+        document.getElementById('ratioMortalite').addEventListener('input', mettreAJourGraphique);
+        document.getElementById('mortaliteEnfant').addEventListener('input', mettreAJourGraphique);
+        document.getElementById('esperanceVie').addEventListener('input', mettreAJourGraphique);
+        document.getElementById('dureeSim').addEventListener('input', mettreAJourGraphique);
+        
+        // Initialiser le graphique
+        mettreAJourGraphique();
+    </script>
+</body>
+</html>
