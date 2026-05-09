@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Préhistoire - Évolution des populations</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .controls {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-right: 1px solid #dee2e6;
+        }
+
+        .chart-container {
+            flex: 2;
+            min-width: 500px;
+            padding: 30px;
+            background: white;
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+        }
+
+        .control-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .control-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .control-group .value-display {
+            display: inline-block;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        input[type="range"] {
+            padding: 0;
+            height: 6px;
+            -webkit-appearance: none;
+            background: #dee2e6;
+            border-radius: 3px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3498db;
+            cursor: pointer;
+        }
+
+        .btn-reset {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .stats {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #dee2e6;
+        }
+
+        .stats h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .stat-label {
+            font-weight: bold;
+            color: #6c757d;
+        }
+
+        .stat-value {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .positive { color: #27ae60; }
+        .negative { color: #e74c3c; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌍 Version 0. Essai de modélisation de JHG à partir de l'ouvrage de Véra Nikolski et Nicolas Pichoff</h1>
+            <p>Modifier les paramètres pour voir l'impact sur l'évolution de la population</p>
+        </div>
+
+        <div class="content">
+            <div class="controls">
+                <div class="control-group">
+                    <label>👶 Enfants par femme (0 à 12)</label>
+                    <input type="range" id="enfants" min="0" max="12" step="0.1" value="2.7">
+                    <span class="value-display" id="enfantsValue">2.7 enfants</span>
+                </div>
+
+                <div class="control-group">
+                    <label>⚰️ Ratio surmortalité H/F (Risque) (1 à 2.5)</label>
+                    <input type="range" id="ratioMortalite" min="1" max="2.5" step="0.05" value="1.2">
+                    <span class="value-display" id="ratioValue">1.2x</span>
+                </div>
+
+                <div class="control-group">
+                    <label>🍼 Mortalité infantile (0% à 80%)</label>
+                    <input type="range" id="mortaliteEnfant" min="0" max="0.8" step="0.01" value="0.01">
+                    <span class="value-display" id="mortaliteValue">1%</span>
+                </div>
+
+                <div class="control-group">
+                    <label>📊 Espérance de vie moyenne (20 à 90 ans)</label>
+                    <input type="range" id="esperanceVie" min="20" max="90" step="1" value="75">
+                    <span class="value-display" id="esperanceValue">75 ans</span>
+                </div>
+
+                <div class="control-group">
+                    <label>⏱️ Durée de simulation (100 à 1000 ans)</label>
+                    <input type="range" id="dureeSim" min="100" max="1000" step="50" value="500">
+                    <span class="value-display" id="dureeValue">500 ans</span>
+                </div>
+
+                <button class="btn-reset" onclick="resetParams()">🔄 Réinitialiser</button>
+
+                <div class="stats">
+                    <h3>📈 Résultats</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">Population initiale :</span>
+                        <span class="stat-value">1000</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Population finale :</span>
+                        <span class="stat-value" id="popFinale">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Variation :</span>
+                        <span class="stat-value" id="variation">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Facteur multiplicateur :</span>
+                        <span class="stat-value" id="multiplicateur">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="populationChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let chart;
+
+        function evolutionPopulation(enfants, ratioMortalite, mortaliteEnfant, esperanceVie, dureeSim, popInit) {
+            const dureeGeneration = 25;
+            const nGenerations = Math.floor(dureeSim / dureeGeneration);
+            
+            // Calcul des taux de mortalité
+            const tauxMoyen = 1 / esperanceVie;
+            const tauxF = tauxMoyen * 2 / (1 + ratioMortalite);
+            const tauxH = ratioMortalite * tauxF;
+            
+            // Survie sur 25 ans
+            const survieF = Math.exp(-tauxF * dureeGeneration);
+            const survieH = Math.exp(-tauxH * dureeGeneration);
+            
+            let population = [popInit];
+            
+            for (let g = 0; g < nGenerations; g++) {
+                const femmes = population[g] * 0.5;
+                
+                // Naissances (pas de limitation par les hommes car 1 homme peut féconder plusieurs femmes)
+                const naissances = femmes * enfants;
+                const enfantsVivants = naissances * (1 - mortaliteEnfant);
+                
+                const nouvellesFemmes = enfantsVivants / 2;
+                const nouveauxHommes = enfantsVivants / 2;
+                
+                const femmesSurvivantes = nouvellesFemmes * survieF;
+                const hommesSurvivants = nouveauxHommes * survieH;
+                
+                population.push(femmesSurvivantes + hommesSurvivants);
+            }
+            
+            const annees = [];
+            for (let i = 0; i <= nGenerations; i++) {
+                annees.push(i * dureeGeneration);
+            }
+            
+            const multiplicateur = population[1] / population[0];
+            
+            return { annees, population, multiplicateur };
+        }
+
+        function mettreAJour() {
+            const enfants = parseFloat(document.getElementById('enfants').value);
+            const ratioMortalite = parseFloat(document.getElementById('ratioMortalite').value);
+            const mortaliteEnfant = parseFloat(document.getElementById('mortaliteEnfant').value);
+            const esperanceVie = parseFloat(document.getElementById('esperanceVie').value);
+            const dureeSim = parseFloat(document.getElementById('dureeSim').value);
+            const popInit = 1000;
+            
+            document.getElementById('enfantsValue').innerHTML = enfants.toFixed(1) + ' enfants';
+            document.getElementById('ratioValue').innerHTML = ratioMortalite.toFixed(2) + 'x';
+            document.getElementById('mortaliteValue').innerHTML = (mortaliteEnfant * 100).toFixed(0) + '%';
+            document.getElementById('esperanceValue').innerHTML = esperanceVie.toFixed(0) + ' ans';
+            document.getElementById('dureeValue').innerHTML = dureeSim.toFixed(0) + ' ans';
+            
+            const resultat = evolutionPopulation(enfants, ratioMortalite, mortaliteEnfant, esperanceVie, dureeSim, popInit);
+            
+            const popFinale = Math.round(resultat.population[resultat.population.length - 1]);
+            const variation = ((popFinale - popInit) / popInit * 100).toFixed(1);
+            
+            document.getElementById('popFinale').innerHTML = popFinale.toLocaleString();
+            document.getElementById('variation').innerHTML = (variation > 0 ? '+' : '') + variation + '%';
+            document.getElementById('multiplicateur').innerHTML = resultat.multiplicateur.toFixed(4);
+            
+            if (chart) chart.destroy();
+            
+            const ctx = document.getElementById('populationChart').getContext('2d');
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: resultat.annees,
+                    datasets: [{
+                        label: 'Population totale',
+                        data: resultat.population,
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52,152,219,0.1)',
+                        borderWidth: 3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Population' } },
+                        x: { title: { display: true, text: 'Années' } }
+                    }
+                }
+            });
+        }
+        
+        function resetParams() {
+            document.getElementById('enfants').value = '2.7';
+            document.getElementById('ratioMortalite').value = '1.2';
+            document.getElementById('mortaliteEnfant').value = '0.01';
+            document.getElementById('esperanceVie').value = '75';
+            document.getElementById('dureeSim').value = '500';
+            mettreAJour();
+        }
+        
+        document.getElementById('enfants').addEventListener('input', mettreAJour);
+        document.getElementById('ratioMortalite').addEventListener('input', mettreAJour);
+        document.getElementById('mortaliteEnfant').addEventListener('input', mettreAJour);
+        document.getElementById('esperanceVie').addEventListener('input', mettreAJour);
+        document.getElementById('dureeSim').addEventListener('input', mettreAJour);
+        
+        mettreAJour();
+    </script>
+</body>
+</html>
