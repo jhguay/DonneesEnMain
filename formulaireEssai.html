@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire - Nom et Pays</title>
+    <title>Formulaire avec tracking discret</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
@@ -23,114 +23,84 @@
 
         .container {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            width: 100%;
-            max-width: 500px;
+            border-radius: 10px;
             padding: 40px;
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         }
 
         h1 {
             text-align: center;
             color: #333;
-            margin-bottom: 10px;
-            font-size: 28px;
+            margin-bottom: 30px;
+            font-size: 24px;
         }
 
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 14px;
+        h3 {
+            margin: 30px 0 15px 0;
+            color: #555;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
             margin-bottom: 8px;
             color: #555;
-            font-weight: 600;
-            font-size: 14px;
+            font-weight: bold;
         }
 
         input, select {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
             font-size: 16px;
-            transition: all 0.3s ease;
-            font-family: inherit;
         }
 
         input:focus, select:focus {
             outline: none;
             border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        select {
-            cursor: pointer;
-            background-color: white;
         }
 
         button {
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 12px;
+            background: #667eea;
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 5px;
             font-size: 16px;
-            font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: bold;
         }
 
         button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        button:active {
-            transform: translateY(0);
+            background: #5a67d8;
         }
 
         .message {
             margin-top: 20px;
-            padding: 12px;
-            border-radius: 10px;
+            padding: 10px;
+            border-radius: 5px;
             text-align: center;
-            font-size: 14px;
             display: none;
         }
 
         .message.success {
-            background-color: #d4edda;
+            background: #d4edda;
             color: #155724;
-            border: 1px solid #c3e6cb;
             display: block;
         }
 
         .message.error {
-            background-color: #f8d7da;
+            background: #f8d7da;
             color: #721c24;
-            border: 1px solid #f5c6cb;
             display: block;
         }
 
@@ -138,35 +108,78 @@
             display: none;
             text-align: center;
             margin-top: 20px;
+            color: #667eea;
         }
 
         .loading.active {
             display: block;
         }
 
-        .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #667eea;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
+        .lien {
+            display: inline-block;
+            margin: 10px 15px 10px 0;
+            padding: 10px 15px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #667eea;
+            font-weight: bold;
+            transition: all 0.3s;
+            cursor: pointer;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .lien:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .liste-liens {
+            margin: 20px 0;
+        }
+
+        .galerie {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .image-card {
+            text-align: center;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .image-card:hover {
+            transform: scale(1.05);
+        }
+
+        .image-card img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid #ddd;
+            transition: all 0.3s;
+        }
+
+        .image-card img:hover {
+            border-color: #667eea;
+        }
+
+        .image-card p {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #666;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>📝 Formulaire d'enregistrement</h1>
-        <div class="subtitle">Veuillez remplir vos informations</div>
-
-        <!-- Le formulaire - action à remplacer avec votre URL Google Apps Script -->
-        <form id="contactForm">
+        
+        <form id="monFormulaire">
             <div class="form-group">
                 <label for="name">Nom complet *</label>
                 <input type="text" id="name" name="name" required placeholder="Entrez votre nom complet">
@@ -176,96 +189,190 @@
                 <label for="country">Pays *</label>
                 <select id="country" name="country" required>
                     <option value="">Sélectionnez votre pays</option>
-                    <option value="France">🇫🇷 France</option>
-                    <option value="Belgique">🇧🇪 Belgique</option>
-                    <option value="Suisse">🇨🇭 Suisse</option>
-                    <option value="Canada">🇨🇦 Canada</option>
-                    <option value="Luxembourg">🇱🇺 Luxembourg</option>
-                    <option value="Algérie">🇩🇿 Algérie</option>
-                    <option value="Maroc">🇲🇦 Maroc</option>
-                    <option value="Tunisie">🇹🇳 Tunisie</option>
-                    <option value="Sénégal">🇸🇳 Sénégal</option>
-                    <option value="Côte d'Ivoire">🇨🇮 Côte d'Ivoire</option>
-                    <option value="Cameroun">🇨🇲 Cameroun</option>
-                    <option value="Madagascar">🇲🇬 Madagascar</option>
-                    <option value="RDC">🇨🇩 RD Congo</option>
-                    <option value="Autre">🌍 Autre pays</option>
+                    <option value="France">France</option>
+                    <option value="Belgique">Belgique</option>
+                    <option value="Suisse">Suisse</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Autre">Autre</option>
                 </select>
             </div>
 
             <button type="submit">📨 Envoyer</button>
         </form>
 
-        <div id="loading" class="loading">
-            <div class="spinner"></div>
-            <p style="margin-top: 10px;">Envoi en cours...</p>
+        <div id="loading" class="loading">Envoi en cours...</div>
+        <div id="message" class="message"></div>
+
+        <h3>🖼️ Nos destinations</h3>
+        <div class="galerie" id="galerieImages">
+            <div class="image-card" data-image="Ballon-panier" data-nom="🏔️ Ballon-paniere">
+                <img src="https://picsum.photos/id/104/150/150" alt="Ballon-panier">
+                <p>Ballon-panier</p>
+            </div>
+            <div class="image-card" data-image="Chute" data-nom="🏖️ Chute">
+                <img src="https://picsum.photos/id/15/150/150" alt="Chute">
+                <p>Chute</p>
+            </div>
+            <div class="image-card" data-image="Manette" data-nom="🌳 Manette">
+                <img src="https://picsum.photos/id/96/150/150" alt="Manette">
+                <p>Manette</p>
+            </div>
+            <div class="image-card" data-image="Ordi" data-nom="🌃 Ordi">
+                <img src="https://picsum.photos/id/0/150/150" alt="Ordi">
+                <p>Ordi</p>
+            </div>
+            <div class="image-card" data-image="Plaine" data-nom="🏜️ Plaine">
+                <img src="https://picsum.photos/id/116/150/150" alt="Plaine">
+                <p>Plaine</p>
+            </div>
         </div>
 
-        <div id="message" class="message"></div>
+        <h3>🔗 Liens utiles</h3>
+        <div class="liste-liens">
+            <a href="#" class="lien" data-evenement="telechargement_pdf">📄 Télécharger le PDF</a>
+            <a href="#" class="lien" data-evenement="page_contact">📞 Contact</a>
+            <a href="#" class="lien" data-evenement="newsletter">✉️ Newsletter</a>
+            <a href="#" class="lien" data-evenement="partage_facebook">👍 Facebook</a>
+            <a href="#" class="lien" data-evenement="site_partenaires">🔗 Partenaires</a>
+        </div>
     </div>
 
     <script>
-        // ⚠️ IMPORTANT: Remplacez cette URL par la vôtre après avoir déployé le script Google Apps Script
-        // Pour obtenir votre URL: Suivez les instructions dans la section "Configuration Google Sheets"
-        const GOOGLE_SCRIPT_URL ='https://script.google.com/macros/s/AKfycbzmYh9NoR7l8MkDYpkRCpZuyQOFXlnxZ5cCCjgt3fctQt18QYad8kbOAl6ELg3Pk1mXlA/exec';
-
-        const form = document.getElementById('contactForm');
+        // ⚠️ REMPLACEZ CETTE URL PAR LA VÔTRE ⚠️
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyzp3ODctfNbJe9W6FYaUnP22lidXItSTUGE8X5GzxioYh-fdPDx4QTop5C7MNAFxS-ug/exec';
+        
+        // Informations techniques du visiteur (valables pour toute la session)
+        const infosTechniques = {
+            page: window.location.pathname,
+            referrer: document.referrer || 'Direct',
+            ecran: `${screen.width}x${screen.height}`,
+            langue: navigator.language || navigator.userLanguage,
+            navigateur: navigator.userAgent.substring(0, 150)
+        };
+        
+        // ============================================
+        // Fonction unique pour envoyer les données
+        // ============================================
+        async function envoyerDonnees(donnees) {
+            // Ajouter automatiquement les infos techniques à chaque envoi
+            donnees.append('page', infosTechniques.page);
+            donnees.append('referrer', infosTechniques.referrer);
+            donnees.append('ecran', infosTechniques.ecran);
+            donnees.append('langue', infosTechniques.langue);
+            donnees.append('navigateur', infosTechniques.navigateur);
+            
+            try {
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: donnees
+                });
+                console.log('Données envoyées');
+            } catch (error) {
+                console.error('Erreur:', error);
+            }
+        }
+        
+        // ============================================
+        // TRACKING PAGE VISITE
+        // ============================================
+        const formDataVisite = new FormData();
+        formDataVisite.append('type', 'visite');
+        formDataVisite.append('evenement', 'page_ouverte');
+        envoyerDonnees(formDataVisite);
+        
+        // ============================================
+        // FORMULAIRE
+        // ============================================
+        const form = document.getElementById('monFormulaire');
         const loading = document.getElementById('loading');
         const messageDiv = document.getElementById('message');
-
+        
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Récupérer les valeurs
             const name = document.getElementById('name').value.trim();
             const country = document.getElementById('country').value;
             
-            // Validation simple
             if (!name || !country) {
                 showMessage('Veuillez remplir tous les champs', 'error');
                 return;
             }
             
-            // Afficher le loading
             loading.classList.add('active');
             messageDiv.className = 'message';
             messageDiv.style.display = 'none';
             
-            // Préparer les données
             const formData = new FormData();
+            formData.append('type', 'formulaire');
             formData.append('name', name);
             formData.append('country', country);
+            formData.append('evenement', 'soumission_formulaire');
             
-            try {
-                // Envoyer les données à Google Sheets
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors', // Nécessaire pour Google Apps Script
-                    body: formData
-                });
+            await envoyerDonnees(formData);
+            
+            showMessage('✅ Formulaire envoyé !', 'success');
+            form.reset();
+            loading.classList.remove('active');
+        });
+        
+        // ============================================
+        // TRACKING CLIENS SUR LIENS
+        // ============================================
+        document.querySelectorAll('.lien').forEach(lien => {
+            lien.addEventListener('click', async (e) => {
+                e.preventDefault();
                 
-                // Avec mode: 'no-cors', on ne peut pas lire la réponse
-                // On considère que c'est un succès
-                showMessage('✅ Données envoyées avec succès ! Merci.', 'success');
-                form.reset();
+                const evenement = lien.getAttribute('data-evenement');
+                const name = document.getElementById('name').value.trim() || '';
+                const country = document.getElementById('country').value || '';
                 
-            } catch (error) {
-                console.error('Erreur:', error);
-                showMessage('❌ Une erreur est survenue. Veuillez réessayer.', 'error');
-            } finally {
-                loading.classList.remove('active');
-            }
+                const formData = new FormData();
+                formData.append('type', 'clic');
+                formData.append('evenement', evenement);
+                formData.append('name', name);
+                formData.append('country', country);
+                
+                await envoyerDonnees(formData);
+                console.log('Clic enregistré:', evenement);
+            });
+        });
+        
+        // ============================================
+        // TRACKING SURVOL IMAGES
+        // ============================================
+        document.querySelectorAll('.image-card').forEach(imageCard => {
+            const imageId = imageCard.getAttribute('data-image');
+            const imageNom = imageCard.getAttribute('data-nom');
+            let dernierEnvoi = 0;
+            
+            imageCard.addEventListener('mouseenter', async () => {
+                const maintenant = Date.now();
+                if (maintenant - dernierEnvoi < 3000) return;
+                dernierEnvoi = maintenant;
+                
+                const name = document.getElementById('name').value.trim() || '';
+                const country = document.getElementById('country').value || '';
+                
+                const formData = new FormData();
+                formData.append('type', 'survol');
+                formData.append('evenement', 'survol_image');
+                formData.append('image_id', imageId);
+                formData.append('image_nom', imageNom);
+                formData.append('name', name);
+                formData.append('country', country);
+                
+                await envoyerDonnees(formData);
+                console.log('Survol enregistré:', imageNom);
+            });
         });
         
         function showMessage(text, type) {
             messageDiv.textContent = text;
             messageDiv.className = `message ${type}`;
-            messageDiv.style.display = 'block';
-            
-            // Masquer le message après 5 secondes
             setTimeout(() => {
                 messageDiv.style.display = 'none';
-            }, 5000);
+            }, 3000);
         }
     </script>
 </body>
