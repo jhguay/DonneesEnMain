@@ -1,0 +1,135 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes données ESP32 en temps réel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .last-update {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📊 Données des capteurs ESP32</h1>
+    <div id="table-container">
+        <div class="error">Chargement des données...</div>
+    </div>
+    <div class="last-update" id="last-update"></div>
+
+    <script type="module">
+        // Remplacer par l'URL de VOTRE Google Sheets
+        const SHEET_URL = "https://docs.google.com/spreadsheets/d/1L2MC6vedR8-yeaT6LOPIdEryDVs4K7FwSFa8HqKu3wE/edit?usp=sharing";
+        
+        // Remplacer par les noms de colonnes souhaités
+        const COLUMN_MAPPING = {
+            A: "date",
+            B: "temperature",
+            C: "humidite"
+        };
+        
+        // Requête SQL-like pour récupérer les données (optionnel)
+        const QUERY = "SELECT A, B, C";
+        
+        async function loadData() {
+            try {
+                // Importer la bibliothèque Clipsheet
+                const clipsheet = await import("https://esm.sh/jsr/@katlyn/clipsheet");
+                
+                // Récupérer les données du sheet
+                const data = await clipsheet.default(SHEET_URL, QUERY, COLUMN_MAPPING);
+                
+                if (!data || data.length === 0) {
+                    document.getElementById("table-container").innerHTML = 
+                        '<div class="error">Aucune donnée trouvée</div>';
+                    return;
+                }
+                
+                // Afficher les données dans un tableau
+                displayData(data);
+                
+                // Mettre à jour l'heure
+                document.getElementById("last-update").innerHTML = 
+                    `Dernière mise à jour : ${new Date().toLocaleString()}`;
+                    
+            } catch (error) {
+                console.error("Erreur:", error);
+                document.getElementById("table-container").innerHTML = 
+                    `<div class="error">Erreur de chargement : ${error.message}</div>`;
+            }
+        }
+        
+        function displayData(data) {
+            if (!data || data.length === 0) return;
+            
+            // Créer le tableau HTML
+            let html = '<table>';
+            
+            // En-têtes
+            html += '<thead><tr>';
+            Object.keys(data[0]).forEach(key => {
+                html += `<th>${key.toUpperCase()}</th>`;
+            });
+            html += '</tr></thead>';
+            
+            // Corps du tableau (affichage inversé pour voir les dernières données en premier)
+            html += '<tbody>';
+            [...data].reverse().slice(0, 50).forEach(row => {
+                html += '<tr>';
+                Object.values(row).forEach(value => {
+                    html += `<td>${value || '-'}</td>`;
+                });
+                html += '</tr>';
+            });
+            html += '</tbody></table>';
+            
+            document.getElementById("table-container").innerHTML = html;
+        }
+        
+        // Charger les données au démarrage
+        loadData();
+        
+        // Rafraîchir toutes les 30 secondes
+        setInterval(loadData, 30000);
+    </script>
+</body>
+</html>
