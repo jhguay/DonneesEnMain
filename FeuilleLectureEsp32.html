@@ -57,16 +57,16 @@
     <div class="last-update" id="last-update"></div>
 
     <script type="module">
-        // Remplacer par l'URL de VOTRE Google Sheets
+        // Remplacer par l'URL de VOTRE Google Sheets:Timestamp	Température	 Humidité Air 	Humidité Sol
 
         const SHEET_URL = "https://docs.google.com/spreadsheets/d/1KL5UqCRqlScyrfsd_D2NvjQhw8IqrDOPYIHLGsiyhk4/edit?gid=0#gid=0&range=B7";
         
         // Remplacer par les noms de colonnes souhaités
         const COLUMN_MAPPING = {
-            A: "date",
-            B: "temperature",
-            C: "air_humidite",
-	    D: "sol_humidite"
+            A: "Timestamp",
+            B: "Température",
+            C: "Humidité Air",
+	    D: "Humidité Sol"
         };
         
         // Requête SQL-like pour récupérer les données (optionnel)
