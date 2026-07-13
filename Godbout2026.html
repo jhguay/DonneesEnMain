@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Analyse - Équilibre budgétaire</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            box-sizing: border-box;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Barre d'onglets supérieure */
+        .tab-navigation {
+            display: flex;
+            background-color: #fff;
+            border-bottom: 2px solid #dee2e6;
+            padding: 10px 20px 0 20px;
+            gap: 5px;
+        }
+
+        .tab-btn {
+            background: #e9ecef;
+            border: 1px solid #dee2e6;
+            border-bottom: none;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #495057;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            background-color: #f1f3f5;
+            color: #212529;
+        }
+
+        .tab-btn.active {
+            background-color: #377eb8;
+            color: white;
+            border-color: #377eb8;
+            padding-bottom: 14px;
+            margin-bottom: -2px;
+            z-index: 2;
+        }
+
+        /* Conteneur des contenus */
+        .tab-container {
+            flex-grow: 1;
+            position: relative;
+            height: calc(100vh - 55px);
+        }
+
+        .tab-content {
+            display: none;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Style pour les onglets contenant uniquement des images */
+        .image-view {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f1f3f5;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .image-view img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Layout spécifique pour l'application interactive (Onglet 5) */
+        .main-layout {
+            display: flex;
+            gap: 20px;
+            height: 100%;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .sidebar {
+            width: 280px;
+            min-width: 280px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        
+        h1 { 
+            font-size: 18px; 
+            margin: 0 0 10px 0; 
+            font-weight: 700; 
+            line-height: 1.3;
+        }
+        
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .btn {
+            background-color: #fff;
+            border: 2px solid #dee2e6;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            font-size: 13px;
+            text-align: left;
+        }
+        .btn.active {
+            background-color: #377eb8;
+            color: white;
+            border-color: #377eb8;
+        }
+        .btn:hover { transform: translateX(2px); }
+        .btn-global { text-align: center; background-color: #f1f3f5; }
+        hr { width: 100%; border: none; border-top: 1px solid #dee2e6; margin: 10px 0; }
+        
+        .canvas-container {
+            flex-grow: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: relative;
+            height: 100%;
+        }
+        
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Barre de navigation des onglets -->
+<div class="tab-navigation">
+    <button class="tab-btn active" onclick="switchTab(event, 'tab-intro')">Introduction</button>
+    <button class="tab-btn" onclick="switchTab(event, 'tab-p1')">Première hypothèse</button>
+    <button class="tab-btn" onclick="switchTab(event, 'tab-p2')">Deuxième hypothèse</button>
+    <button class="tab-btn" onclick="switchTab(event, 'tab-p3')">Troisième hypothèse</button>
+    <button class="tab-btn" onclick="switchTab(event, 'tab-p4')">Quatrième hypothèse</button>
+    <button class="tab-btn" onclick="switchTab(event, 'tab-p5')">Analyse multivariée</button>
+    <button class="tab-btn" onclick="switchTab(event, 'tab-conclusion')">Conclusion</button>
+</div>
+
+<!-- Conteneurs de contenu pour chaque onglet -->
+<div class="tab-container">
+
+    <!-- 1. Introduction -->
+    <div id="tab-intro" class="tab-content active">
+        <div class="image-view">
+            <img src="pageIntroduction.jpg" alt="Remplacer par l'image d'introduction">
+        </div>
+    </div>
+
+    <!-- 2. Univarié -->
+    <div id="tab-p1" class="tab-content">
+        <div class="image-view">
+            <img src="H1.JPG" alt="Remplacer par l'image de l'analyse univariée">
+        </div>
+    </div>
+
+    <!-- 2. Univarié2 -->
+    <div id="tab-p2" class="tab-content">
+        <div class="image-view">
+            <img src="H2.JPG" alt="Remplacer par l'image de l'analyse univariée">
+        </div>
+    </div>
+
+    <!-- 3. Bivarié -->
+    <div id="tab-p3" class="tab-content">
+        <div class="image-view">
+            <img src="H3.JPG" alt="Remplacer par l'image de l'analyse bivariée">
+        </div>
+    </div>
+
+    <!-- 4. Multivariée simple -->
+    <div id="tab-p4" class="tab-content">
+        <div class="image-view">
+            <img src="H4.JPG" alt="Remplacer par l'image de l'analyse multivariée simple">
+        </div>
+    </div>
+
+    <!-- 5. Multivarié complexe -->
+    <div id="tab-p5" class="tab-content">
+        <div class="main-layout">
+            <div class="sidebar">
+                <h1>Une analyse multivariée (ACM) utilisant un espace cartésien où la proximité des points illustre la similitude des profils "confirme" les hypothèses déjà démontrées et indique que les variables socio-démographiques sont peut-être actives. Sélectionner pour y voir plus clair!</h1>
+                
+                <div class="controls" id="controlsContainer">
+                    <button class="btn active btn-global" onclick="toggleToutes(true)">Tout afficher</button>
+                    <button class="btn active btn-global" onclick="toggleToutes(false)">Tout masquer</button>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="acmChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. Conclusion -->
+    <div id="tab-conclusion" class="tab-content">
+        <div class="image-view">
+            <img src="pageConclusion.jpg" alt="Remplacer par l'image de conclusion">
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // --- GESTION DU CHANGEMENT D'ONGLET ---
+    function switchTab(event, tabId) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        
+        event.currentTarget.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+    }
+
+    // --- APPLICATION ACM (ONGLET 5) ---
+    const couleursVariables = {
+        "Adhésion": "#FFF200",
+        "Application": "#F9D423",
+        "Priorisation": "#FFB300",
+        "Solution": "#FF6D00",
+        "Parti": "#FFFFFF",
+        
+        "LANGUE": "#4CAF50",
+        "AGE": "#00BFA5",
+        "GENRE": "#00ACC1",
+        "SCOLARITÉ": "#1976D2",
+        "REVENU": "#0D47A1"
+    };
+
+    Chart.register(ChartDataLabels);
+    
+    let acmChart;
+    let totalDatasets = 0;
+
+    function transformationLog(valeur) {
+        return Math.sign(valeur) * Math.log1p(Math.abs(valeur));
+    }
+
+    fetch('donnees.json')
+        .then(response => {
+            if (!response.ok) throw new Error("Impossible de charger donnees.json");
+            return response.json();
+        })
+        .then(donneesACM => {
+            initialiserGraphique(donneesACM);
+        })
+        .catch(error => {
+            console.error("Erreur :", error);
+        });
+
+    function initialiserGraphique(donneesACM) {
+        let datasets = [];
+        let variables = Object.keys(donneesACM);
+        totalDatasets = variables.length;
+
+        // --- CALCUL DYNAMIQUE DES LIMITES MAXIMUM GLOBALES ---
+        let xMin = Infinity, xMax = -Infinity;
+        let yMin = Infinity, yMax = -Infinity;
+
+        Object.values(donneesACM).forEach(points => {
+            points.forEach(p => {
+                const transX = transformationLog(p.x);
+                const transY = transformationLog(p.y);
+                if (transX < xMin) xMin = transX;
+                if (transX > xMax) xMax = transX;
+                if (transY < yMin) yMin = transY;
+                if (transY > yMax) yMax = transY;
+            });
+        });
+
+        // Ajout d'une marge de sécurité de 15%
+        const margeX = (xMax - xMin) * 0.15 || 0.5;
+        const margeY = (yMax - yMin) * 0.15 || 0.5;
+        
+        // Ordre mathématique standard conservé ici pour éviter de perdre les lignes de repères (le reverse s'occupe de l'affichage)
+        const xMinFixe = xMin - margeX;
+        const xMaxFixe = xMax + margeX;
+        const yMinFixe = yMin - margeY;
+        const yMaxFixe = yMax + margeY;
+        
+        const ordrePrioritaire = ["Adhésion", "Application", "Priorisation", "Solution", "Parti"];
+        
+        variables.sort((a, b) => {
+            const indexA = ordrePrioritaire.indexOf(a);
+            const indexB = ordrePrioritaire.indexOf(b);
+            if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+            if (indexA !== -1) return -1;
+            if (indexB !== -1) return 1;
+            return a.localeCompare(b);
+        });
+        
+        variables.forEach((variable) => {
+            const donneesTransformees = donneesACM[variable].map(point => {
+                return {
+                    label: point.label,
+                    x: transformationLog(point.x),
+                    y: transformationLog(point.y),
+                    originalX: point.x,
+                    originalY: point.y
+                };
+            });
+
+            datasets.push({
+                label: variable,
+                data: donneesTransformees,
+                backgroundColor: couleursVariables[variable] || "#377eb8",
+                borderColor: "#333",
+                borderWidth: 1,
+                pointRadius: 7,
+                pointHoverRadius: 9,
+                showLine: false
+            });
+        });
+
+        const ctx = document.getElementById('acmChart').getContext('2d');
+        acmChart = new Chart(ctx, {
+            type: 'scatter',
+            data: { datasets: datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        reverse: true, // L'inversion native se passe ici
+                        min: xMinFixe,
+                        max: xMaxFixe,
+                        title: { display: true, text: 'Axe 1 (Échelle dilatée - Inversé)', font: { weight: 'bold', size: 12 } },
+                        grid: {
+                            color: context => context.tick.value === 0 ? '#666666' : '#e9ecef',
+                            lineWidth: context => context.tick.value === 0 ? 1.5 : 1
+                        }
+                    },
+                    y: {
+                        min: yMinFixe,
+                        max: yMaxFixe,
+                        title: { display: true, text: 'Axe 2 (Échelle dilatée)', font: { weight: 'bold', size: 12 } },
+                        grid: {
+                            color: context => context.tick.value === 0 ? '#666666' : '#e9ecef',
+                            lineWidth: context => context.tick.value === 0 ? 1.5 : 1
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    datalabels: {
+                        align: 'top',
+                        offset: 6,
+                        font: function(context) {
+                            const label = context.dataset.data[context.dataIndex].label;
+                            return { size: 11, weight: label.includes("Solution") ? 'bold' : 'normal' };
+                        },
+                        formatter: function(value) { return value.label; }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(30, 41, 59, 0.9)',
+                        titleFont: { weight: 'bold' },
+                        callbacks: {
+                            label: function(context) {
+                                const origine = context.raw;
+                                return ` ${origine.label} (X: ${origine.originalX.toFixed(3)}, Y: ${origine.originalY.toFixed(3)})`;
+                            }
+                        }
+                    },
+                    zoom: {
+                        pan: { enabled: true, mode: 'xy' },
+                        zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'xy' }
+                    }
+                }
+            }
+        });
+
+        const container = document.getElementById('controlsContainer');
+        variables.forEach((variable, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'btn active';
+            btn.style.borderLeft = `5px solid ${couleursVariables[variable] || '#377eb8'}`;
+            btn.innerText = variable;
+            btn.id = `btn-${index}`;
+            
+            btn.onclick = function() {
+                const meta = acmChart.getDatasetMeta(index);
+                meta.hidden = meta.hidden === null ? !acmChart.data.datasets[index].hidden : null;
+                btn.classList.toggle('active');
+                acmChart.update();
+            };
+            container.appendChild(btn);
+        });
+    }
+
+    function toggleToutes(afficher) {
+        if (!acmChart) return;
+        for (let index = 0; index < totalDatasets; index++) {
+            const meta = acmChart.getDatasetMeta(index);
+            meta.hidden = afficher ? null : true;
+            
+            const btn = document.getElementById(`btn-${index}`);
+            if (btn) {
+                if (afficher) btn.classList.add('active');
+                else btn.classList.remove('active');
+            }
+        }
+        acmChart.update();
+    }
+</script>
+
+</body>
+</html>

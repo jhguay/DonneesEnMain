@@ -1,0 +1,172 @@
+{
+  "AGE": [
+    {
+      "label": "AGE__+65 ans",
+      "x": -0.2549,
+      "y": 0.0223
+    },
+    {
+      "label": "AGE__-45 ans",
+      "x": 0.2836,
+      "y": 0.0171
+    },
+    {
+      "label": "AGE__45-65 ans",
+      "x": 0.0032,
+      "y": -0.0249
+    }
+  ],
+  "Adhésion": [
+    {
+      "label": "Adhésion__Important",
+      "x": -0.5021,
+      "y": 0.077
+    },
+    {
+      "label": "Adhésion__Neutre",
+      "x": 1.0957,
+      "y": -0.7089
+    },
+    {
+      "label": "Adhésion__Pas important",
+      "x": 1.4485,
+      "y": 2.3621
+    }
+  ],
+  "Application": [
+    {
+      "label": "Application__Accord",
+      "x": -0.7011,
+      "y": 0.0818
+    },
+    {
+      "label": "Application__Désaccord",
+      "x": 0.426,
+      "y": 1.447
+    },
+    {
+      "label": "Application__Neutre",
+      "x": 0.5379,
+      "y": -0.4893
+    }
+  ],
+  "GENRE": [
+    {
+      "label": "GENRE__Féminin",
+      "x": 0.1596,
+      "y": -0.1335
+    },
+    {
+      "label": "GENRE__Masculin",
+      "x": -0.1444,
+      "y": 0.1207
+    }
+  ],
+  "LANGUE": [
+    {
+      "label": "LANGUE__Allophones",
+      "x": -0.2247,
+      "y": 0.0504
+    },
+    {
+      "label": "LANGUE__Anglophones",
+      "x": -0.11,
+      "y": 0.2743
+    },
+    {
+      "label": "LANGUE__Francophones",
+      "x": 0.0278,
+      "y": -0.0458
+    }
+  ],
+  "Parti": [
+    {
+      "label": "Parti__CAQ",
+      "x": -0.3726,
+      "y": -0.0921
+    },
+    {
+      "label": "Parti__NSP",
+      "x": 0.4413,
+      "y": -0.4489
+    },
+    {
+      "label": "Parti__PCQ",
+      "x": -0.5721,
+      "y": -0.0565
+    },
+    {
+      "label": "Parti__PLQ",
+      "x": -0.458,
+      "y": 0.5293
+    },
+    {
+      "label": "Parti__PQ",
+      "x": -0.0576,
+      "y": -0.2984
+    },
+    {
+      "label": "Parti__QS",
+      "x": 1.1507,
+      "y": 1.0124
+    }
+  ],
+  "Priorisation": [
+    {
+      "label": "Priorisation__Accord",
+      "x": -0.6469,
+      "y": 0.1027
+    },
+    {
+      "label": "Priorisation__Désaccord",
+      "x": 1.4118,
+      "y": 2.0322
+    },
+    {
+      "label": "Priorisation__Neutre",
+      "x": 0.8273,
+      "y": -0.7303
+    }
+  ],
+  "REVENU": [
+    {
+      "label": "REVENU__100 000 $ et plus",
+      "x": -0.0555,
+      "y": 0.0465
+    },
+    {
+      "label": "REVENU__39 999 $ et moins",
+      "x": 0.2044,
+      "y": -0.0238
+    },
+    {
+      "label": "REVENU__40 000 $ - 100 000 $",
+      "x": -0.0365,
+      "y": -0.0305
+    }
+  ],
+  "SCOLARITÉ": [
+    {
+      "label": "SCOLARITÉ__Non universitaire",
+      "x": -0.1255,
+      "y": -0.0639
+    },
+    {
+      "label": "SCOLARITÉ__Universitaire",
+      "x": 0.0626,
+      "y": 0.0319
+    }
+  ],
+  "Solution": [
+    {
+      "label": "Solution__MOINS de services",
+      "x": -0.2293,
+      "y": -0.131
+    },
+    {
+      "label": "Solution__PLUS d'impôts",
+      "x": 0.4229,
+      "y": 0.2415
+    }
+  ]
+}
