@@ -1,0 +1,98 @@
+variable,valeur,r,g,b
+Referendum,Sou_NON,255,40,40
+Referendum,Sou_NSP,52,52,52
+Referendum,Sou_OUI,10,182,250
+Option_Ind,CONTRE,255,179,193
+Option_Ind,NSP,52,52,52
+Option_Ind,POUR,41,182,246
+Option_SouAss,CONTRE,255,143,163
+Option_SouAss,NSP,52,52,52
+Option_SouAss,POUR,30,136,229
+Option_Prov,CONTRE,63,81,181
+Option_Prov,NSP,52,52,52
+Option_Prov,POUR,255,111,130
+Argument_Droit,CONTRE,211,47,47
+Argument_Droit,NEUTRE,90,90,90
+Argument_Droit,NSP,52,52,52
+Argument_Droit,POUR,149,117,205
+Argument_Resssources,CONTRE,211,47,47
+Argument_Resssources,NEUTRE,90,90,90
+Argument_Resssources,NSP,52,52,52
+Argument_Resssources,POUR,149,117,205
+Argument_Faisable,CONTRE,211,47,47
+Argument_Faisable,NEUTRE,90,90,90
+Argument_Faisable,NSP,52,52,52
+Argument_Faisable,POUR,149,117,205
+Honte_Racisme,ACCORD,211,47,47
+Honte_Racisme,DÉSACCORD,149,117,205
+Honte_Racisme,NEUTRE,90,90,90
+Honte_Racisme,NSP,52,52,52
+Honte_Colonialisme,ACCORD,211,47,47
+Honte_Colonialisme,DÉSACCORD,149,117,205
+Honte_Colonialisme,NEUTRE,90,90,90
+Honte_Colonialisme,NSP,52,52,52
+Futur_Francais,NEUTRE,90,90,90
+Futur_Francais,NSP,52,52,52
+Futur_Francais,OPTIMISTE,106,27,154
+Futur_Francais,PESSIMISTE,142,0,0
+Futur_Economie,NEUTRE,90,90,90
+Futur_Economie,NSP,52,52,52
+Futur_Economie,OPTIMISTE,106,27,154
+Futur_Economie,PESSIMISTE,142,0,0
+Futur_culture,NEUTRE,90,90,90
+Futur_culture,NSP,52,52,52
+Futur_culture,OPTIMISTE,106,27,154
+Futur_culture,PESSIMISTE,142,0,0
+Opinion_Immigration,CONTRE,46,204,113
+Opinion_Immigration,NEUTRE,90,90,90
+Opinion_Immigration,NSP,52,52,52
+Opinion_Immigration,POUR,243,156,18
+Opinion_sociale,NSP,52,52,52
+Opinion_sociale,Responsabilité collective,232,67,147
+Opinion_sociale,Responsabilité individuelle,0,184,148
+Opinion_sociale,Responsabilité mixte,90,90,90
+Opinion_economique,Economie: neutre,90,90,90
+Opinion_economique,Economie: privé et public,253,203,110
+Opinion_economique,Economie: privé seulement,108,92,231
+Opinion_economique,NSP,52,52,52
+Opinion_feministe,Feministe: CONTRE féministe,0,206,201
+Opinion_feministe,Feministre: NEUTRE féministe,90,90,90
+Opinion_feministe,Féministe: POUR féministe,39,174,96
+Opinion_feministe,NSP,52,52,52
+Opinion_lgbtq,CONTRE LGBTQ,0,206,201
+Opinion_lgbtq,NEUTRE LGBTQ,90,90,90
+Opinion_lgbtq,POUR LGBTQ,39,174,96
+Opinion_lgbtq,NSP,52,52,52
+Attitude_risque,NSP,52,52,52
+Attitude_risque,Risque difficile,41,128,185
+Attitude_risque,Risque facile,142,68,173
+Vote_provincial,CAQ,22,160,133
+Vote_provincial,NSP,236,240,241
+Vote_provincial,PCQ,225,112,85
+Vote_provincial,PLQ,0,180,216
+Vote_provincial,PQ,244,162,97
+Vote_provincial,QS,42,157,143
+Vote_provincial,Vote prov: NSP,52,52,52
+Vote_federal,BQ,233,196,106
+Vote_federal,NPD,131,56,236
+Vote_federal,NSP,236,240,241
+Vote_federal,PCC,255,0,110
+Vote_federal,PLC,58,134,255
+Vote_federal,PVQ,251,86,7
+Vote_federal,Vote fed: NSP,52,52,52
+Genre,Femme,255,190,11
+Genre,Homme,231,76,60
+Langue,Francophones,52,152,219
+Langue,Non francophones,46,204,113
+Age,18-39 ans,102,187,106
+Age,40-59 ans,165,214,167
+Age,60 ans et plus,232,245,233
+Origine,Né Ailleurs,230,126,34
+Origine,Né Canada,44,62,80
+Scolarite,Collégial,244,143,177
+Scolarite,Secondaire,236,64,122
+Scolarite,Universitaire,252,228,236
+Revenus,NSP,52,52,52
+Revenus,Revenus bas,141,110,99
+Revenus,Revenus moyens,188,170,164
+Revenus,Revenus élevés,239,235,233
