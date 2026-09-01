@@ -728,7 +728,7 @@
                 </ul>
                 
                 <h3>📁 Données</h3>
-                <p>Le fichier <strong>femmescoordonnees_methode_tirage.csv</strong> contient :</p>
+                <p>Le fichier <strong>femmesacm_individus_complets.csv</strong> contient :</p>
                 <ul>
                     <li>Les coordonnées factorielles : <strong>Dim1, Dim2, Dim3</strong></li>
                     <li>Des variables catégorielles : genre, vote, opinions, etc.</li>
@@ -2017,7 +2017,7 @@
                 loadPalette()
             ])
             .then(() => {
-                return fetch('femmescoordonnees_methode_tirage.csv');
+                return fetch('femmesacm_individus_complets.csv');
             })
             .then(response => {
                 if (!response.ok) {
