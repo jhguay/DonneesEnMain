@@ -80,7 +80,7 @@ Vote_federal,PCC,255,0,110
 Vote_federal,PLC,58,134,255
 Vote_federal,PVQ,251,86,7
 Vote_federal,Vote fed: NSP,52,52,52
-Genre,Femme,124,252,255
+Genre,Femme,124,252,0
 Genre,Homme,255,205,0
 Langue,Francophones,52,152,219
 Langue,Non francophones,46,204,113
